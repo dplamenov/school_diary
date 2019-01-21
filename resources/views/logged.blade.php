@@ -1,9 +1,9 @@
 @extends('layout.layout')
-@section('title', 'Error')
+@section('title', 'Logged')
 @section('container')
+
+    <p>Hello, {{$user_data['username']}}</p>
     <p>Logged</p>
     <a href="{{url('/logout')}}">Log out</a>
-    @foreach($user_data as $user)
-        <p>{{$user}}</p>
-    @endforeach
+
 @endsection

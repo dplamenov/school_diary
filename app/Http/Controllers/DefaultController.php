@@ -36,7 +36,7 @@ class DefaultController extends Controller
         if(count($user) == 1){
             $user_model = new Models\User();
             unset($validate['password']);
-            $user_data['username'] = $validate['username'];
+            $user_data['username'] = ucfirst(strtolower($validate['username']));
             $user_data['type'] = $user_model->getUserTypes()[$validate['type']];
             $request->session()->put('user_data', $user_data);
             $request->session()->put('islogged', true);
