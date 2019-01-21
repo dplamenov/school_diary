@@ -26,7 +26,8 @@ class DefaultController extends Controller
             [
                 'type.numeric' => 'Error',
             ]);
-        
+
+
         echo '<pre>' . print_r($validate, true) . '</pre>';
         echo '<pre>' . print_r($request->post(), true) . '</pre>';
     }
