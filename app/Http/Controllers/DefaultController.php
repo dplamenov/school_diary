@@ -34,8 +34,11 @@ class DefaultController extends Controller
         $user = DB::select('SELECT * FROM `users` WHERE `username` = ? and `password` = ? and `type` = ?',
             [$validate['username'], $validate['password'], $validate['type']]);
         if(count($user) == 1){
+            $user_model = new Models\User();
             unset($validate['password']);
-            $request->session()->put('user_data', $validate);
+            $user_data['username'] = $validate['username'];
+            $user_data['type'] = $user_model->getUserTypes()[$validate['type']];
+            $request->session()->put('user_data', $user_data);
             $request->session()->put('islogged', true);
             return redirect('/');
         }else{
