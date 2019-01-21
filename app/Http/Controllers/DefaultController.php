@@ -3,15 +3,19 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class DefaultController extends Controller
 {
     public function index(Request $request)
     {
+        echo '<pre>' . print_r(DB::select('SELECT * FROM `users`'), true) . '</pre>';
+        $user_model = new Models\User();
         if ($request->session()->get('islogged', false)) {
             return 'Logged';
+            //return view('logged');
         } else {
-            $types_user = ['Teacher', 'Parent', 'Student'];
+            $types_user = $user_model->getUserTypes();
             return view('login_form', ['types_user' => $types_user]);
         }
     }
@@ -26,6 +30,7 @@ class DefaultController extends Controller
             [
                 'type.numeric' => 'Error',
             ]);
+
 
 
         echo '<pre>' . print_r($validate, true) . '</pre>';
