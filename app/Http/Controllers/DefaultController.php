@@ -9,11 +9,10 @@ class DefaultController extends Controller
 {
     public function index(Request $request)
     {
-        echo '<pre>' . print_r(DB::select('SELECT * FROM `users`'), true) . '</pre>';
         $user_model = new Models\User();
         if ($request->session()->get('islogged', false)) {
-            return 'Logged';
-            //return view('logged');
+            //return 'Logged';
+            return view('logged', ['user_data' => $request->session()->get('user_data')]);
         } else {
             $types_user = $user_model->getUserTypes();
             return view('login_form', ['types_user' => $types_user]);
@@ -32,8 +31,22 @@ class DefaultController extends Controller
             ]);
 
 
+        $user = DB::select('SELECT * FROM `users` WHERE `username` = ? and `password` = ? and `type` = ?',
+            [$validate['username'], $validate['password'], $validate['type']]);
+        if(count($user) == 1){
+            unset($validate['password']);
+            $request->session()->put('user_data', $validate);
+            $request->session()->put('islogged', true);
+            return redirect('/');
+        }else{
+            return view('error',['type_error' => 'No such that user in database']);
+        }
 
-        echo '<pre>' . print_r($validate, true) . '</pre>';
-        echo '<pre>' . print_r($request->post(), true) . '</pre>';
+    }
+
+    public function logout(Request $request){
+        $request->session()->put('user_data', null);
+        $request->session()->put('islogged', false);
+        return redirect(url('/'));
     }
 }
