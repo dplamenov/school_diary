@@ -11,6 +11,5 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'DefaultController@index');
+Route::post('/', 'DefaultController@processData');
