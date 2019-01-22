@@ -10,14 +10,31 @@
 namespace App\Http\Controllers;
 
 
+use App\Http\Controllers\Models\Subject;
 use Illuminate\Http\Request;
 
 class DirectorController extends Controller
 {
-    public function addTeacherForm(Request $request){
-        if($request->session()->get('user_data')['type'] != 'director'){
+    public function addTeacherForm(Request $request)
+    {
+        $subject = array();
+        if ($request->session()->get('user_data')['type'] != 'director') {
             return redirect()->route('home');
         }
-        return view('addteacherform');
+        $subject = new Subject();
+        $subject = $subject->getAllSubject();
+
+        foreach ($subject as $item){
+            $subjects[] = $item->subject_name;
+        }
+
+        return view('addteacherform', ['subjects' => $subjects]);
+    }
+
+    public function addTeacher(Request $request){
+        $validate = $this->validate($request,[
+            'fullname' => 'min:8'
+        ]);
+        echo '<pre>' . print_r($request->post(), true) . '</pre>';
     }
 }

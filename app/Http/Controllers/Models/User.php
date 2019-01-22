@@ -3,9 +3,7 @@
 namespace App\Http\Controllers\Models;
 
 
-use Illuminate\Database\Eloquent\Model;
-
-class User extends Model
+class User
 {
     public function getUserTypes() : array
     {
