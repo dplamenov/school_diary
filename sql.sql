@@ -14,3 +14,10 @@ CREATE TABLE IF NOT EXISTS `subjects`
   `subject_name` VARCHAR(20) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   PRIMARY KEY (`subject_id`)
 ) ENGINE = InnoDB;
+
+CREATE TABLE IF NOT EXISTS `teachers`
+(
+  `teacher_id`   INT                                                     NOT NULL AUTO_INCREMENT,
+  `teacher_name` VARCHAR(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  PRIMARY KEY (`teacher_id`)
+) ENGINE = InnoDB;
