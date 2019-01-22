@@ -13,4 +13,5 @@
 
 Route::get('/', 'DefaultController@index');
 Route::post('/', 'DefaultController@processData');
+//Route::get('/teacher', 'DefaultController@teacher');
 Route::get('/logout', 'DefaultController@logout');

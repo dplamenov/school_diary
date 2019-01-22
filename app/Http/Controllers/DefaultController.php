@@ -11,8 +11,7 @@ class DefaultController extends Controller
     {
         $user_model = new Models\User();
         if ($request->session()->get('islogged', false)) {
-            //return 'Logged';
-            return view('logged', ['user_data' => $request->session()->get('user_data')]);
+            return view(strtolower($request->session()->get('user_data')['type']), ['user_data' => $request->session()->get('user_data')]);
         } else {
             $types_user = $user_model->getUserTypes();
             return view('login_form', ['types_user' => $types_user]);
@@ -40,7 +39,7 @@ class DefaultController extends Controller
             $user_data['type'] = $user_model->getUserTypes()[$validate['type']];
             $request->session()->put('user_data', $user_data);
             $request->session()->put('islogged', true);
-            return redirect('/');
+            return view(strtolower($user_data['type']), ['user_data' => $user_data]);
         }else{
             return view('error',['type_error' => 'No such that user in database']);
         }
@@ -51,5 +50,10 @@ class DefaultController extends Controller
         $request->session()->put('user_data', null);
         $request->session()->put('islogged', false);
         return redirect(url('/'));
+    }
+
+    public function teacher(Request $request){
+
+        return view('teacher');
     }
 }
