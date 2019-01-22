@@ -11,7 +11,7 @@
 |
 */
 
-Route::get('/', 'DefaultController@index');
+Route::get('/', 'DefaultController@index')->name('home');
 Route::post('/', 'DefaultController@processData');
-//Route::get('/teacher', 'DefaultController@teacher');
+Route::get('director/addteacher', 'DirectorController@addTeacherForm');
 Route::get('/logout', 'DefaultController@logout');
