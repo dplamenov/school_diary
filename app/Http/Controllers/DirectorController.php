@@ -39,7 +39,7 @@ class DirectorController extends Controller
         ]);
         DB::insert("INSERT INTO `teachers` (`teacher_id`, `teacher_name`) VALUES (NULL, ?)",[$validate['fullname']]);
         $last_id= DB::select('SELECT * FROM `teachers` WHERE `teacher_name` = ?',[$validate['fullname']])[0]->teacher_id;
-        
+
 
     }
 }
