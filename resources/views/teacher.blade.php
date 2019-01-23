@@ -5,6 +5,8 @@
     <p>Hello, {{explode(' ', $name)[1]}}</p>
     <div>
         <p>You teach the following classes:</p>
-
+        @foreach($class as $item)
+            <p><a href="#">{{$item->class_name}}</a></p>
+        @endforeach
     </div>
 @endsection

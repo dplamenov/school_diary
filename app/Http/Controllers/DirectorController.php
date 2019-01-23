@@ -92,7 +92,6 @@ class DirectorController extends Controller
             'teacher' => 'required'
         ]);
         DB::insert('INSERT INTO `classes` (`class_name`, `teacher`, `count`) VALUES (?, ?, 0)', [$validate['class_name'], $validate['teacher']]);
-        echo '<pre>' . print_r($validate, true) . '</pre>';
 
     }
 }
