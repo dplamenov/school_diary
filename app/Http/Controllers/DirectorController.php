@@ -1,11 +1,4 @@
 <?php
-/**
- * Project: school_diary.
- * File: DirectorController.php
- * Developer: dplamenov@icloud.com
- * Date: 22.1.2019 г.
- * Time: 16:53
- */
 
 namespace App\Http\Controllers;
 

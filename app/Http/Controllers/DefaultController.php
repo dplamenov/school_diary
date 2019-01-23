@@ -38,8 +38,7 @@ class DefaultController extends Controller
         }
     }
 
-    public
-    function processData(Request $request)
+    public function processData(Request $request)
     {
         $validate = $this->validate($request, [
             'username' => 'min:5',
