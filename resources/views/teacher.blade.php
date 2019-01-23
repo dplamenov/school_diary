@@ -3,5 +3,5 @@
 @section('container')
     <a href="{{url('logout')}}">Log out</a>
     {{$user_data['type']}}
-
+    
 @endsection

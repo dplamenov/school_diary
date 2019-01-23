@@ -14,4 +14,3 @@
         <input type="submit"/>
     </form>
 @endsection
-

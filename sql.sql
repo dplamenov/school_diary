@@ -27,3 +27,5 @@ CREATE TABLE IF NOT EXISTS `teacher_subject`
   `teacher_id` INT NOT NULL,
   `subject_id` INT NOT NULL
 ) ENGINE = InnoDB;
+
+ALTER TABLE `users` ADD `id` INT NOT NULL AFTER `email`;

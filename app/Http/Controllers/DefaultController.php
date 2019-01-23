@@ -30,7 +30,10 @@ class DefaultController extends Controller
 
                 $all_subject = $subject_model->getAllSubject();
                 return view(strtolower($request->session()->get('user_data')['type']), ['user_data' => $request->session()->get('user_data'), 'teachers' => $result, 'subjects' => $all_subject]);
+            }elseif (strtolower($request->session()->get('user_data')['type']) == 'teacher'){
+                echo '<pre>' . print_r($request->session()->all(), true) . '</pre>';
             }
+
             return view(strtolower($request->session()->get('user_data')['type']), ['user_data' => $request->session()->get('user_data')]);
         } else {
             $types_user = $user_model->getUserTypes();
@@ -65,7 +68,7 @@ class DefaultController extends Controller
             $user_data['type'] = $user_model->getUserTypes()[$validate['type']];
             $request->session()->put('user_data', $user_data);
             $request->session()->put('islogged', true);
-            return view(strtolower($user_data['type']), ['user_data' => $user_data]);
+            return redirect()->route('home');
         } else {
             return view('error', ['type_error' => 'No such that user in database']);
         }
