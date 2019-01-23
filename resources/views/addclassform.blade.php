@@ -10,13 +10,15 @@
     <form action="{{url('director/addclass')}}" method="post">
         @method('post')
         @csrf
-        <label>Class name <input type="text" name="class_name"/></label>
+        <label>Class name <input type="text" name="class_name" placeholder="Example: 10c"/></label>
         <label>Select head teacher
-            <select>
+            <select name="teacher">
                 @foreach($teachers as $key => $teacher)
                     <option value="{{$key}}">{{$teacher}}</option>
                 @endforeach
             </select>
+
         </label>
+        <input type="submit"/>
     </form>
 @endsection

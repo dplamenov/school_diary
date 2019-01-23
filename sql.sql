@@ -34,7 +34,7 @@ ALTER TABLE `users`
 CREATE TABLE IF NOT EXISTS `classes`
 (
   `class_id`   INT NOT NULL AUTO_INCREMENT,
-  `class_name` INT NOT NULL,
+  `class_name` VARCHAR(15) NOT NULL,
   `count`      INT NOT NULL,
   `teacher`    INT NOT NULL,
   PRIMARY KEY (`class_id`)

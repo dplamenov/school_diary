@@ -87,6 +87,12 @@ class DirectorController extends Controller
 
     public function addClass(Request $request)
     {
+        $validate = $this->validate($request, [
+            'class_name' => 'required',
+            'teacher' => 'required'
+        ]);
+        DB::insert('INSERT INTO `classes` (`class_name`, `teacher`, `count`) VALUES (?, ?, 0)', [$validate['class_name'], $validate['teacher']]);
+        echo '<pre>' . print_r($validate, true) . '</pre>';
 
     }
 }
