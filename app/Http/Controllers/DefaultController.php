@@ -30,8 +30,12 @@ class DefaultController extends Controller
 
                 $all_subject = $subject_model->getAllSubject();
                 return view(strtolower($request->session()->get('user_data')['type']), ['user_data' => $request->session()->get('user_data'), 'teachers' => $result, 'subjects' => $all_subject]);
-            }elseif (strtolower($request->session()->get('user_data')['type']) == 'teacher'){
-                echo '<pre>' . print_r($request->session()->all(), true) . '</pre>';
+            } elseif (strtolower($request->session()->get('user_data')['type']) == 'teacher') {
+                $r = DB::select('SELECT * FROM `users` LEFT JOIN `teachers` ON users.id = teachers.teacher_id WHERE users.user_id = ?', [$request->session()->get('user_data')['id']]);
+                unset($r[0]->password);
+                $name = $r[0]->teacher_name;
+                echo '<pre>' . print_r($r, true) . '</pre>';
+                return view(strtolower($request->session()->get('user_data')['type']), ['user_data' => $request->session()->get('user_data'), 'name' => $name]);
             }
 
             return view(strtolower($request->session()->get('user_data')['type']), ['user_data' => $request->session()->get('user_data')]);
@@ -64,6 +68,7 @@ class DefaultController extends Controller
         if (count($user) == 1) {
             $user_model = new Models\User();
             unset($validate['password']);
+            $user_data['id'] = $user[0]->user_id;
             $user_data['username'] = ucfirst(strtolower($validate['username']));
             $user_data['type'] = $user_model->getUserTypes()[$validate['type']];
             $request->session()->put('user_data', $user_data);
