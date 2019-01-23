@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\Models\Subject;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -11,6 +12,21 @@ class DefaultController extends Controller
     {
         $user_model = new Models\User();
         if ($request->session()->get('islogged', false)) {
+            if ($request->session()->get('user_data')['type'] == 'director') {
+                $subject_model = new Subject();
+                $teachers = DB::select("SELECT * FROM teachers LEFT JOIN teacher_subject ON teachers.teacher_id = teacher_subject.teacher_id LEFT JOIN subjects ON teacher_subject.subject_id = subjects.subject_id");
+                $result = [];
+
+                foreach ($teachers as $teacher) {
+                    $result[$teacher->teacher_id]['name'] = $teacher->teacher_name;
+                    $gen = $subject_model->getSubjectByTeacherId(intval($teacher->teacher_id));
+                    $result[$teacher->teacher_id]['subjects'] = $gen;
+
+
+
+                }
+                echo '<pre>' . print_r($result, true) . '</pre>';
+            }
             return view(strtolower($request->session()->get('user_data')['type']), ['user_data' => $request->session()->get('user_data')]);
         } else {
             $types_user = $user_model->getUserTypes();
@@ -18,7 +34,8 @@ class DefaultController extends Controller
         }
     }
 
-    public function processData(Request $request)
+    public
+    function processData(Request $request)
     {
         $validate = $this->validate($request, [
             'username' => 'min:5',
@@ -31,6 +48,7 @@ class DefaultController extends Controller
 
         if ($validate['username'] == 'admin' && $validate['password'] == 'admin') {
             $request->session()->put('user_data', ['type' => 'director']);
+            $request->session()->put('islogged', true);
             return view('director', ['user_data' => ['type' => 'director']]);
 
         }
@@ -50,7 +68,8 @@ class DefaultController extends Controller
         }
     }
 
-    public function logout(Request $request)
+    public
+    function logout(Request $request)
     {
         $request->session()->put('user_data', null);
         $request->session()->put('islogged', false);
@@ -62,4 +81,6 @@ class DefaultController extends Controller
 
         return view('teacher');
     }
+
+
 }

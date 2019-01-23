@@ -21,3 +21,9 @@ CREATE TABLE IF NOT EXISTS `teachers`
   `teacher_name` VARCHAR(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   PRIMARY KEY (`teacher_id`)
 ) ENGINE = InnoDB;
+
+CREATE TABLE IF NOT EXISTS `teacher_subject`
+(
+  `teacher_id` INT NOT NULL,
+  `subject_id` INT NOT NULL
+) ENGINE = InnoDB;

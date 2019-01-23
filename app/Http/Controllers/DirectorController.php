@@ -37,9 +37,14 @@ class DirectorController extends Controller
             'fullname' => 'min:8',
             'subjects' => 'array'
         ]);
-        DB::insert("INSERT INTO `teachers` (`teacher_id`, `teacher_name`) VALUES (NULL, ?)",[$validate['fullname']]);
-        $last_id= DB::select('SELECT * FROM `teachers` WHERE `teacher_name` = ?',[$validate['fullname']])[0]->teacher_id;
 
+        DB::insert("INSERT INTO `teachers` (`teacher_id`, `teacher_name`) VALUES (NULL, ?)",[$validate['fullname']]);
+        $last_id  = DB::select('SELECT * FROM `teachers` WHERE `teacher_name` = ?',[$validate['fullname']])[0]->teacher_id;
+        foreach ($validate['subjects'] as $subject){
+            DB::insert("INSERT INTO `teacher_subject` (`teacher_id`, `subject_id`) VALUES (?, ?)", [$last_id, $subject + 1]);
+        }
+
+        return redirect(url('/'));
 
     }
 }
