@@ -28,4 +28,14 @@ CREATE TABLE IF NOT EXISTS `teacher_subject`
   `subject_id` INT NOT NULL
 ) ENGINE = InnoDB;
 
-ALTER TABLE `users` ADD `id` INT NOT NULL AFTER `email`;
+ALTER TABLE `users`
+  ADD `id` INT NOT NULL AFTER `email`;
+
+CREATE TABLE IF NOT EXISTS `classes`
+(
+  `class_id`   INT NOT NULL AUTO_INCREMENT,
+  `class_name` INT NOT NULL,
+  `count`      INT NOT NULL,
+  `teacher`    INT NOT NULL,
+  PRIMARY KEY (`class_id`)
+) ENGINE = InnoDB;
