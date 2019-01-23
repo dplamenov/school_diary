@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 
 use App\Http\Controllers\Models\Subject;
+use App\Http\Controllers\Models\Teacher;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -76,8 +77,12 @@ class DirectorController extends Controller
         if ($request->session()->get('user_data')['type'] != 'director') {
             return redirect()->route('home');
         }
+        $teacher_model = new Teacher();
 
-        return view('addclassform');
+        foreach ($teacher_model->getAllTeacher() as $teacher) {
+            $teachers[$teacher->teacher_id] = $teacher->teacher_name;
+        }
+        return view('addclassform', ['teachers' => $teachers]);
     }
 
     public function addClass(Request $request)
