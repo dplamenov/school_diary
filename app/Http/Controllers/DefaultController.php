@@ -21,13 +21,14 @@ class DefaultController extends Controller
                     $result[$teacher->teacher_id]['name'] = $teacher->teacher_name;
                     $gen = $subject_model->getSubjectByTeacherId(intval($teacher->teacher_id));
                     $result[$teacher->teacher_id]['subjects'] = $gen;
-
-
-
                 }
-                echo '<pre>' . print_r($result, true) . '</pre>';
+
+                foreach ($result as $key => $value) {
+                    $result[$key]['subject'] = implode(', ', $result[$key]['subjects']);
+                    unset($result[$key]['subjects']);
+                }
             }
-            return view(strtolower($request->session()->get('user_data')['type']), ['user_data' => $request->session()->get('user_data')]);
+            return view(strtolower($request->session()->get('user_data')['type']), ['user_data' => $request->session()->get('user_data'), 'teachers' => $result]);
         } else {
             $types_user = $user_model->getUserTypes();
             return view('login_form', ['types_user' => $types_user]);
