@@ -52,7 +52,7 @@ class DefaultController extends Controller
         if ($validate['username'] == 'admin' && $validate['password'] == 'admin') {
             $request->session()->put('user_data', ['type' => 'director']);
             $request->session()->put('islogged', true);
-            return view('director', ['user_data' => ['type' => 'director']]);
+            return redirect()->route('home');
 
         }
 

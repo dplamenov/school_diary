@@ -2,7 +2,7 @@
 @section('title', 'Error')
 @section('container')
     <p>{{$type_error}}</p>
-@endsection@extends('layout.layout')
+@endsection
 @section('title', 'Error')
 @section('container')
     <p>{{$type_error}}</p>
