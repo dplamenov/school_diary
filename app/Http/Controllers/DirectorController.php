@@ -59,6 +59,14 @@ class DirectorController extends Controller
 
     public function addSubject(Request $request)
     {
-        
+        $validate = $this->validate($request, [
+            'subject' => 'unique:subjects,subject_name|required'
+        ], [
+            'subject.unique' => 'Subject already created'
+        ]);
+
+        DB::insert('INSERT INTO `subjects` (`subject_name`) VALUES (?)', [$validate['subject']]);
+
+        return redirect(url('/'));
     }
 }
