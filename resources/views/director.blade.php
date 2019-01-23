@@ -4,7 +4,7 @@
     <p>You`re login as director with full access</p>
     <a href="{{url('logout')}}">Log out</a>
     <a href="{{url('director/addteacher')}}">Add Teacher</a>
-
+    <a href="{{url('director/addsubject')}}">Add subject</a>
     <h2>List of teacher</h2>
     <table style="border: 1px">
         <tr>
