@@ -27,8 +27,11 @@ class DefaultController extends Controller
                     $result[$key]['subject'] = implode(', ', $result[$key]['subjects']);
                     unset($result[$key]['subjects']);
                 }
+
+                $all_subject = $subject_model->getAllSubject();
+                return view(strtolower($request->session()->get('user_data')['type']), ['user_data' => $request->session()->get('user_data'), 'teachers' => $result, 'subjects' => $all_subject]);
             }
-            return view(strtolower($request->session()->get('user_data')['type']), ['user_data' => $request->session()->get('user_data'), 'teachers' => $result]);
+            return view(strtolower($request->session()->get('user_data')['type']), ['user_data' => $request->session()->get('user_data')]);
         } else {
             $types_user = $user_model->getUserTypes();
             return view('login_form', ['types_user' => $types_user]);

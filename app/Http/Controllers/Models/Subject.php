@@ -11,8 +11,10 @@ class Subject
     {
         $subject = DB::select('SELECT * FROM `subjects`');
         foreach ($subject as $item) {
-            yield $item;
+            $r[] = $item;
         }
+
+        return $r;
     }
 
     public function getSubjectByTeacherId(int $teacher_id)
