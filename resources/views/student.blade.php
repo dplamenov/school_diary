@@ -1,5 +1,6 @@
 @extends('layout.layout')
 @section('title', 'Student')
 @section('container')
-    Hello, {{explode(' ',$name)[1]}}
+    <p>Hello, {{explode(' ',$name)[1]}}</p>
+    <p>Your class is (class)</p>
 @endsection

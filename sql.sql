@@ -6,7 +6,7 @@ CREATE TABLE IF NOT EXISTS `users`
   `type`     INT         NOT NULL,
   `email`    VARCHAR(90) NOT NULL,
   `id`       INT         NOT NULL,
-    PRIMARY KEY (`user_id`)
+  PRIMARY KEY (`user_id`)
 ) ENGINE = InnoDB;
 
 CREATE TABLE IF NOT EXISTS `subjects`
@@ -50,5 +50,11 @@ CREATE TABLE IF NOT EXISTS `students`
 (
   `student_id`   INT         NOT NULL AUTO_INCREMENT,
   `student_name` VARCHAR(45) NOT NULL,
-   PRIMARY KEY(`student_id`)
+  PRIMARY KEY (`student_id`)
+) ENGINE = InnoDB;
+
+CREATE TABLE IF NOT EXISTS `students_classes`
+(
+  `class_id`   INT NOT NULL,
+  `student_id` INT NOT NULL
 ) ENGINE = InnoDB;
