@@ -5,10 +5,9 @@
 
 
     <form method="post" action="{{url('director/select/teacher')}}">
-
         @foreach($teachers as $key => $teacher)
             <p>{{$teachers[$key][0]->subject_name}}</p>
-            <select name="teacher{{$key}}">
+            <select name="teacher{{$teachers[$key][0]->subject_id}}">
 
                 @foreach($teachers[$key] as $k=>$t)
 
