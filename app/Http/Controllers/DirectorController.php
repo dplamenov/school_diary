@@ -114,7 +114,19 @@ class DirectorController extends Controller
         }
     }
 
-    public function selectTeacher(Request $request){
-        echo '<pre>' . print_r($request->post(), true) . '</pre>';
+    public function selectTeacher(Request $request)
+    {
+        $teachers = [];
+        $class_id = intval(trim($request->post()['class']));
+        foreach ($request->post() as $key => $data) {
+            if (strpos($key, 'teacher') !== false) {
+                $teachers[intval($key)] = $data;
+            }
+        }
+        foreach ($teachers as $key => $value) {
+            DB::insert("INSERT INTO `teacher_classes` (`class_id`, `teacher_id`, `subject_id`) VALUES (?, ?, ?)", [$class_id, $value, $key]);
+        }
+
+        return redirect()->route('home');
     }
 }
