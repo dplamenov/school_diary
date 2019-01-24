@@ -45,7 +45,6 @@ CREATE TABLE IF NOT EXISTS `teacher_classes`
   `subject_id` INT NOT NULL
 ) ENGINE = InnoDB;
 
-
 CREATE TABLE IF NOT EXISTS `students`
 (
   `student_id`   INT         NOT NULL AUTO_INCREMENT,

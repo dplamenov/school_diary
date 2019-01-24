@@ -9,6 +9,7 @@ class Subject
 {
     public function getAllSubject()
     {
+        $r = [];
         $subject = DB::select('SELECT * FROM `subjects`');
         foreach ($subject as $item) {
             $r[] = $item;
