@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\Models\Classes;
 use App\Http\Controllers\Models\Subject;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -14,6 +15,7 @@ class DefaultController extends Controller
         if ($request->session()->get('islogged', false)) {
             if ($request->session()->get('user_data')['type'] == 'director') {
                 $subject_model = new Subject();
+                $classes_model = new Classes();
                 $teachers = DB::select("SELECT * FROM teachers LEFT JOIN teacher_subject ON teachers.teacher_id = teacher_subject.teacher_id LEFT JOIN subjects ON teacher_subject.subject_id = subjects.subject_id");
                 $result = [];
 
@@ -28,13 +30,19 @@ class DefaultController extends Controller
                     unset($result[$key]['subjects']);
                 }
 
+                $classes = [];
+                foreach ($classes_model->getAllClasses() as $class) {
+                    $classes[] = $class;
+                }
                 $all_subject = $subject_model->getAllSubject();
-                return view(strtolower($request->session()->get('user_data')['type']), ['user_data' => $request->session()->get('user_data'), 'teachers' => $result, 'subjects' => $all_subject]);
+
+
+                return view(strtolower($request->session()->get('user_data')['type']), ['user_data' => $request->session()->get('user_data'), 'teachers' => $result, 'subjects' => $all_subject, 'classes' => $classes]);
             } elseif (strtolower($request->session()->get('user_data')['type']) == 'teacher') {
                 $r = DB::select('SELECT * FROM `users` LEFT JOIN `teachers` ON users.id = teachers.teacher_id WHERE users.user_id = ?', [$request->session()->get('user_data')['id']]);
                 unset($r[0]->password);
                 $name = $r[0]->teacher_name;
-                $class = DB::select('SELECT * FROM `classes` WHERE `teacher` = ?',[$r[0]->teacher_id]);
+                $class = DB::select('SELECT * FROM `classes` WHERE `teacher` = ?', [$r[0]->teacher_id]);
                 return view(strtolower($request->session()->get('user_data')['type']), ['user_data' => $request->session()->get('user_data'), 'name' => $name, 'class' => $class]);
             }
 

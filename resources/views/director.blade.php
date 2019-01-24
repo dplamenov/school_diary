@@ -36,5 +36,19 @@
         @endforeach
     </table>
 
+    <h2>List of all classes</h2>
+    <table style="border: 1px">
+        <tr>
+            <th>Class name</th>
+            <th>Head teacher of class</th>
+        </tr>
+        @foreach($classes as $class)
+            <tr>
+                <td>{{$class->class_name}}</td>
+                <td>{{$class->teacher_name}}</td>
+            </tr>
+        @endforeach
+    </table>
+
 
 @endsection
