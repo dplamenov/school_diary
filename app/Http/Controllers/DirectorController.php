@@ -37,7 +37,7 @@ class DirectorController extends Controller
             'subjects' => 'array'
         ]);
         $teacher_model = new Teacher();
-        if($teacher_model->teacherExists($validate['fullname'])){
+        if ($teacher_model->teacherExists($validate['fullname'])) {
             return view('error', ['type_error' => 'Teacher already exists']);
         }
         DB::insert("INSERT INTO `teachers` (`teacher_id`, `teacher_name`) VALUES (NULL, ?)", [$validate['fullname']]);
@@ -99,9 +99,18 @@ class DirectorController extends Controller
             'teacher' => 'required',
             'subject' => 'array'
         ]);
+        echo '<pre>' . print_r($request->post(), true) . '</pre>';
+
+        foreach ($request->post() as $key => $data) {
+            if (strpos($key, 'name') !== false) {
+                $students[$key] = $data;
+            }
+        }
+        unset($students['class_name']);
+        //todo add all students in `students` table
         $teacher_model = new Teacher();
         $class_model = new Classes();
-        if($class_model->classExists($validate['class_name'])){
+        if ($class_model->classExists($validate['class_name'])) {
             return view('error', ['type_error' => 'Class already exists']);
         }
 
@@ -115,6 +124,7 @@ class DirectorController extends Controller
 
 
         return view('selectteacher', ['teachers' => $subjects, 'subject' => $subject_name[0]->subject_name, 'class_id' => $class_id]);
+
 
     }
 
