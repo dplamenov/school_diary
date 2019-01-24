@@ -82,16 +82,24 @@ class DirectorController extends Controller
         foreach ($teacher_model->getAllTeacher() as $teacher) {
             $teachers[$teacher->teacher_id] = $teacher->teacher_name;
         }
-        return view('addclassform', ['teachers' => $teachers]);
+
+        $subject_model = new Subject();
+        $all_subject = $subject_model->getAllSubject();
+        return view('addclassform', ['teachers' => $teachers, 'subjects' => $all_subject]);
     }
 
     public function addClass(Request $request)
     {
         $validate = $this->validate($request, [
             'class_name' => 'required',
-            'teacher' => 'required'
+            'teacher' => 'required',
+            'subject' => 'array'
         ]);
-        DB::insert('INSERT INTO `classes` (`class_name`, `teacher`, `count`) VALUES (?, ?, 0)', [$validate['class_name'], $validate['teacher']]);
-        return redirect()->route('home');
+        $teacher_model = new Teacher();
+        foreach ($validate['subject'] as $subject){
+            echo '<pre>' . print_r($teacher_model->getAllTeacherBySubjectId($subject), true) . '</pre>';
+        }
+        //DB::insert('INSERT INTO `classes` (`class_name`, `teacher`, `count`) VALUES (?, ?, 0)', [$validate['class_name'], $validate['teacher']]);
+        //return redirect()->route('home');
     }
 }

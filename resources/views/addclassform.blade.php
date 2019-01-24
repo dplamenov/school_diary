@@ -17,7 +17,15 @@
                     <option value="{{$key}}">{{$teacher}}</option>
                 @endforeach
             </select>
+        </label>
+        <label>
+            Select subjects
 
+            <select name="subject[]" multiple="multiple">
+                @foreach($subjects as $key => $subject)
+                    <option value="{{$key + 1}}">{{$subject->subject_name}}</option>
+                @endforeach
+            </select>
         </label>
         <input type="submit"/>
     </form>
