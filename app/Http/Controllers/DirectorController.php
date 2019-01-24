@@ -35,7 +35,10 @@ class DirectorController extends Controller
             'fullname' => 'min:8',
             'subjects' => 'array'
         ]);
-
+        $teacher_model = new Teacher();
+        if($teacher_model->teacherExists($validate['fullname'])){
+            return view('error', ['type_error' => 'Teacher already exists']);
+        }
         DB::insert("INSERT INTO `teachers` (`teacher_id`, `teacher_name`) VALUES (NULL, ?)", [$validate['fullname']]);
         $last_id = DB::select('SELECT * FROM `teachers` WHERE `teacher_name` = ?', [$validate['fullname']])[0]->teacher_id;
         DB::insert("INSERT INTO `users` (`user_id`, `username`, `password`, `type`, `email`, `id`) VALUES (NULL, ?, ?, 0, '', $last_id)", [strtolower(str_replace(' ', '', $validate['fullname'])), strtolower(str_replace(' ', '', $validate['fullname']))]);
@@ -96,6 +99,7 @@ class DirectorController extends Controller
             'subject' => 'array'
         ]);
         $teacher_model = new Teacher();
+
         DB::insert('INSERT INTO `classes` (`class_name`, `teacher`, `count`) VALUES (?, ?, 0)', [$validate['class_name'], $validate['teacher']]);
         $class_id = DB::select('SELECT * FROM `classes` WHERE `class_name` = ?', [$validate['class_name']])[0]->class_id;
         echo '<pre>' . print_r($class_id, true) . '</pre>';
@@ -106,6 +110,7 @@ class DirectorController extends Controller
 
 
         return view('selectteacher', ['teachers' => $subjects, 'subject' => $subject_name[0]->subject_name, 'class_id' => $class_id]);
+
     }
 
     private function add_class($subjects)
