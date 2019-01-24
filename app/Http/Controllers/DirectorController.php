@@ -104,6 +104,7 @@ class DirectorController extends Controller
             $subjects[] = $teacher_model->getAllTeacherBySubjectId($subject);
         }
 
+
         return view('selectteacher', ['teachers' => $subjects, 'subject' => $subject_name[0]->subject_name, 'class_id' => $class_id]);
     }
 

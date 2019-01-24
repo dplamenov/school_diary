@@ -8,7 +8,7 @@
             <p>You teach the following classes:</p>
             @foreach($class as $item)
                 @php($_class  = $item->class_name)
-                <p><a href="#">{{$item->class_name}}</a></p>
+                <p><a href="">{{$item->class_name}}</a></p>
             @endforeach
             @foreach($classes as $class)
                 @if($_class != $class->class_name)
