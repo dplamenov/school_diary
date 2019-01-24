@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 
+use App\Http\Controllers\Models\Classes;
 use App\Http\Controllers\Models\Subject;
 use App\Http\Controllers\Models\Teacher;
 use Illuminate\Http\Request;
@@ -99,6 +100,10 @@ class DirectorController extends Controller
             'subject' => 'array'
         ]);
         $teacher_model = new Teacher();
+        $class_model = new Classes();
+        if($class_model->classExists($validate['class_name'])){
+            return view('error', ['type_error' => 'Class already exists']);
+        }
 
         DB::insert('INSERT INTO `classes` (`class_name`, `teacher`, `count`) VALUES (?, ?, 0)', [$validate['class_name'], $validate['teacher']]);
         $class_id = DB::select('SELECT * FROM `classes` WHERE `class_name` = ?', [$validate['class_name']])[0]->class_id;

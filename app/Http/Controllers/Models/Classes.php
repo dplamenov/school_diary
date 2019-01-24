@@ -14,4 +14,10 @@ class Classes
             yield $element;
         }
     }
+
+    public function classExists(string $name)
+    {
+        $r = DB::select('SELECT COUNT(*) as count FROM `classes` WHERE `class_name` = ?', [$name])[0]->count;
+        return (boolean)$r;
+    }
 }
