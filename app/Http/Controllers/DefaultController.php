@@ -43,7 +43,10 @@ class DefaultController extends Controller
                 unset($r[0]->password);
                 $name = $r[0]->teacher_name;
                 $class = DB::select('SELECT * FROM `classes` WHERE `teacher` = ?', [$r[0]->teacher_id]);
-                return view(strtolower($request->session()->get('user_data')['type']), ['user_data' => $request->session()->get('user_data'), 'name' => $name, 'class' => $class]);
+
+                $classes = DB::select("SELECT * FROM `teacher_classes` LEFT JOIN `classes` ON teacher_classes.class_id = classes.class_id WHERE teacher_classes.teacher_id = ?", [$r[0]->teacher_id]);
+
+                return view(strtolower($request->session()->get('user_data')['type']), ['user_data' => $request->session()->get('user_data'), 'name' => $name, 'class' => $class, 'classes' => $classes]);
             }
 
             return view(strtolower($request->session()->get('user_data')['type']), ['user_data' => $request->session()->get('user_data')]);
