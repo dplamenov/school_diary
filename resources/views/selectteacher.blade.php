@@ -1,8 +1,5 @@
 @extends('layout.layout')
 @section('title', 'Add class')
-@section('script')
-
-"
 @section('container')
     <form method="post" action="{{url('director/select/teacher')}}">
         @method('post')
