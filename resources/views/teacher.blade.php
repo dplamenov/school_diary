@@ -7,10 +7,13 @@
         @if(count($class) > 0 or count($classes) >0)
             <p>You teach the following classes:</p>
             @foreach($class as $item)
+                @php($_class  = $item->class_name)
                 <p><a href="#">{{$item->class_name}}</a></p>
             @endforeach
             @foreach($classes as $class)
-                <p><a href="">{{$class->class_name}}</a></p>
+                @if($_class != $class->class_name)
+                    <p><a href="">{{$class->class_name}}</a></p>
+                @endif
             @endforeach
         @else
             <p>You don`t teach.</p>
