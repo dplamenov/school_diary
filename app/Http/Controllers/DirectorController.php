@@ -97,7 +97,8 @@ class DirectorController extends Controller
         $validate = $this->validate($request, [
             'class_name' => 'required',
             'teacher' => 'required',
-            'subject' => 'array'
+            'subject' => 'required|array',
+            '*' => 'required'
         ]);
         echo '<pre>' . print_r($request->post(), true) . '</pre>';
 
@@ -107,13 +108,18 @@ class DirectorController extends Controller
             }
         }
         unset($students['class_name']);
-        //todo add all students in `students` table
+        foreach ($students as $key => $value) {
+            $s[] = $value;
+        }
+        $students = $s;
+        foreach ($students as $student) {
+            DB::insert("INSERT INTO `students` (`student_name`) VALUES (?)", [$student]);
+        }
         $teacher_model = new Teacher();
         $class_model = new Classes();
         if ($class_model->classExists($validate['class_name'])) {
             return view('error', ['type_error' => 'Class already exists']);
         }
-
         DB::insert('INSERT INTO `classes` (`class_name`, `teacher`, `count`) VALUES (?, ?, 0)', [$validate['class_name'], $validate['teacher']]);
         $class_id = DB::select('SELECT * FROM `classes` WHERE `class_name` = ?', [$validate['class_name']])[0]->class_id;
         echo '<pre>' . print_r($class_id, true) . '</pre>';
@@ -121,8 +127,6 @@ class DirectorController extends Controller
             $subject_name = DB::select('SELECT * FROM `subjects` WHERE `subject_id` = ?', [$subject]);
             $subjects[] = $teacher_model->getAllTeacherBySubjectId($subject);
         }
-
-
         return view('selectteacher', ['teachers' => $subjects, 'subject' => $subject_name[0]->subject_name, 'class_id' => $class_id]);
 
 
