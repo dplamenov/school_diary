@@ -5,6 +5,9 @@
 
 
     <form method="post" action="{{url('director/select/teacher')}}">
+        @method('post')
+        @csrf
+        <input type="hidden" hidden name="class" value="{{$class_id}}" >
         @foreach($teachers as $key => $teacher)
             <p>{{$teachers[$key][0]->subject_name}}</p>
             <select name="teacher{{$teachers[$key][0]->subject_id}}">

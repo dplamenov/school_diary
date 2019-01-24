@@ -96,20 +96,25 @@ class DirectorController extends Controller
             'subject' => 'array'
         ]);
         $teacher_model = new Teacher();
+        DB::insert('INSERT INTO `classes` (`class_name`, `teacher`, `count`) VALUES (?, ?, 0)', [$validate['class_name'], $validate['teacher']]);
+        $class_id = DB::select('SELECT * FROM `classes` WHERE `class_name` = ?', [$validate['class_name']])[0]->class_id;
+        echo '<pre>' . print_r($class_id, true) . '</pre>';
         foreach ($validate['subject'] as $subject) {
             $subject_name = DB::select('SELECT * FROM `subjects` WHERE `subject_id` = ?', [$subject]);
             $subjects[] = $teacher_model->getAllTeacherBySubjectId($subject);
-
         }
 
-        return view('selectteacher', ['teachers' => $subjects, 'subject' => $subject_name[0]->subject_name]);
-        //DB::insert('INSERT INTO `classes` (`class_name`, `teacher`, `count`) VALUES (?, ?, 0)', [$validate['class_name'], $validate['teacher']]);
-        //return redirect()->route('home');
+        return view('selectteacher', ['teachers' => $subjects, 'subject' => $subject_name[0]->subject_name, 'class_id' => $class_id]);
     }
 
-    private function add_class($subjects){
-        foreach ($subjects as $subject){
+    private function add_class($subjects)
+    {
+        foreach ($subjects as $subject) {
             yield $subject;
         }
+    }
+
+    public function selectTeacher(Request $request){
+        echo '<pre>' . print_r($request->post(), true) . '</pre>';
     }
 }

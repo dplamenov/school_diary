@@ -24,3 +24,5 @@ Route::get('director/addclass', 'DirectorController@addClassForm');
 Route::post('director/addclass', 'DirectorController@addClass');
 
 Route::get('/logout', 'DefaultController@logout');
+
+Route::post('director/select/teacher', 'DirectorController@selectTeacher');
