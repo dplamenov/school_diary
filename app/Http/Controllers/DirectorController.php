@@ -111,12 +111,7 @@ class DirectorController extends Controller
             $s[] = $value;
         }
         $students = $s;
-        foreach ($students as $student) {
-            DB::insert("INSERT INTO `students` (`student_name`) VALUES (?)", [$student]);
-            $last_id = DB::select('SELECT * FROM `students` WHERE `student_name` = ?', [$student])[0]->student_id;
-            DB::insert("INSERT INTO `users` (`user_id`, `username`, `password`, `type`, `email`, `id`) VALUES (NULL, ?, ?, 2, '', $last_id)",
-                [strtolower(str_replace(' ', '', $student)), strtolower(str_replace(' ', '', $student))]);
-        }
+
         $teacher_model = new Teacher();
         $class_model = new Classes();
         if ($class_model->classExists($validate['class_name'])) {
@@ -127,6 +122,13 @@ class DirectorController extends Controller
         foreach ($validate['subject'] as $subject) {
             $subject_name = DB::select('SELECT * FROM `subjects` WHERE `subject_id` = ?', [$subject]);
             $subjects[] = $teacher_model->getAllTeacherBySubjectId($subject);
+        }
+        foreach ($students as $student) {
+            DB::insert("INSERT INTO `students` (`student_name`) VALUES (?)", [$student]);
+            $last_id = DB::select('SELECT * FROM `students` WHERE `student_name` = ?', [$student])[0]->student_id;
+            DB::insert("INSERT INTO `students_classes` (`class_id`, `student_id`) VALUES (?, ?)", [$class_id, $last_id]);
+            DB::insert("INSERT INTO `users` (`user_id`, `username`, `password`, `type`, `email`, `id`) VALUES (NULL, ?, ?, 2, '', $last_id)",
+                [strtolower(str_replace(' ', '', $student)), strtolower(str_replace(' ', '', $student))]);
         }
         return view('selectteacher', ['teachers' => $subjects, 'subject' => $subject_name[0]->subject_name, 'class_id' => $class_id]);
 
