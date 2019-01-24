@@ -1,5 +1,5 @@
 @extends('layout.layout')
 @section('title', 'Student')
 @section('container')
-    Hello, {{$user_data['username']}}
+    Hello, {{explode(' ',$name)[1]}}
 @endsection

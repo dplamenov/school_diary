@@ -14,6 +14,7 @@ class DefaultController extends Controller
         $user_model = new Models\User();
         if ($request->session()->get('islogged', false)) {
             if ($request->session()->get('user_data')['type'] == 'director') {
+
                 $subject_model = new Subject();
                 $classes_model = new Classes();
                 $teachers = DB::select("SELECT * FROM teachers LEFT JOIN teacher_subject ON teachers.teacher_id = teacher_subject.teacher_id LEFT JOIN subjects ON teacher_subject.subject_id = subjects.subject_id");
@@ -39,6 +40,7 @@ class DefaultController extends Controller
 
                 return view(strtolower($request->session()->get('user_data')['type']), ['user_data' => $request->session()->get('user_data'), 'teachers' => $result, 'subjects' => $all_subject, 'classes' => $classes]);
             } elseif (strtolower($request->session()->get('user_data')['type']) == 'teacher') {
+
                 $r = DB::select('SELECT * FROM `users` LEFT JOIN `teachers` ON users.id = teachers.teacher_id WHERE users.user_id = ?', [$request->session()->get('user_data')['id']]);
                 unset($r[0]->password);
                 $name = $r[0]->teacher_name;
@@ -47,9 +49,12 @@ class DefaultController extends Controller
                 $classes = DB::select("SELECT * FROM `teacher_classes` LEFT JOIN `classes` ON teacher_classes.class_id = classes.class_id WHERE teacher_classes.teacher_id = ?", [$r[0]->teacher_id]);
 
                 return view(strtolower($request->session()->get('user_data')['type']), ['user_data' => $request->session()->get('user_data'), 'name' => $name, 'class' => $class, 'classes' => $classes]);
+            } elseif (strtolower($request->session()->get('user_data')['type']) == 'student') {
+                $name = DB::select('SELECT * FROM `students` WHERE `student_id` = ?', [$request->session()->get('user_data')['id']])[0]->student_name;
+                return view(strtolower($request->session()->get('user_data')['type']), ['user_data' => $request->session()->get('user_data'), 'name' => $name]);
             }
 
-            return view(strtolower($request->session()->get('user_data')['type']), ['user_data' => $request->session()->get('user_data')]);
+
         } else {
             $types_user = $user_model->getUserTypes();
             return view('login_form', ['types_user' => $types_user]);
