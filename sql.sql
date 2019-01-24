@@ -33,9 +33,16 @@ ALTER TABLE `users`
 
 CREATE TABLE IF NOT EXISTS `classes`
 (
-  `class_id`   INT NOT NULL AUTO_INCREMENT,
+  `class_id`   INT         NOT NULL AUTO_INCREMENT,
   `class_name` VARCHAR(15) NOT NULL,
-  `count`      INT NOT NULL,
-  `teacher`    INT NOT NULL,
+  `count`      INT         NOT NULL,
+  `teacher`    INT         NOT NULL,
   PRIMARY KEY (`class_id`)
+) ENGINE = InnoDB;
+
+CREATE TABLE IF NOT EXISTS `teacher_classes`
+(
+  `class_id`   INT NOT NULL,
+  `teacher_id` INT NOT NULL,
+  `subject_id` INT NOT NULL
 ) ENGINE = InnoDB;
