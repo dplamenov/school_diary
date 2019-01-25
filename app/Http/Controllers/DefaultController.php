@@ -50,7 +50,7 @@ class DefaultController extends Controller
 
                 return view(strtolower($request->session()->get('user_data')['type']), ['user_data' => $request->session()->get('user_data'), 'name' => $name, 'class' => $class, 'classes' => $classes]);
             } elseif (strtolower($request->session()->get('user_data')['type']) == 'student') {
-                $name = DB::select('SELECT * FROM `students` WHERE `student_id` = ?', [$request->session()->get('user_data')['id']])[0]->student_name;
+                $name = DB::select('SELECT * FROM `students` WHERE `student_id` = ?', [$request->session()->get('user_data')['tid']])[0]->student_name;
                 return view(strtolower($request->session()->get('user_data')['type']), ['user_data' => $request->session()->get('user_data'), 'name' => $name]);
             }
 
@@ -85,6 +85,7 @@ class DefaultController extends Controller
             $user_model = new Models\User();
             unset($validate['password']);
             $user_data['id'] = $user[0]->user_id;
+            $user_data['tid'] = $user[0]->id;
             $user_data['username'] = ucfirst(strtolower($validate['username']));
             $user_data['type'] = $user_model->getUserTypes()[$validate['type']];
             $request->session()->put('user_data', $user_data);
