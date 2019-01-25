@@ -20,6 +20,7 @@ class DirectorController extends Controller
         $subject = new Subject();
         $subject = $subject->getAllSubject();
 
+        $subjects = array();
         foreach ($subject as $item) {
             $subjects[] = $item->subject_name;
         }
@@ -114,6 +115,7 @@ class DirectorController extends Controller
 
         $teacher_model = new Teacher();
         $class_model = new Classes();
+
         if ($class_model->classExists($validate['class_name'])) {
             return view('error', ['type_error' => 'Class already exists']);
         }
