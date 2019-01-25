@@ -83,7 +83,7 @@ class DirectorController extends Controller
             return redirect()->route('home');
         }
         $teacher_model = new Teacher();
-
+        $teachers = array();
         foreach ($teacher_model->getAllTeacher() as $teacher) {
             $teachers[$teacher->teacher_id] = $teacher->teacher_name;
         }

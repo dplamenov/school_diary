@@ -14,13 +14,19 @@
         @method('post')
         @csrf
         <label>Class name <input type="text" name="class_name" placeholder="Example: 10c"/></label><br>
-        <label>Select head teacher
-            <select name="teacher">
-                @foreach($teachers as $key => $teacher)
-                    <option value="{{$key}}">{{$teacher}}</option>
-                @endforeach
-            </select>
-        </label>
+        @if(count($teachers) > 0)
+
+            <label>Select head teacher
+                <select name="teacher">
+                    @foreach($teachers as $key => $teacher)
+                        <option value="{{$key}}">{{$teacher}}</option>
+                    @endforeach
+                </select>
+            </label>
+
+        @else
+            <p>First add teacher</p>
+        @endif
         <br>
         <label>
             Select subjects
