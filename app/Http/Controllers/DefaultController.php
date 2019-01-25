@@ -50,8 +50,11 @@ class DefaultController extends Controller
 
                 return view(strtolower($request->session()->get('user_data')['type']), ['user_data' => $request->session()->get('user_data'), 'name' => $name, 'class' => $class, 'classes' => $classes]);
             } elseif (strtolower($request->session()->get('user_data')['type']) == 'student') {
+
+                $id = $request->session()->get('user_data')['tid'];
+                $class = DB::select('SELECT * FROM `classes` LEFT JOIN `students_classes` ON `classes`.`class_id` = `students_classes`.`class_id`  WHERE `students_classes`.`student_id` = ?', [$id]);
                 $name = DB::select('SELECT * FROM `students` WHERE `student_id` = ?', [$request->session()->get('user_data')['tid']])[0]->student_name;
-                return view(strtolower($request->session()->get('user_data')['type']), ['user_data' => $request->session()->get('user_data'), 'name' => $name]);
+                return view(strtolower($request->session()->get('user_data')['type']), ['user_data' => $request->session()->get('user_data'), 'name' => $name, 'class' => $class[0]->class_name]);
             }
 
 
