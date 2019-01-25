@@ -10,7 +10,7 @@
         @show
     </title>
 </head>
-<body style="zoom: 220%">
+<body style="zoom: 120%">
 @section('container')
 @show
 
