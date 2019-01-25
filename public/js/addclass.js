@@ -10,6 +10,6 @@ function add() {
     input.type = "text";
     input.name = "name" + counter;
     input.placeholder = "Full Name";
-    console.log(addstudents);
+
     addstudents.appendChild(input);
 }
