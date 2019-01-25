@@ -1,12 +1,15 @@
+let addstudents;
 $('document').ready(function () {
-
+    addstudents = document.getElementById('addstudents');
 });
 let counter = 1;
 
 function add() {
     counter++;
-    let addstudents = document.getElementById('addstudents');
+    var input = document.createElement('input');
+    input.type = "text";
+    input.name = "name" + counter;
+    input.placeholder = "Full Name";
     console.log(addstudents);
-    var input = '<br><input type="text" name="name' + counter + '" placeholder="Full Name"/>';
-    addstudents.innerHTML += input;
+    addstudents.appendChild(input);
 }
