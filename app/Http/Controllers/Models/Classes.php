@@ -21,4 +21,10 @@ class Classes
         $r = DB::select('SELECT COUNT(*) as count FROM `classes` WHERE `class_name` = ' . $name);
         return (boolean)$r[0]->count;
     }
+
+    public function classExistsById(int $id)
+    {
+        $r = DB::select('SELECT COUNT(*) as count FROM `classes` WHERE `class_id` = ?', [$id]);
+        return (boolean)$r[0]->count;
+    }
 }
