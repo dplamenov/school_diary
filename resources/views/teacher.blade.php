@@ -8,11 +8,11 @@
             <p>You teach the following classes:</p>
             @foreach($class as $item)
                 @php($_class  = $item->class_name)
-                <p><a href="">{{$item->class_name}}</a></p>
+                <p><a href="{{url('class/' . $item->class_id)}}">{{$item->class_name}}</a> - Your class</p>
             @endforeach
             @foreach($classes as $class)
                 @if($_class != $class->class_name)
-                    <p><a href="">{{$class->class_name}}</a></p>
+                    <p><a href="{{url('class/' . $item->class_id)}}">{{$class->class_name}}</a></p>
                 @endif
             @endforeach
         @else
