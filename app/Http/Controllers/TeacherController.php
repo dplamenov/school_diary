@@ -16,5 +16,6 @@ class TeacherController
         if (!$class_model->classExistsById($class_id)) {
             return redirect()->route('home');
         }
+        //ToDo Check this teacher teach this class if teach who subject.
     }
 }
