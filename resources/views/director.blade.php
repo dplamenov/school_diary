@@ -11,8 +11,9 @@
         <tr>
             <th>Name</th>
             <th>Subject(s)</th>
+            <th>Delete</th>
         </tr>
-        @foreach($teachers as $teacher)
+        @foreach($teachers as $k => $teacher)
             <tr>
                 <td>{{$teacher['name']}}</td>
                 @if(mb_strlen($teacher['subject']) > 0)
@@ -20,6 +21,7 @@
                 @else
                     <td>---</td>
                 @endif
+                <td><a href="teacher/delete/{{$k}}">Delete</a></td>
             </tr>
         @endforeach
     </table>

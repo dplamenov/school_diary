@@ -43,7 +43,7 @@
             <button onclick="add()" type="button">+</button>
             <br>
             <div id="addstudents">
-                <input type="text" name="name1" placeholder="Full Name"/>
+                <input type="text" name="name1" placeholder="Full Name"/><br>
             </div>
         </label>
 

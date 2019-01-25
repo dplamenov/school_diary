@@ -12,3 +12,4 @@ Route::post('director/addclass', 'DirectorController@addClass');
 Route::get('/logout', 'DefaultController@logout');
 Route::post('director/select/teacher', 'DirectorController@selectTeacher');
 Route::get('class/{id}', 'TeacherController@listOfClass');
+Route::get('teacher/delete/{id}', 'DirectorController@deleteTeacher');

@@ -25,7 +25,6 @@ class DefaultController extends Controller
                     $gen = $subject_model->getSubjectByTeacherId(intval($teacher->teacher_id));
                     $result[$teacher->teacher_id]['subjects'] = $gen;
                 }
-
                 foreach ($result as $key => $value) {
                     $result[$key]['subject'] = implode(', ', $result[$key]['subjects']);
                     unset($result[$key]['subjects']);

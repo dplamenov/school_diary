@@ -95,6 +95,9 @@ class DirectorController extends Controller
 
     public function addClass(Request $request)
     {
+        if ($request->session()->get('user_data')['type'] != 'director') {
+            return redirect()->route('home');
+        }
         $validate = $this->validate($request, [
             'class_name' => 'required',
             'teacher' => 'required',
@@ -139,6 +142,7 @@ class DirectorController extends Controller
 
     private function add_class($subjects)
     {
+
         foreach ($subjects as $subject) {
             yield $subject;
         }
@@ -146,6 +150,9 @@ class DirectorController extends Controller
 
     public function selectTeacher(Request $request)
     {
+        if ($request->session()->get('user_data')['type'] != 'director') {
+            return redirect()->route('home');
+        }
         $teachers = [];
         $class_id = intval(trim($request->post()['class']));
         foreach ($request->post() as $key => $data) {
@@ -157,6 +164,15 @@ class DirectorController extends Controller
             DB::insert("INSERT INTO `teacher_classes` (`class_id`, `teacher_id`, `subject_id`) VALUES (?, ?, ?)", [$class_id, $value, $key]);
         }
 
+        return redirect()->route('home');
+    }
+
+    public function deleteTeacher(Request $request, int $teacher_id)
+    {
+        if ($request->session()->get('user_data')['type'] != 'director') {
+            return redirect()->route('home');
+        }
+        DB::delete('DELETE FROM `teachers` WHERE teacher_id = ?', [$teacher_id]);
         return redirect()->route('home');
     }
 }

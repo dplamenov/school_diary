@@ -12,5 +12,5 @@ function add() {
     input.placeholder = "Full Name";
 
     addstudents.appendChild(input);
-    addstudents.appendChild(document.createElement('br'))
+    addstudents.appendChild(document.createElement('br'));
 }
