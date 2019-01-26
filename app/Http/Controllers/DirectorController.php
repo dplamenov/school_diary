@@ -1,7 +1,5 @@
 <?php
-
 namespace App\Http\Controllers;
-
 
 use App\Http\Controllers\Models\Classes;
 use App\Http\Controllers\Models\Subject;
@@ -21,8 +19,8 @@ class DirectorController extends Controller
         $subject = $subject->getAllSubject();
 
         $subjects = array();
-        foreach ($subject as $item) {
-            $subjects[] = $item->subject_name;
+        foreach ($subject as $key => $item) {
+            $subjects[$item->subject_id] = $item->subject_name;
         }
 
         return view('addteacherform', ['subjects' => $subjects]);
@@ -46,7 +44,7 @@ class DirectorController extends Controller
         DB::insert("INSERT INTO `users` (`user_id`, `username`, `password`, `type`, `email`, `id`) VALUES (NULL, ?, ?, 0, '', $last_id)", [strtolower(str_replace(' ', '', $validate['fullname'])), strtolower(str_replace(' ', '', $validate['fullname']))]);
 
         foreach ($validate['subjects'] as $subject) {
-            DB::insert("INSERT INTO `teacher_subject` (`teacher_id`, `subject_id`) VALUES (?, ?)", [$last_id, $subject + 1]);
+            DB::insert("INSERT INTO `teacher_subject` (`teacher_id`, `subject_id`) VALUES (?, ?)", [$last_id, $subject]);
         }
 
         return redirect(url('/'));

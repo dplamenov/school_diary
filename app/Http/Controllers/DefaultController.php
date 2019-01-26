@@ -94,6 +94,7 @@ class DefaultController extends Controller
             $request->session()->put('islogged', true);
             return redirect()->route('home');
         } else {
+
             return view('error', ['type_error' => 'No such that user in database']);
         }
     }

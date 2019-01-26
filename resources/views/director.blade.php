@@ -16,10 +16,11 @@
         @foreach($teachers as $k => $teacher)
             <tr>
                 <td>{{$teacher['name']}}</td>
+                @php
+                    var_dump($teacher)
+                @endphp
                 @if(mb_strlen($teacher['subject']) > 0)
                     <td>{{$teacher['subject']}}</td>
-                @else
-                    <td>---</td>
                 @endif
                 <td><a href="teacher/delete/{{$k}}">Delete</a></td>
             </tr>
