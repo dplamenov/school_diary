@@ -28,7 +28,6 @@ class Subject
             if ($r[$key] instanceof \stdClass) {
                 unset($r[$key]);
             }
-
         }
         $r = array_values($r);
 

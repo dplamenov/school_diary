@@ -13,7 +13,7 @@
             <th>Subject(s)</th>
             <th>Delete</th>
         </tr>
-        @foreach($teachers as $k => $teacher)
+        @foreach($teachers as $teacher)
             <tr>
                 <td>{{$teacher['name']}}</td>
                 @if(mb_strlen($teacher['subject']) > 0)
