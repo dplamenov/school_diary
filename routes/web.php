@@ -13,3 +13,4 @@ Route::get('/logout', 'DefaultController@logout');
 Route::post('director/select/teacher', 'DirectorController@selectTeacher');
 Route::get('class/{id}', 'TeacherController@listOfClass');
 Route::get('teacher/delete/{id}', 'DirectorController@deleteTeacher');
+Route::get('subject/delete/{id}', 'DirectorController@deleteSubject');

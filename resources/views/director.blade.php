@@ -30,10 +30,12 @@
     <table style="border: 1px">
         <tr>
             <th>Subject name</th>
+            <th>Delete</th>
         </tr>
         @foreach($subjects as $subject)
             <tr>
                 <td>{{$subject->subject_name}}</td>
+                <td><a href="{{url("subject/delete/".$subject->subject_id)}}">Delete</a></td>
             </tr>
         @endforeach
     </table>

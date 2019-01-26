@@ -175,4 +175,14 @@ class DirectorController extends Controller
         DB::delete('DELETE FROM `teachers` WHERE teacher_id = ?', [$teacher_id]);
         return redirect()->route('home');
     }
+
+    public function deleteSubject(Request $request, $id){
+        if ($request->session()->get('user_data')['type'] != 'director') {
+            return redirect()->route('home');
+        }
+
+        DB::delete('DELETE FROM `subjects` WHERE `subject_id` = ?', [$id]);
+
+        return redirect()->route('home');
+    }
 }
