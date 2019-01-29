@@ -11,7 +11,6 @@
         @method('post')
         @csrf
         <label>Full name<input type="text" name="fullname"/></label>
-        <!--<label>Full name<input type="text" name="fullname"/></label> !-->
         <br><label>
             Subjects
             <select multiple="multiple" name="subjects[]">
