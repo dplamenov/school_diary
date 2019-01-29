@@ -15,5 +15,6 @@ abstract class TestCase extends BaseTestCase
     }
     public function testHomeRouteByPost(){
         $this->post('/')->assertStatus(500);
+
     }
 }
