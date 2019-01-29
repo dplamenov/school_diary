@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Models\Classes;
@@ -174,7 +175,8 @@ class DirectorController extends Controller
         return redirect()->route('home');
     }
 
-    public function deleteSubject(Request $request, $id){
+    public function deleteSubject(Request $request, $id)
+    {
         if ($request->session()->get('user_data')['type'] != 'director') {
             return redirect()->route('home');
         }

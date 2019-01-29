@@ -13,6 +13,7 @@
             <th>Subject(s)</th>
             <th>Delete</th>
         </tr>
+
         @foreach($teachers as $k => $teacher)
             <tr>
                 <td>{{$teacher['name']}}</td>
@@ -39,18 +40,22 @@
     </table>
 
     <h2>List of all classes</h2>
-    <table style="border: 1px">
-        <tr>
-            <th>Class name</th>
-            <th>Head teacher of class</th>
-        </tr>
-        @foreach($classes as $class)
+    @if(count($classes) > 0 )
+        <table style="border: 1px">
             <tr>
-                <td>{{$class->class_name}}</td>
-                <td>{{$class->teacher_name}}</td>
+                <th>Class name</th>
+                <th>Head teacher of class</th>
             </tr>
-        @endforeach
-    </table>
+            @foreach($classes as $class)
+                <tr>
+                    <td>{{$class->class_name}}</td>
+                    <td>{{$class->teacher_name}}</td>
+                </tr>
+            @endforeach
+        </table>
+    @else
+        <p>No classes, add first from <a href="{{url('director/addclass')}}">here</a>.</p>
+    @endif
 
 
 @endsection
