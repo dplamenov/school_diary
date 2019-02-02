@@ -27,4 +27,9 @@ class Classes
         $r = DB::select('SELECT COUNT(*) as count FROM `classes` WHERE `class_id` = ?', [$id]);
         return (boolean)$r[0]->count;
     }
+
+    public function getClassNameById(int $id){
+        $r = DB::select('SELECT `class_name` FROM `classes` WHERE `class_id` = ?', [$id]);
+        return $r[0]->class_name;
+    }
 }

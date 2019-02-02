@@ -8,7 +8,6 @@
         @foreach($teachers as $key => $teacher)
             <p>{{$teachers[$key][0]->subject_name}}</p>
             <select name="{{$teachers[$key][0]->subject_id}}teacher">
-
                 @foreach($teachers[$key] as $k=>$t)
                     <option value="{{$teachers[$key][$k]->teacher_id}}">{{$teachers[$key][$k]->teacher_name}}</option>
                 @endforeach
