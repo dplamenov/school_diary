@@ -20,7 +20,7 @@ class TeacherController
         }
 
         $subjects = [];
-        echo $teacher_id;
+
         $result = DB::select('SELECT * FROM `teacher_classes` WHERE `teacher_id` = ? and class_id = ?', [$teacher_id, $class_id]);
         for ($i = 0; $i <= count($result) - 1; $i++) {
             $subject = DB::select('SELECT * FROM `subjects` WHERE subject_id = ?', [$result[$i]->subject_id]);
