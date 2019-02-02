@@ -1,6 +1,7 @@
 <?php
 
 use \Illuminate\Support\Facades\Route;
+
 Route::get('/', 'DefaultController@index')->name('home');
 Route::post('/', 'DefaultController@processData');
 Route::get('director/addteacher', 'DirectorController@addTeacherForm');

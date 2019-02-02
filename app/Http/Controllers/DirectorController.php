@@ -123,17 +123,19 @@ class DirectorController extends Controller
         }
         DB::insert('INSERT INTO `classes` (`class_name`, `teacher`, `count`) VALUES (?, ?, 0)', [$validate['class_name'], $validate['teacher']]);
         $class_id = DB::select('SELECT * FROM `classes` WHERE `class_name` = ?', [$validate['class_name']])[0]->class_id;
+        echo '<pre>' . print_r($validate['subject'], true) . '</pre>';
         foreach ($validate['subject'] as $subject) {
             $subject_name = DB::select('SELECT * FROM `subjects` WHERE `subject_id` = ?', [$subject]);
             $subjects[] = $teacher_model->getAllTeacherBySubjectId($subject);
-        }
-        foreach ($students as $student) {
+        }foreach ($students as $student) {
             DB::insert("INSERT INTO `students` (`student_name`) VALUES (?)", [$student]);
             $last_id = DB::select('SELECT * FROM `students` WHERE `student_name` = ?', [$student])[0]->student_id;
             DB::insert("INSERT INTO `students_classes` (`class_id`, `student_id`) VALUES (?, ?)", [$class_id, $last_id]);
             DB::insert("INSERT INTO `users` (`user_id`, `username`, `password`, `type`, `email`, `id`) VALUES (NULL, ?, ?, 2, '', $last_id)",
                 [strtolower(str_replace(' ', '', $student)), strtolower(str_replace(' ', '', $student))]);
         }
+
+        //var_dump($subject_name);
         return view('selectteacher', ['teachers' => $subjects, 'subject' => $subject_name[0]->subject_name, 'class_id' => $class_id]);
 
 

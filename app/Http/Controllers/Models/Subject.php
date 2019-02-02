@@ -11,8 +11,8 @@ class Subject
     {
         $r = [];
         $subject = DB::select('SELECT * FROM `subjects`');
-        foreach ($subject as $item) {
-            $r[] = $item;
+        foreach ($subject as $key => $item) {
+            $r[$key] = $item;
         }
 
         return $r;

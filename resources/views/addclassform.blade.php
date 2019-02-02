@@ -32,8 +32,8 @@
             Select subjects
 
             <select name="subject[]" multiple="multiple" style="height: {{count($subjects) * 17.5}}px">
-                @foreach($subjects as $key => $subject)
-                    <option value="{{$key + 1}}">{{$subject->subject_name}}</option>
+                @foreach($subjects as $subject)
+                    <option value="{{$subject->subject_id}}">{{$subject->subject_name}}</option>
                 @endforeach
             </select>
         </label>

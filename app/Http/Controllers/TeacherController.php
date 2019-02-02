@@ -25,6 +25,7 @@ class TeacherController
             $subject = DB::select('SELECT * FROM `subjects` WHERE subject_id = ?', [$result[$i]->subject_id]);
             $subjects[] = $subject[0]->subject_name;
         }
+        var_dump($subjects);
         return view('teacher_class', ['title' => 'Class ID :' . $class_id, 'subjects' => $subjects]);
 
     }
