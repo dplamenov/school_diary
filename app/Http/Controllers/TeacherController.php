@@ -28,7 +28,6 @@ class TeacherController
         }
         $students = [];
         $students_query = DB::select("SELECT * FROM `students_classes` LEFT JOIN `students` ON students_classes.student_id = students.student_id WHERE students_classes.class_id = ?", [$class_id]);
-        echo '<pre>' . print_r($students_query, true) . '</pre>';
 
         foreach ($students_query as $student) {
             $students[] = $student->student_name;
