@@ -13,5 +13,9 @@ class ParentController extends Controller
             return view('error', ['type_error' => 'Error']);
         }
 
+
+
+        return view('registerparent', ['id' => $id]);
+
     }
 }
