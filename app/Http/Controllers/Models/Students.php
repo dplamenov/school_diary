@@ -12,6 +12,10 @@ class Students extends Model
 
     public function studentExist(int $id)
     {
-        return (bool)Students::where('student_id', $id)->get();
+        $result = Students::where('student_id', $id)->get();
+        if(count($result) > 0){
+            return true;
+        }
+        return false;
     }
 }

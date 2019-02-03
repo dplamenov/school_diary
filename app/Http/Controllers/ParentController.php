@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Models\Parents;
+use App\Http\Controllers\Models;
 use Illuminate\Http\Request;
 
 class ParentController extends Controller
 {
     public function registerParent(Request $request, int $id){
-        $parent = new Parents();
-        $parent->parentExist($id);
+        $student = new Models\Students();
+        var_dump($student->studentExist($id));
     }
 }
