@@ -6,7 +6,7 @@ use App\Http\Controllers\Models\Classes;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-class TeacherController
+class TeacherController extends Controller
 {
     public function listOfClass(Request $request, $class_id)
     {
