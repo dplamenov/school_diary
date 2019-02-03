@@ -10,5 +10,4 @@ class Parents extends Model
     protected $primaryKey = 'parent_id';
     public $timestamps = false;
 
-
 }
