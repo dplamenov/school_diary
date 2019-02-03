@@ -3,9 +3,10 @@
 
 namespace App\Http\Controllers\Models;
 
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 
-class Subject
+class Subject extends Model
 {
     public function getAllSubject()
     {

@@ -107,11 +107,6 @@ class DefaultController extends Controller
         return redirect(url('/'));
     }
 
-    public function teacher(Request $request)
-    {
-
-        return view('teacher');
-    }
 
 
 }
