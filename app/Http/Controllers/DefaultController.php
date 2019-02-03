@@ -74,7 +74,7 @@ class DefaultController extends Controller
                 'type.numeric' => 'Error',
             ]);
 
-        if ($validate['username'] == 'admin' && $validate['password'] == 'admin') {
+        if ($validate['username'] == env('DIRECTOR_USERNAME') && $validate['password'] == env('DIRECTOR_PASSWORD')) {
             $request->session()->put('user_data', ['type' => 'director']);
             $request->session()->put('islogged', true);
             return redirect()->route('home');
