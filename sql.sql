@@ -57,3 +57,11 @@ CREATE TABLE IF NOT EXISTS `students_classes`
   `class_id`   INT NOT NULL,
   `student_id` INT NOT NULL
 ) ENGINE = InnoDB;
+
+CREATE TABLE IF NOT EXISTS `parents`
+(
+  `parent_id`   INT                                                    NOT NULL AUTO_INCREMENT,
+  `parent_name` VARCHAR(70) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `student_id`  INT                                                    NOT NULL,
+  PRIMARY KEY (`parent_id`)
+) ENGINE = InnoDB;
