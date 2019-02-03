@@ -12,5 +12,6 @@ class ParentController extends Controller
         if(!$student->studentExist($id)){
             return view('error', ['type_error' => 'Error']);
         }
+
     }
 }
