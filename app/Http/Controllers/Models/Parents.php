@@ -6,8 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Parents extends Model
 {
+    protected $table = 'parents';
     protected $primaryKey = 'parent_id';
-    public function parentExist(int $id){
+    public $timestamps = false;
 
-    }
+
 }
