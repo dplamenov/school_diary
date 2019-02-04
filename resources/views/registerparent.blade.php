@@ -1,6 +1,7 @@
 @extends('layout.layout')
 @section('title', 'Register parent')
 @section('container')
+    <p>Student name {{$student_name}}</p>
     @if ($errors->any())
         @foreach($errors->all() as $error)
             <p>{{$error}}</p>

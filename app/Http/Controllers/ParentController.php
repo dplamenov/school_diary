@@ -14,7 +14,8 @@ class ParentController extends Controller
             return view('error', ['type_error' => 'Error']);
         }
 
-        return view('registerparent', ['id' => $id]);
+        $name = $student->getStudentById($id)->student_name;
+        return view('registerparent', ['id' => $id, 'student_name' => $name]);
     }
 
     public function registerParent(Request $request, int $id)
