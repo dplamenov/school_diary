@@ -23,7 +23,8 @@ class ParentController extends Controller
             'name' => 'min:5',
             'username' => 'min:5|max:18',
             'password' => 'min:8',
-            'password_repeat' => 'same:password'
+            'password_repeat' => 'same:password',
+            'email' => 'email'
         ]);
 
         $validate['student_id'] = $student_id;

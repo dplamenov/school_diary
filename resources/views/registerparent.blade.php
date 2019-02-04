@@ -14,6 +14,7 @@
         <label>Username <input type="text" name="username"/></label><br>
         <label>Password <input type="password" name="password"/></label><br>
         <label>Repeat Password <input type="password" name="password_repeat"/></label><br>
+        <label>Email<input type="text" name="email"/></label><br>
         <input type="submit"/>
     </form>
 
