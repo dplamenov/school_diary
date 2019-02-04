@@ -13,18 +13,21 @@ class ParentController extends Controller
         if (!$student->studentExist($id)) {
             return view('error', ['type_error' => 'Error']);
         }
-
         $name = $student->getStudentById($id)->student_name;
         return view('registerparent', ['id' => $id, 'student_name' => $name]);
     }
 
-    public function registerParent(Request $request, int $id)
+    public function registerParent(Request $request, int $student_id)
     {
-        $this->validate($request,[
+        $validate = $this->validate($request, [
             'name' => 'min:5',
             'username' => 'min:5|max:18',
             'password' => 'min:8',
             'password_repeat' => 'same:password'
         ]);
+
+        $validate['student_id'] = $student_id;
+        $parent_model = new Models\Parents();
+        $parent_model->newParent($validate);
     }
 }
