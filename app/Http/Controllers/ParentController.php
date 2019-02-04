@@ -17,7 +17,7 @@ class ParentController extends Controller
         return view('registerparent', ['id' => $id]);
     }
 
-    public function registerParent(Request $request)
+    public function registerParent(Request $request, int $id)
     {
 
     }
