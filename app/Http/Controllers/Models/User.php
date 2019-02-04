@@ -16,16 +16,14 @@ class User extends Model
         return ['Teacher', 'Parent', 'Student'];
     }
 
-    public function newUser($data)
+    public static function newUser($data)
     {
         $user = new User();
-
         $user->username = $data['username'];
         $user->password = $data['password'];
         $user->type = $data['type'];
         $user->email = $data['email'];
         $user->id = $data['id'];
-
         $user->save();
     }
 }

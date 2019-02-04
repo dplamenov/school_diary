@@ -16,6 +16,9 @@ class Parents extends Model
         $parent->student_id = $data['student_id'];
         $parent->save();
 
+        $password = password_hash($data['password'], PASSWORD_BCRYPT);
+        User::newUser(['username' => $data['username'], 'password' => $password, 'type' => 1, 'email' => $data['email'], 'id' => $parent->parent_id]);
+
     }
 
 }
