@@ -11,4 +11,9 @@ class User extends Model
     {
         return ['Teacher', 'Parent', 'Student'];
     }
+
+    public function newUser($data){
+        $user = new User();
+
+    }
 }

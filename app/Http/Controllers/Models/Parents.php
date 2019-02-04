@@ -14,9 +14,8 @@ class Parents extends Model
         $parent = new Parents();
         $parent->parent_name = $data['name'];
         $parent->student_id = $data['student_id'];
-
-        //todo add username & password to users table
         $parent->save();
+
     }
 
 }
