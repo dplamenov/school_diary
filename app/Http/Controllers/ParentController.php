@@ -19,6 +19,11 @@ class ParentController extends Controller
 
     public function registerParent(Request $request, int $id)
     {
-
+        $this->validate($request,[
+            'name' => 'min:5',
+            'username' => 'min:4|max:18',
+            'password' => 'min:8',
+            'password_repeat' => 'same:password'
+        ]);
     }
 }
