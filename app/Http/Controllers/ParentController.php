@@ -21,7 +21,7 @@ class ParentController extends Controller
     {
         $this->validate($request,[
             'name' => 'min:5',
-            'username' => 'min:4|max:18',
+            'username' => 'min:5|max:18',
             'password' => 'min:8',
             'password_repeat' => 'same:password'
         ]);
