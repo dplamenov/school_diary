@@ -8,6 +8,9 @@ use Illuminate\Support\Facades\DB;
 
 class Classes extends Model
 {
+    protected $primaryKey = 'class_id';
+    public $timestamps = false;
+
     public function getAllClasses()
     {
         $r = DB::select('SELECT * FROM `classes` left join `teachers` on classes.teacher = teachers.teacher_id');
@@ -33,4 +36,6 @@ class Classes extends Model
         $r = DB::select('SELECT `class_name` FROM `classes` WHERE `class_id` = ?', [$id]);
         return $r[0]->class_name;
     }
+
+
 }

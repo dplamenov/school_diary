@@ -24,4 +24,6 @@ class Students extends Model
         $result = Students::where('student_id', $id)->first();
         return $result;
     }
+
+
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Models\Classes;
+use App\Http\Controllers\Models\Students;
 use App\Http\Controllers\Models\Subject;
 use App\Http\Controllers\Models\Teacher;
 use Illuminate\Http\Request;
@@ -196,6 +197,7 @@ class DirectorController extends Controller
             return redirect()->route('home');
         }
         $class_model = new Classes();
+
         return view('classinfo', ['class_name' => $class_model->getClassNameById($class_id)]);
     }
 }
