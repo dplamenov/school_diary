@@ -65,3 +65,11 @@ CREATE TABLE IF NOT EXISTS `parents`
   `student_id`  INT                                                    NOT NULL,
   PRIMARY KEY (`parent_id`)
 ) ENGINE = InnoDB;
+
+CREATE TABLE IF NOT EXISTS `grades`
+(
+  `student_id` INT     NOT NULL,
+  `subject_id` INT     NOT NULL,
+  `teacher_id` INT     NOT NULL,
+  `signed`     TINYINT NOT NULL
+) ENGINE = InnoDB;
