@@ -17,3 +17,4 @@ Route::get('teacher/delete/{id}', 'DirectorController@deleteTeacher');
 Route::get('subject/delete/{id}', 'DirectorController@deleteSubject');
 Route::get('parent/register/{id}', 'ParentController@registerParentForm');
 Route::post('parent/register/{id}', 'ParentController@registerParent');
+Route::get('director/class/{id}', 'DirectorController@classInfo');
