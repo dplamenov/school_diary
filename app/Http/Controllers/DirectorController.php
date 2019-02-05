@@ -190,8 +190,12 @@ class DirectorController extends Controller
         return redirect()->route('home');
     }
 
-    public function classInfo()
+    public function classInfo(Request $request)
     {
+        if ($request->session()->get('user_data')['type'] != 'director') {
+            return redirect()->route('home');
+        }
 
+        return view('classinfo');
     }
 }
