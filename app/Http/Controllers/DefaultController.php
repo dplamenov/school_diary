@@ -54,7 +54,7 @@ class DefaultController extends Controller
                 $class = DB::select('SELECT * FROM `classes` LEFT JOIN `students_classes` ON `classes`.`class_id` = `students_classes`.`class_id`  WHERE `students_classes`.`student_id` = ?', [$id]);
                 $name = DB::select('SELECT * FROM `students` WHERE `student_id` = ?', [$request->session()->get('user_data')['tid']])[0]->student_name;
                 return view('student', ['user_data' => $request->session()->get('user_data'), 'name' => $name, 'class' => $class[0]->class_name]);
-            }elseif (strtolower($request->session()->get('user_data')['type']) == 'parent'){
+            } elseif (strtolower($request->session()->get('user_data')['type']) == 'parent') {
                 return view('parent');
             }
 
@@ -83,9 +83,9 @@ class DefaultController extends Controller
 
         }
 
-        $user = DB::select('SELECT * FROM `users` WHERE `username` = ? and `password` = ? and `type` = ?',
-            [$validate['username'], $validate['password'], $validate['type']]);
-        if (count($user) == 1) {
+        $user = DB::select('SELECT * FROM `users` WHERE `username` = ? and `type` = ?',
+            [$validate['username'], $validate['type']]);
+        if (count($user) == 1 && password_verify($validate['password'], $user[0]->password)) {
             $user_model = new Models\User();
             unset($validate['password']);
             $user_data['id'] = $user[0]->user_id;
@@ -108,7 +108,6 @@ class DefaultController extends Controller
         $request->session()->put('islogged', false);
         return redirect(url('/'));
     }
-
 
 
 }

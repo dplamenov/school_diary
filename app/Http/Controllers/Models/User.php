@@ -26,4 +26,8 @@ class User extends Model
         $user->id = $data['id'];
         $user->save();
     }
+
+    public function login(){
+
+    }
 }

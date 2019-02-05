@@ -1,5 +1,5 @@
 @extends('layout.layout')
-@section('title', 'Student')
+@section('title', 'Parent')
 @section('container')
 
 @endsection

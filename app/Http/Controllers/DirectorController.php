@@ -42,7 +42,7 @@ class DirectorController extends Controller
         }
         DB::insert("INSERT INTO `teachers` (`teacher_id`, `teacher_name`) VALUES (NULL, ?)", [$validate['fullname']]);
         $last_id = DB::select('SELECT * FROM `teachers` WHERE `teacher_name` = ?', [$validate['fullname']])[0]->teacher_id;
-        DB::insert("INSERT INTO `users` (`user_id`, `username`, `password`, `type`, `email`, `id`) VALUES (NULL, ?, ?, 0, '', $last_id)", [strtolower(str_replace(' ', '', $validate['fullname'])), strtolower(str_replace(' ', '', $validate['fullname']))]);
+        DB::insert("INSERT INTO `users` (`user_id`, `username`, `password`, `type`, `email`, `id`) VALUES (NULL, ?, ?, 0, '', $last_id)", [strtolower(str_replace(' ', '', $validate['fullname'])), strtolower(str_replace(' ', '', password_hash($validate['fullname'], PASSWORD_BCRYPT)))]);
 
         foreach ($validate['subjects'] as $subject) {
             DB::insert("INSERT INTO `teacher_subject` (`teacher_id`, `subject_id`) VALUES (?, ?)", [$last_id, $subject]);
@@ -127,12 +127,13 @@ class DirectorController extends Controller
         foreach ($validate['subject'] as $subject) {
             $subject_name = DB::select('SELECT * FROM `subjects` WHERE `subject_id` = ?', [$subject]);
             $subjects[] = $teacher_model->getAllTeacherBySubjectId($subject);
-        }foreach ($students as $student) {
+        }
+        foreach ($students as $student) {
             DB::insert("INSERT INTO `students` (`student_name`) VALUES (?)", [$student]);
             $last_id = DB::select('SELECT * FROM `students` WHERE `student_name` = ?', [$student])[0]->student_id;
             DB::insert("INSERT INTO `students_classes` (`class_id`, `student_id`) VALUES (?, ?)", [$class_id, $last_id]);
             DB::insert("INSERT INTO `users` (`user_id`, `username`, `password`, `type`, `email`, `id`) VALUES (NULL, ?, ?, 2, '', $last_id)",
-                [strtolower(str_replace(' ', '', $student)), strtolower(str_replace(' ', '', $student))]);
+                [strtolower(str_replace(' ', '', $student)), password_hash(strtolower(str_replace(' ', '', $student)), PASSWORD_BCRYPT)]);
         }
 
         //var_dump($subject_name);
