@@ -19,6 +19,9 @@
                 @endforeach
             </select>
         </label>
+        <label>
+            Email<input type="text" name="email"/>
+        </label>
         <input type="submit"/>
     </form>
 @endsection

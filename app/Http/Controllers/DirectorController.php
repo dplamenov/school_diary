@@ -34,15 +34,16 @@ class DirectorController extends Controller
         }
         $validate = $this->validate($request, [
             'fullname' => 'min:8',
-            'subjects' => 'array'
+            'subjects' => 'array',
+            'email' => 'email'
         ]);
         $teacher_model = new Teacher();
         if ($teacher_model->teacherExists($validate['fullname'])) {
-            return view('error', ['type_error' => 'Teacher already exists']);
+            return view('error', ['type_error' => 'Teacher already exists.']);
         }
         DB::insert("INSERT INTO `teachers` (`teacher_id`, `teacher_name`) VALUES (NULL, ?)", [$validate['fullname']]);
         $last_id = DB::select('SELECT * FROM `teachers` WHERE `teacher_name` = ?', [$validate['fullname']])[0]->teacher_id;
-        DB::insert("INSERT INTO `users` (`user_id`, `username`, `password`, `type`, `email`, `id`) VALUES (NULL, ?, ?, 0, '', $last_id)", [strtolower(str_replace(' ', '', $validate['fullname'])), strtolower(str_replace(' ', '', password_hash($validate['fullname'], PASSWORD_BCRYPT)))]);
+        DB::insert("INSERT INTO `users` (`user_id`, `username`, `password`, `type`, `email`, `id`, `email`) VALUES (NULL, ?, ?, 0, '', $last_id, ?)", [strtolower(str_replace(' ', '', $validate['fullname'])), strtolower(str_replace(' ', '', password_hash($validate['fullname'], PASSWORD_BCRYPT)))], $validate['email']);
 
         foreach ($validate['subjects'] as $subject) {
             DB::insert("INSERT INTO `teacher_subject` (`teacher_id`, `subject_id`) VALUES (?, ?)", [$last_id, $subject]);
