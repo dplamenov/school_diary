@@ -43,7 +43,7 @@ class DirectorController extends Controller
         }
         DB::insert("INSERT INTO `teachers` (`teacher_id`, `teacher_name`) VALUES (NULL, ?)", [$validate['fullname']]);
         $last_id = DB::select('SELECT * FROM `teachers` WHERE `teacher_name` = ?', [$validate['fullname']])[0]->teacher_id;
-        DB::insert("INSERT INTO `users` (`user_id`, `username`, `password`, `type`, `email`, `id`, `email`) VALUES (NULL, ?, ?, 0, '', $last_id, ?)", [strtolower(str_replace(' ', '', $validate['fullname'])), strtolower(str_replace(' ', '', password_hash($validate['fullname'], PASSWORD_BCRYPT)))], $validate['email']);
+        DB::insert("INSERT INTO `users` (`user_id`, `username`, `password`, `type`, `email`, `id`, `email`) VALUES (NULL, ?, ?, 0, '', $last_id, ?)", [strtolower(str_replace(' ', '', $validate['fullname'])), strtolower(str_replace(' ', '', password_hash($validate['fullname'], PASSWORD_BCRYPT))), $validate['email']]);
 
         foreach ($validate['subjects'] as $subject) {
             DB::insert("INSERT INTO `teacher_subject` (`teacher_id`, `subject_id`) VALUES (?, ?)", [$last_id, $subject]);
