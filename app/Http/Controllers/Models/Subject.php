@@ -15,7 +15,6 @@ class Subject extends Model
         foreach ($subject as $key => $item) {
             $r[$key] = $item;
         }
-
         return $r;
     }
 
