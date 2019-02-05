@@ -45,11 +45,13 @@
             <tr>
                 <th>Class name</th>
                 <th>Head teacher of class</th>
+                <th>Info</th>
             </tr>
             @foreach($classes as $class)
                 <tr>
                     <td>{{$class->class_name}}</td>
                     <td>{{$class->teacher_name}}</td>
+                    <td><a href="{{url('director/class/' . $class->class_id)}}">Info</a></td>
                 </tr>
             @endforeach
         </table>
