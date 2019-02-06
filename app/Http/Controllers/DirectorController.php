@@ -197,7 +197,8 @@ class DirectorController extends Controller
             return redirect()->route('home');
         }
         $class_model = new Classes();
+        $all_students = $class_model->getStudentsInClass($class_id);
 
-        return view('classinfo', ['class_name' => $class_model->getClassNameById($class_id)]);
+        return view('classinfo', ['class_name' => $class_model->getClassNameById($class_id), 'students' => $all_students]);
     }
 }
