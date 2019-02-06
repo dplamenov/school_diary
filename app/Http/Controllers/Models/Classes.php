@@ -37,5 +37,9 @@ class Classes extends Model
         return $r[0]->class_name;
     }
 
+    public function getStudentsInClass(int $class_id){
+        $students_query = DB::select("SELECT * FROM `students_classes` LEFT JOIN `students` ON students_classes.student_id = students.student_id WHERE students_classes.class_id = ?", [$class_id]);
+    }
+
 
 }
