@@ -7,7 +7,7 @@
             <p>{{$error}}</p>
         @endforeach
     @endif
-    @if(count($subject) > 0)
+    @if(count($subjects) > 0)
         <form action="{{url('director/addteacher')}}" method="post">
             @method('post')
             @csrf
