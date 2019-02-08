@@ -5,16 +5,17 @@
 @endsection
 @section('container')
     <h1>Add class</h1>
-    @if(count($errors) > 0)
-        @foreach($errors->all() as $error)
-            <p>{{$error}}</p>
-        @endforeach
-    @endif
-    <form action="{{url('director/addclass')}}" method="post">
-        @method('post')
-        @csrf
-        <label>Class name <input type="text" name="class_name" placeholder="Example: 10c"/></label><br>
-        @if(count($teachers) > 0)
+    @if(count($teachers) > 0)
+        @if(count($errors) > 0)
+            @foreach($errors->all() as $error)
+                <p>{{$error}}</p>
+            @endforeach
+        @endif
+        <form action="{{url('director/addclass')}}" method="post">
+            @method('post')
+            @csrf
+            <label>Class name <input type="text" name="class_name" placeholder="Example: 10c"/></label><br>
+
 
             <label>Select head teacher
                 <select name="teacher">
@@ -24,29 +25,31 @@
                 </select>
             </label>
 
-        @else
-            <p>First add teacher</p>
-        @endif
-        <br>
-        <label>
-            Select subjects
 
-            <select name="subject[]" multiple="multiple" style="height: {{count($subjects) * 17.5}}px">
-                @foreach($subjects as $subject)
-                    <option value="{{$subject->subject_id}}">{{$subject->subject_name}}</option>
-                @endforeach
-            </select>
-        </label>
-        <br>
-        <label>
-            Add Students
-            <button onclick="add()" type="button">+</button>
             <br>
-            <div id="addstudents">
-                <input type="text" name="name1" placeholder="Full Name"/><br>
-            </div>
-        </label>
+            <label>
+                Select subjects
 
-        <input style="display: block; margin-top: 50px" type="submit"/>
-    </form>
+                <select name="subject[]" multiple="multiple" style="height: {{count($subjects) * 17.5}}px">
+                    @foreach($subjects as $subject)
+                        <option value="{{$subject->subject_id}}">{{$subject->subject_name}}</option>
+                    @endforeach
+                </select>
+            </label>
+            <br>
+            <label>
+                Add Students
+                <button onclick="add()" type="button">+</button>
+                <br>
+                <div id="addstudents">
+                    <input type="text" name="name1" placeholder="Full Name"/><br>
+                </div>
+            </label>
+
+            <input style="display: block; margin-top: 50px" type="submit"/>
+        </form>
+    @else
+        <p>First add teacher</p>
+    @endif
+
 @endsection
