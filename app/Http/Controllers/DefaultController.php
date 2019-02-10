@@ -82,7 +82,6 @@ class DefaultController extends Controller
             return redirect()->route('home');
 
         }
-
         $user = DB::select('SELECT * FROM `users` WHERE `username` = ? and `type` = ?',
             [$validate['username'], $validate['type']]);
         if (count($user) == 1 && password_verify($validate['password'], $user[0]->password)) {
@@ -99,10 +98,11 @@ class DefaultController extends Controller
 
             return view('error', ['type_error' => 'No such that user in database']);
         }
+
     }
 
-    public
-    function logout(Request $request)
+
+    public function logout(Request $request)
     {
         $request->session()->put('user_data', null);
         $request->session()->put('islogged', false);
