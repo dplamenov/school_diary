@@ -12,6 +12,6 @@
 
     <h2>Students</h2>
     @foreach($students as $student)
-        <p>{{$student->student_name}}</p>
+        <p><a href="{{url('student/' . $student->student_id)}}">{{$student->student_name}}</a></p>
     @endforeach
 @endsection
