@@ -12,6 +12,8 @@ class StudentController
         if ($request->session()->get('islogged') !== true or $request->session()->get('user_data')['type'] != 'Teacher') {
             return redirect()->route('home');
         }
-        return view('student_teacher');
+        $student_model = new Students();
+        $student = $student_model->getStudentById($student_id);
+        return view('student_teacher', ['student' => $student]);
     }
 }
