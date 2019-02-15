@@ -39,12 +39,14 @@ class Teacher extends Model
 
     public function checkTeacherHasPermission($teacher, $student)
     {
-        echo 'Teacher ' . $teacher . '<br>Student ' . $student;
         $class_id = $this->getClassIdOfStudents($student);
         $r = DB::select('SELECT * FROM classes where class_id = ? and teacher = ?', [$class_id, $teacher]);
-        if(count($r) == 1){
+        if (count($r) == 1) {
             return true;
         }
-
+        $r = DB::select('SELECT * FROM teacher_classes WHERE class_id = ? and teacher_id = ?', [$class_id, $teacher]);
+        if (count($r) > 0) {
+            return true;
+        }
     }
 }
