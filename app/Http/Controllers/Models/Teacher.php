@@ -31,4 +31,8 @@ class Teacher extends Model
         $r = DB::select('SELECT COUNT(*) as count FROM `teachers` WHERE `teacher_name` = ?', [$name])[0]->count;
         return (boolean)$r;
     }
+
+    public function checkTeacherHasPermission($teacher, $student){
+
+    }
 }
