@@ -12,6 +12,6 @@
 
     <h2>Students</h2>
     @foreach($students as $student)
-        <p>{{$student}}</p>
+        <p>{{$student->student_name}}</p>
     @endforeach
 @endsection

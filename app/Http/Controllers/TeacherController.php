@@ -30,7 +30,7 @@ class TeacherController extends Controller
         $students_query = DB::select("SELECT * FROM `students_classes` LEFT JOIN `students` ON students_classes.student_id = students.student_id WHERE students_classes.class_id = ?", [$class_id]);
 
         foreach ($students_query as $student) {
-            $students[] = $student->student_name;
+            $students[] = $student;
         }
 
         return view('teacher_class', ['title' => 'Class ID :' . $class_id, 'subjects' => $subjects, 'students' => $students, 'class_name' => $class_model->getClassNameById($class_id)]);
