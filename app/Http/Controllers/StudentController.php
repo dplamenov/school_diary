@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 
 class StudentController
 {
-    private function studentFromTeacher(){
+    public function studentFromTeacher(){
         return view('student_teacher');
     }
 }
