@@ -125,7 +125,7 @@ class DirectorController extends Controller
         if ($class_model->classExists($validate['class_name'])) {
             return view('error', ['type_error' => 'Class already exists']);
         }
-        DB::insert('INSERT INTO `classes` (`class_name`, `teacher`, `count`) VALUES (?, ?, 0)', [$validate['class_name'], $validate['teacher']]);
+        DB::insert('INSERT INTO `classes` (`class_name`, `teacher`, `count`) VALUES (?, ?, ?)', [$validate['class_name'], $validate['teacher'], count($students)]);
         $class_id = DB::select('SELECT * FROM `classes` WHERE `class_name` = ?', [$validate['class_name']])[0]->class_id;
         echo '<pre>' . print_r($validate['subject'], true) . '</pre>';
         foreach ($validate['subject'] as $subject) {
