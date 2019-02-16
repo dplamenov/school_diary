@@ -36,4 +36,9 @@ class TeacherController extends Controller
         return view('teacher_class', ['title' => 'Class ID :' . $class_id, 'subjects' => $subjects, 'students' => $students, 'class_name' => $class_model->getClassNameById($class_id)]);
 
     }
+
+    public function addNote()
+    {
+        return view('addnote');
+    }
 }

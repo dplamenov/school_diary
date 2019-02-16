@@ -4,7 +4,7 @@
 @endsection
 @section('container')
     Student name: {{$student->student_name}}
-    <a href="">Add note</a>
+    <a href="{{url('student/add/note')}}">Add note</a>
     <a href="">Add grade</a>
     <a href="{{url('')}}">Go back</a>
 @endsection
