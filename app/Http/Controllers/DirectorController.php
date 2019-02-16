@@ -127,7 +127,6 @@ class DirectorController extends Controller
         }
         DB::insert('INSERT INTO `classes` (`class_name`, `teacher`, `count`) VALUES (?, ?, ?)', [$validate['class_name'], $validate['teacher'], count($students)]);
         $class_id = DB::select('SELECT * FROM `classes` WHERE `class_name` = ?', [$validate['class_name']])[0]->class_id;
-        echo '<pre>' . print_r($validate['subject'], true) . '</pre>';
         foreach ($validate['subject'] as $subject) {
             $subject_name = DB::select('SELECT * FROM `subjects` WHERE `subject_id` = ?', [$subject]);
             $subjects[] = $teacher_model->getAllTeacherBySubjectId($subject);
