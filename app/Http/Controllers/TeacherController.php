@@ -47,13 +47,18 @@ class TeacherController extends Controller
         }
         $teacher_id = $request->session()->get('user_data')['tid'];
         $teacher_model = new Teacher();
+        $student_model = new Students();
         try {
             if ($teacher_model->checkTeacherHasPermission($teacher_id, $student_id)) {
-                return view('addnote', ['student' => Students::getStudentName($student_id)]);
+                return view('addnote', ['student' => $student_model->getStudentById($student_id)]);
             }
         } catch (\Exception $exception) {
             return view('error', ['type_error' => $exception->getMessage()]);
         }
+
+    }
+
+    public function storeNote(Request $request){
 
     }
 }
