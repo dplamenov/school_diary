@@ -58,7 +58,11 @@ class TeacherController extends Controller
 
     }
 
-    public function storeNote(Request $request){
-
+    public function storeNote(Request $request)
+    {
+        $validate = $this->validate($request, [
+            '*' => 'required',
+            'content' => 'min: 15|max:68'
+        ]);
     }
 }
