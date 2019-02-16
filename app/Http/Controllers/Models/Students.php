@@ -19,6 +19,12 @@ class Students extends Model
         return false;
     }
 
+    public static function getStudentName(int $id)
+    {
+        $result = Students::find($id);
+        return $result->student_name;
+    }
+
     public function getStudentById(int $id)
     {
         $result = Students::where('student_id', $id)->first();

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Models\Classes;
+use App\Http\Controllers\Models\Students;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -39,6 +40,7 @@ class TeacherController extends Controller
 
     public function addNote($student_id)
     {
-        return view('addnote', ['student' => $student_id]);
+
+        return view('addnote', ['student' => Students::getStudentName($student_id)]);
     }
 }

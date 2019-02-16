@@ -3,5 +3,5 @@
     Add note
 @endsection
 @section('container')
-    {{$student}}
+    <p>Student name: {{$student}}</p>
 @endsection
