@@ -61,11 +61,20 @@ class TeacherController extends Controller
 
     public function storeNote(Request $request)
     {
+        if ($request->session()->get('islogged') !== true or $request->session()->get('user_data')['type'] != 'Teacher') {
+            return redirect()->route('home');
+        }
+        $teacher_id = $request->session()->get('user_data')['tid'];
+
         $validate = $this->validate($request, [
             'student_id' => 'required',
-            'content' => 'min: 15|max:65'
+            'content' => 'min: 5|max:65'
         ]);
 
         $note = new Note();
+        $note->student_id = $validate['student_id'];
+        $note->teacher_id = $teacher_id;
+        $note->note = $validate['content'];
+        $note->save();
     }
 }
