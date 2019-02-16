@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Models\Classes;
+use App\Http\Controllers\Models\Note;
 use App\Http\Controllers\Models\Subject;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -52,8 +53,10 @@ class DefaultController extends Controller
 
                 $id = $request->session()->get('user_data')['tid'];
                 $class = DB::select('SELECT * FROM `classes` LEFT JOIN `students_classes` ON `classes`.`class_id` = `students_classes`.`class_id`  WHERE `students_classes`.`student_id` = ?', [$id]);
+
+                $notes = Note::where('student_id', '=', $id)->where('signed', 0)->get();
                 $name = DB::select('SELECT * FROM `students` WHERE `student_id` = ?', [$request->session()->get('user_data')['tid']])[0]->student_name;
-                return view('student', ['user_data' => $request->session()->get('user_data'), 'name' => $name, 'class' => $class[0]->class_name]);
+                return view('student', ['user_data' => $request->session()->get('user_data'), 'name' => $name, 'class' => $class[0]->class_name, 'notes' => $notes]);
             } elseif (strtolower($request->session()->get('user_data')['type']) == 'parent') {
                 return view('parent');
             }
@@ -85,7 +88,7 @@ class DefaultController extends Controller
         $user = DB::select('SELECT * FROM `users` WHERE `username` = ? and `type` = ?',
             [$validate['username'], $validate['type']]);
 
-         if (count($user) == 1 && password_verify($validate['password'], $user[0]->password)) {
+        if (count($user) == 1 && password_verify($validate['password'], $user[0]->password)) {
             $user_model = new Models\User();
             unset($validate['password']);
             $user_data['id'] = $user[0]->user_id;

@@ -75,6 +75,7 @@ class TeacherController extends Controller
         $note->student_id = $validate['student_id'];
         $note->teacher_id = $teacher_id;
         $note->note = $validate['content'];
+        $note->signed = 0;
         $note->save();
     }
 }
