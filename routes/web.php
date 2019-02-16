@@ -20,4 +20,4 @@ Route::post('parent/register/{id}', 'ParentController@registerParent');
 Route::get('director/class/{id}', 'DirectorController@classInfo');
 Route::get('student/{id}', 'StudentController@studentFromTeacher');
 Route::get('student/add/note/{student_id}', 'TeacherController@addNote');
-Route::post('student/add/note', 'TeacherController@storeNot');
+Route::post('student/add/note', 'TeacherController@storeNote');
