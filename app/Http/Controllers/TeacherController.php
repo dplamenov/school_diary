@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Models\Classes;
+use App\Http\Controllers\Models\Note;
 use App\Http\Controllers\Models\Students;
 use App\Http\Controllers\Models\Teacher;
 use Illuminate\Http\Request;
@@ -61,8 +62,10 @@ class TeacherController extends Controller
     public function storeNote(Request $request)
     {
         $validate = $this->validate($request, [
-            '*' => 'required',
-            'content' => 'min: 15|max:68'
+            'student_id' => 'required',
+            'content' => 'min: 15|max:65'
         ]);
+
+        $note = new Note();
     }
 }
