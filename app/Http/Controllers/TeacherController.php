@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Models\Classes;
 use App\Http\Controllers\Models\Students;
+use App\Http\Controllers\Models\Teacher;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -38,9 +39,21 @@ class TeacherController extends Controller
 
     }
 
-    public function addNote($student_id)
+    public function addNote(Request $request, $student_id)
     {
 
-        return view('addnote', ['student' => Students::getStudentName($student_id)]);
+        if ($request->session()->get('islogged') !== true or $request->session()->get('user_data')['type'] != 'Teacher') {
+            return redirect()->route('home');
+        }
+        $teacher_id = $request->session()->get('user_data')['tid'];
+        $teacher_model = new Teacher();
+        try {
+            if ($teacher_model->checkTeacherHasPermission($teacher_id, $student_id)) {
+                return view('addnote', ['student' => Students::getStudentName($student_id)]);
+            }
+        } catch (\Exception $exception) {
+            return view('error', ['type_error' => $exception->getMessage()]);
+        }
+
     }
 }
