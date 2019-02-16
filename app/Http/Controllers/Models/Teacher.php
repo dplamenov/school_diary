@@ -36,16 +36,22 @@ class Teacher extends Model
     public function getClassIdOfStudents($student)
     {
         $r = DB::select('SELECT * FROM students_classes where student_id = ?', [$student]);
-        if(count($r) == 0){
+        if (count($r) == 0) {
             return false;
         }
         return $r[0]->class_id;
     }
 
+    public static function getTeacherById($id)
+    {
+        $r = DB::select('SELECT * FROM teachers WHERE teacher_id = ?', [$id]);
+        return $r[0];
+    }
+
     public function checkTeacherHasPermission($teacher, $student)
     {
         $class_id = $this->getClassIdOfStudents($student);
-        if(!$class_id){
+        if (!$class_id) {
             throw new \Exception('No students with this id');
         }
         $r = DB::select('SELECT * FROM classes where class_id = ? and teacher = ?', [$class_id, $teacher]);

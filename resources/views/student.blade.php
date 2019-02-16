@@ -14,6 +14,7 @@
             @foreach($notes as $note)
                 <tr>
                     <td>{{$note->note}}</td>
+                    <td>{{$note->teacher}}</td>
                     <td><a href="">Signed</a></td>
                 </tr>
             @endforeach

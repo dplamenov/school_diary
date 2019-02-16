@@ -10,4 +10,5 @@ class Note extends Model
     protected $primaryKey = 'note_id';
     public $timestamps = false;
 
+
 }
