@@ -37,8 +37,8 @@ class TeacherController extends Controller
 
     }
 
-    public function addNote()
+    public function addNote($student_id)
     {
-        return view('addnote');
+        return view('addnote', ['student' => $student_id]);
     }
 }

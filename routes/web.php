@@ -19,4 +19,4 @@ Route::get('parent/register/{id}', 'ParentController@registerParentForm');
 Route::post('parent/register/{id}', 'ParentController@registerParent');
 Route::get('director/class/{id}', 'DirectorController@classInfo');
 Route::get('student/{id}', 'StudentController@studentFromTeacher');
-Route::get('student/add/note', 'TeacherController@addNote');
+Route::get('student/add/note/{student_id}', 'TeacherController@addNote');

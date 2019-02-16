@@ -18,11 +18,14 @@ class StudentController
         $student_model = new Students();
         $teacher_model = new Teacher();
 
-        if($teacher_model->checkTeacherHasPermission($teacher_id, $student_id)){
-            $student = $student_model->getStudentById($student_id);
-            return view('student_teacher', ['student' => $student]);
+        try{
+            if($teacher_model->checkTeacherHasPermission($teacher_id, $student_id)){
+                $student = $student_model->getStudentById($student_id);
+                return view('student_teacher', ['student' => $student]);
+            }
+        }catch (\Exception $exception){
+            return view('error', ['type_error' => $exception->getMessage()]);
         }
-
 
     }
 }

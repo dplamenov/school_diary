@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
+use mysql_xdevapi\Exception;
 
 class Teacher extends Model
 {
@@ -34,12 +35,19 @@ class Teacher extends Model
 
     public function getClassIdOfStudents($student)
     {
-        return DB::select('SELECT * FROM students_classes where student_id = ?', [$student])[0]->class_id;
+        $r = DB::select('SELECT * FROM students_classes where student_id = ?', [$student]);
+        if(count($r) == 0){
+            return false;
+        }
+        return $r[0]->class_id;
     }
 
     public function checkTeacherHasPermission($teacher, $student)
     {
         $class_id = $this->getClassIdOfStudents($student);
+        if(!$class_id){
+            throw new \Exception('No students with this id');
+        }
         $r = DB::select('SELECT * FROM classes where class_id = ? and teacher = ?', [$class_id, $teacher]);
         if (count($r) == 1) {
             return true;
@@ -48,5 +56,6 @@ class Teacher extends Model
         if (count($r) > 0) {
             return true;
         }
+        throw new \Exception('You don`t have permission to this student');
     }
 }
