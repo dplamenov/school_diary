@@ -80,4 +80,15 @@ class TeacherController extends Controller
 
         return redirect()->route('home');
     }
+
+    public function addGrade()
+    {
+
+    }
+
+    public function storeGrade()
+    {
+
+    }
+
 }
