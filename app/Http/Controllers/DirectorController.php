@@ -139,20 +139,11 @@ class DirectorController extends Controller
             DB::insert("INSERT INTO `users` (`user_id`, `username`, `password`, `type`, `email`, `id`) VALUES (NULL, ?, ?, 2, '', $last_id)",
                 [strtolower(str_replace(' ', '', $student)), password_hash(strtolower(str_replace(' ', '', $student)), PASSWORD_BCRYPT)]);
         }
-
-        //var_dump($subject_name);
         return view('selectteacher', ['teachers' => $subjects, 'subject' => $subject_name[0]->subject_name, 'class_id' => $class_id]);
 
 
     }
 
-    private function add_class($subjects)
-    {
-
-        foreach ($subjects as $subject) {
-            yield $subject;
-        }
-    }
 
     public function selectTeacher(Request $request)
     {
