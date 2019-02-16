@@ -77,5 +77,7 @@ class TeacherController extends Controller
         $note->note = $validate['content'];
         $note->signed = 0;
         $note->save();
+
+        return redirect()->route('home');
     }
 }
