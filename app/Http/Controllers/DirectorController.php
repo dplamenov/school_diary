@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Models\Classes;
+use App\Http\Controllers\Models\directorGrade;
 use App\Http\Controllers\Models\Subject;
 use App\Http\Controllers\Models\Teacher;
 use Illuminate\Http\Request;
@@ -203,6 +204,19 @@ class DirectorController extends Controller
 
     public function storeGrade(Request $request)
     {
+
+        $validate = $this->validate($request, [
+            'grade_name' => 'required'
+        ]);
+        $grade = new directorGrade();
+        if (!$grade->isGradeExistsByName($validate['grade_name'])) {
+            $grade->grade_name = $validate['grade_name'];
+            $grade->save();
+            return redirect()->action('DirectorController@grade');
+        } else {
+            return view('error', ['type_error' => 'Grade exists']);
+        }
+
 
     }
 }

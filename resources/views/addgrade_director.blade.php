@@ -7,5 +7,10 @@
     <form action="{{url('director/grade')}}" method="post">
         @method('post')
         @csrf
+        <label>
+            Grade name
+            <input type="text" name="grade_name"/>
+        </label>
+        <input type="submit"/>
     </form>
 @endsection
