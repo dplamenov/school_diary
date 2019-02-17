@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Models;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ParentController extends Controller
 {
@@ -34,9 +35,13 @@ class ParentController extends Controller
         return redirect()->route('home');
     }
 
-    public function signed()
+    public function signed($id)
     {
-
+        if (Models\Note::isNoteExists($id)) {
+            DB::delete('DELETE FROM `notes` where note_id = ?', [$id]);
+        } else {
+            return view('error', ['type_error' => 'Error']);
+        }
         return redirect()->route('home');
     }
 }
