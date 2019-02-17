@@ -191,4 +191,18 @@ class DirectorController extends Controller
 
         return view('classinfo', ['class_name' => $class_model->getClassNameById($class_id), 'students' => $all_students]);
     }
+
+    public function grade(Request $request)
+    {
+        if ($request->session()->get('user_data')['type'] != 'director') {
+            return redirect()->route('home');
+        }
+
+        return view('addgrade_director');
+    }
+
+    public function storeGrade(Request $request)
+    {
+
+    }
 }
