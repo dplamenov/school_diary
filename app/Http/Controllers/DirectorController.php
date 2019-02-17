@@ -219,6 +219,15 @@ class DirectorController extends Controller
             return view('error', ['type_error' => 'Grade exists']);
         }
 
+    }
 
+    public function deleteGrade($id)
+    {
+        $director = new directorGrade();
+        if ($director->isGradeExistsById($id)) {
+            directorGrade::find($id)->delete();
+
+        }
+        return redirect()->action('DirectorController@grade');
     }
 }

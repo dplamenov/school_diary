@@ -19,4 +19,10 @@ class directorGrade extends Model
         $r = DB::select('SELECT COUNT(*) as count FROM `grade` WHERE `grade_name` = ' . $grade_name);
         return (boolean)$r[0]->count;
     }
+
+    public function isGradeExistsById($grade_id)
+    {
+        $r = DB::select('SELECT COUNT(*) as count FROM `grade` WHERE `grade_id` = ' . $grade_id);
+        return (boolean)$r[0]->count;
+    }
 }

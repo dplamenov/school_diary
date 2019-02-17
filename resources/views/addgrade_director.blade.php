@@ -3,8 +3,6 @@
     Add grade
 @endsection
 @section('container')
-
-
     <h2>Add grade</h2>
     @if ($errors->any())
         @foreach($errors->all() as $error)
@@ -20,7 +18,6 @@
             <br>
             Grade number
             <input type="text" name="grade_number"/>
-
         </label>
         <input type="submit"/>
     </form>
@@ -39,9 +36,8 @@
                     <tr>
                         <td>{{$grade->grade_number}}</td>
                         <td>{{$grade->grade_name}}</td>
+                        <td><a href="{{url('director/grade/delete/' . $grade->grade_id)}}">Delete</a></td>
                     </tr>
-
-
                 @endforeach
             </table>
         @else
@@ -49,5 +45,4 @@
         @endif
 
     </div>
-
 @endsection
