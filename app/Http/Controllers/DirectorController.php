@@ -205,6 +205,9 @@ class DirectorController extends Controller
 
     public function storeGrade(Request $request)
     {
+        if ($request->session()->get('user_data')['type'] != 'director') {
+            return redirect()->route('home');
+        }
 
         $validate = $this->validate($request, [
             '*' => 'required'
@@ -221,8 +224,12 @@ class DirectorController extends Controller
 
     }
 
-    public function deleteGrade($id)
+    public function deleteGrade(Request $request, $id)
     {
+        if ($request->session()->get('user_data')['type'] != 'director') {
+            return redirect()->route('home');
+        }
+
         $director = new directorGrade();
         if ($director->isGradeExistsById($id)) {
             directorGrade::find($id)->delete();
