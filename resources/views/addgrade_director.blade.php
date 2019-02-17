@@ -15,10 +15,12 @@
         @method('post')
         @csrf
         <label>
-            Grade number
-            <input type="text" name="grade_number"/>
             Grade name
             <input type="text" name="grade_name"/>
+            <br>
+            Grade number
+            <input type="text" name="grade_number"/>
+
         </label>
         <input type="submit"/>
     </form>
@@ -26,9 +28,22 @@
     <div>
         @if(count($grades) > 0)
             <h2>All grade</h2>
-            @foreach($grades as $grade)
-                <p>{{$grade->grade_name}}</p>
-            @endforeach
+            <table>
+                <tr>
+                    <th>Grade</th>
+                    <th>Grade as word</th>
+                    <th>Delete</th>
+                </tr>
+
+                @foreach($grades as $grade)
+                    <tr>
+                        <td>{{$grade->grade_number}}</td>
+                        <td>{{$grade->grade_name}}</td>
+                    </tr>
+
+
+                @endforeach
+            </table>
         @else
             <h3>No grades.</h3>
         @endif
