@@ -67,7 +67,7 @@ class DefaultController extends Controller
                 $parent_id = $request->session()->get('user_data')['tid'];
                 $parent = Parents::find($parent_id);
                 $student = Students::find($parent->student_id);
-                return view('parent', ['student' => $student]);
+                return view('parent', ['student' => $student, 'parent' => $parent]);
             }
 
 
