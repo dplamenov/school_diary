@@ -58,8 +58,8 @@ class DefaultController extends Controller
                 $class = DB::select('SELECT * FROM `classes` LEFT JOIN `students_classes` ON `classes`.`class_id` = `students_classes`.`class_id`  WHERE `students_classes`.`student_id` = ?', [$id]);
 
                 $notes = Note::where('student_id', '=', $id)->where('signed', 0)->get();
-                foreach ($notes as $key => $note){
-                    $notes[$key]->teacher =  Teacher::getTeacherById($note->teacher_id)->teacher_name;
+                foreach ($notes as $key => $note) {
+                    $notes[$key]->teacher = Teacher::getTeacherById($note->teacher_id)->teacher_name;
                 }
                 $name = DB::select('SELECT * FROM `students` WHERE `student_id` = ?', [$request->session()->get('user_data')['tid']])[0]->student_name;
                 return view('student', ['user_data' => $request->session()->get('user_data'), 'name' => $name, 'class' => $class[0]->class_name, 'notes' => $notes]);
@@ -67,7 +67,13 @@ class DefaultController extends Controller
                 $parent_id = $request->session()->get('user_data')['tid'];
                 $parent = Parents::find($parent_id);
                 $student = Students::find($parent->student_id);
-                return view('parent', ['student' => $student, 'parent' => $parent]);
+
+
+                $unsigned_notes = Note::where('student_id', '=', $student->student_id)->where('signed', 0)->get();
+                foreach ($unsigned_notes as $key => $note) {
+                    $unsigned_notes[$key]->teacher = Teacher::getTeacherById($note->teacher_id)->teacher_name;
+                }
+                return view('parent', ['student' => $student, 'parent' => $parent, 'unsigned_notes' => $unsigned_notes]);
             }
 
 
