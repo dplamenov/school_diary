@@ -17,7 +17,7 @@
                 <tr>
                     <td>{{$note->note}}</td>
                     <td>{{$note->teacher}}</td>
-                    <td><a href="">Sign</a></td>
+                    <td><a href="{{url('parent/notes/sign/' .  $note->note_id)}}">Sign</a></td>
                 </tr>
             @endforeach
         </table>

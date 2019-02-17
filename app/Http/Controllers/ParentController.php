@@ -33,4 +33,10 @@ class ParentController extends Controller
 
         return redirect()->route('home');
     }
+
+    public function signed()
+    {
+
+        return redirect()->route('home');
+    }
 }

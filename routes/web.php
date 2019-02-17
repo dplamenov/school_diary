@@ -21,6 +21,7 @@ Route::get('director/class/{id}', 'DirectorController@classInfo');
 Route::get('student/{id}', 'StudentController@studentFromTeacher');
 Route::get('student/add/note/{student_id}', 'TeacherController@addNote');
 Route::post('student/add/note', 'TeacherController@storeNote');
+Route::get('parent/notes/sign/{id}', 'ParentController@signed');
 
 Route::get('student/add/grade/{student_id}', 'TeacherController@addGrade');
 Route::post('student/add/grade', 'TeacherController@storeGrade');
