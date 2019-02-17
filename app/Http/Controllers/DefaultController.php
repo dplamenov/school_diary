@@ -62,6 +62,8 @@ class DefaultController extends Controller
                 $name = DB::select('SELECT * FROM `students` WHERE `student_id` = ?', [$request->session()->get('user_data')['tid']])[0]->student_name;
                 return view('student', ['user_data' => $request->session()->get('user_data'), 'name' => $name, 'class' => $class[0]->class_name, 'notes' => $notes]);
             } elseif (strtolower($request->session()->get('user_data')['type']) == 'parent') {
+
+
                 return view('parent');
             }
 

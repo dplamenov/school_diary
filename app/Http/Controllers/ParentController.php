@@ -30,5 +30,7 @@ class ParentController extends Controller
         $validate['student_id'] = $student_id;
         $parent_model = new Models\Parents();
         $parent_model->newParent($validate);
+
+        return redirect()->route('home');
     }
 }
