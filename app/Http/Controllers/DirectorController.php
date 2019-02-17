@@ -207,11 +207,12 @@ class DirectorController extends Controller
     {
 
         $validate = $this->validate($request, [
-            'grade_name' => 'required'
+            '*' => 'required'
         ]);
         $grade = new directorGrade();
         if (!$grade->isGradeExistsByName($validate['grade_name'])) {
             $grade->grade_name = $validate['grade_name'];
+            $grade->grade_number = $validate['grade_number'];
             $grade->save();
             return redirect()->action('DirectorController@grade');
         } else {

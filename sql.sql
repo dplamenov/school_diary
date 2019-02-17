@@ -88,7 +88,8 @@ CREATE TABLE IF NOT EXISTS `notes`
 
 CREATE TABLE IF NOT EXISTS `grade`
 (
-  `grade_id`   INT NOT NULL AUTO_INCREMENT,
-  `grade_name` INT NOT NULL,
+  `grade_id`     INT         NOT NULL AUTO_INCREMENT,
+  `grade_name`   VARCHAR(15) NOT NULL,
+  `grade_number` INT         NOT NULL,
   PRIMARY KEY (`grade_id`)
 ) ENGINE = InnoDB;
