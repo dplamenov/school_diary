@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Models\Classes;
 use App\Http\Controllers\Models\Note;
+use App\Http\Controllers\Models\Parents;
+use App\Http\Controllers\Models\Students;
 use App\Http\Controllers\Models\Subject;
 use App\Http\Controllers\Models\Teacher;
 use Illuminate\Http\Request;
@@ -62,9 +64,10 @@ class DefaultController extends Controller
                 $name = DB::select('SELECT * FROM `students` WHERE `student_id` = ?', [$request->session()->get('user_data')['tid']])[0]->student_name;
                 return view('student', ['user_data' => $request->session()->get('user_data'), 'name' => $name, 'class' => $class[0]->class_name, 'notes' => $notes]);
             } elseif (strtolower($request->session()->get('user_data')['type']) == 'parent') {
-
-
-                return view('parent');
+                $parent_id = $request->session()->get('user_data')['tid'];
+                $parent = Parents::find($parent_id);
+                $student = Students::find($parent->student_id);
+                return view('parent', ['student' => $student]);
             }
 
 
