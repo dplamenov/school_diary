@@ -85,3 +85,10 @@ CREATE TABLE IF NOT EXISTS `notes`
   `signed`     TINYINT     NOT NULL,
   PRIMARY KEY (`note_id`)
 ) ENGINE = InnoDB;
+
+CREATE TABLE IF NOT EXISTS `grade`
+(
+  `grade_id`   INT NOT NULL AUTO_INCREMENT,
+  `grade_name` INT NOT NULL,
+  PRIMARY KEY (`grade_id`)
+) ENGINE = InnoDB;
