@@ -199,7 +199,8 @@ class DirectorController extends Controller
             return redirect()->route('home');
         }
 
-        return view('addgrade_director');
+        $grades = directorGrade::all();
+        return view('addgrade_director', ['grades' => $grades]);
     }
 
     public function storeGrade(Request $request)
