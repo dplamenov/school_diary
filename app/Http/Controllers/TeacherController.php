@@ -91,6 +91,16 @@ class TeacherController extends Controller
 
         $teacher_id = $request->session()->get('user_data')['tid'];
         $grades = directorGrade::all();
+
+
+        $class = DB::select('SELECT * FROM `students_classes` WHERE student_id = ?', [$student->student_id]);
+        $subjects = DB::select('SELECT * FROM `teacher_classes` WHERE class_id = ? AND teacher_id = ?', [$class[0]->class_id, $teacher_id]);
+
+        foreach ($subjects as $key => $subject) {
+            $subjects[$key]->subject = DB::select('SELECT * FROM `subjects` WHERE subject_id = ?', [$subjects[$key]->subject_id])[0]->subject_name;
+        }
+
+
         return view('addgrade', ['grades' => $grades, 'student' => $student]);
 
     }
