@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Models\Classes;
 use App\Http\Controllers\Models\directorGrade;
+use App\Http\Controllers\Models\Grade;
 use App\Http\Controllers\Models\Note;
 use App\Http\Controllers\Models\Students;
 use App\Http\Controllers\Models\Teacher;
@@ -110,10 +111,16 @@ class TeacherController extends Controller
             return redirect()->route('home');
         }
 
-        $validate = $this->validate($request,[
+        $validate = $this->validate($request, [
             '*' => 'required'
         ]);
+
         echo '<pre>' . print_r($validate, true) . '</pre>';
+        $grade = new Grade();
+        $grade->student_id = $validate['student_id'];
+        $grade->subject_id = $validate['subject'];
+        $grade->teacher_id = $teacher_id = $request->session()->get('user_data')['tid'];
+
     }
 
 }

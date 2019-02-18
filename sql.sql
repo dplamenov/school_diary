@@ -72,6 +72,7 @@ CREATE TABLE IF NOT EXISTS `grades`
   `student_id` INT     NOT NULL,
   `subject_id` INT     NOT NULL,
   `teacher_id` INT     NOT NULL,
+  `grade`      INT     NOT NULL,
   `signed`     TINYINT NOT NULL,
   PRIMARY KEY (`grade_id`)
 ) ENGINE = InnoDB;
