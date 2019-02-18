@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Models\Classes;
+use App\Http\Controllers\Models\directorGrade;
 use App\Http\Controllers\Models\Note;
 use App\Http\Controllers\Models\Students;
 use App\Http\Controllers\Models\Teacher;
@@ -81,8 +82,16 @@ class TeacherController extends Controller
         return redirect()->route('home');
     }
 
-    public function addGrade()
+    public function addGrade(Request $request, $id)
     {
+        if ($request->session()->get('islogged') !== true or $request->session()->get('user_data')['type'] != 'Teacher') {
+            return redirect()->route('home');
+        }
+        $student = Students::find($id);
+
+        $teacher_id = $request->session()->get('user_data')['tid'];
+        $grades = directorGrade::all();
+        return view('addgrade', ['grades' => $grades, 'student' => $student]);
 
     }
 
