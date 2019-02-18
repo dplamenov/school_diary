@@ -8,6 +8,7 @@
     <form action="{{url('student/add/grade')}}" method="post">
         @csrf
         @method('post')
+        <input type="hidden" name="student_id" value="{{$student->student_id}}"/>
         <label>
             Choose grade
             <select name="grade">
@@ -19,7 +20,7 @@
         <br>
         <label>
             Choose subject
-            <select>
+            <select name="subject">
                 @foreach($subjects as $subject)
                     <option value="{{$subject->subject_id}}">{{$subject->subject}}</option>
                 @endforeach

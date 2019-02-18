@@ -104,9 +104,13 @@ class TeacherController extends Controller
 
     }
 
-    public function storeGrade()
+    public function storeGrade(Request $request)
     {
+        if ($request->session()->get('islogged') !== true or $request->session()->get('user_data')['type'] != 'Teacher') {
+            return redirect()->route('home');
+        }
 
+        echo '<pre>' . print_r($request->all(), true) . '</pre>';
     }
 
 }
