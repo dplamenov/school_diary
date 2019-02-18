@@ -115,11 +115,15 @@ class TeacherController extends Controller
             '*' => 'required'
         ]);
 
-        echo '<pre>' . print_r($validate, true) . '</pre>';
         $grade = new Grade();
         $grade->student_id = $validate['student_id'];
         $grade->subject_id = $validate['subject'];
+        $grade->grade = $validate['grade'];
         $grade->teacher_id = $teacher_id = $request->session()->get('user_data')['tid'];
+        $grade->signed = 0;
+        $grade->save();
+
+        return redirect()->route('home');
 
     }
 
