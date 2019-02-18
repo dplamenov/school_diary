@@ -110,7 +110,10 @@ class TeacherController extends Controller
             return redirect()->route('home');
         }
 
-        echo '<pre>' . print_r($request->all(), true) . '</pre>';
+        $validate = $this->validate($request,[
+            '*' => 'required'
+        ]);
+        echo '<pre>' . print_r($validate, true) . '</pre>';
     }
 
 }

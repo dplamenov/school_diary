@@ -5,6 +5,11 @@
 @endsection
 @section('container')
     Student name: {{$student->student_name}}
+    @if ($errors->any())
+        @foreach($errors->all() as $error)
+            <p>{{$error}}</p>
+        @endforeach
+    @endif
     <form action="{{url('student/add/grade')}}" method="post">
         @csrf
         @method('post')
