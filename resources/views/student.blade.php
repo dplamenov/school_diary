@@ -25,8 +25,7 @@
 
             @foreach($grades as $grade)
                 <tr>
-                    <td>{{$grade->grade_name}}</td>
-                    <td>{{$note->teacher}}</td>
+                    <td>{{$grade->grade_name}} ({{$grade->grade_number}})</td>
                 </tr>
             @endforeach
         </table>
