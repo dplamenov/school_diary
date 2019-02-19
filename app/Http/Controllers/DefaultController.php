@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Models\Classes;
+use App\Http\Controllers\Models\Grade;
 use App\Http\Controllers\Models\Note;
 use App\Http\Controllers\Models\Parents;
 use App\Http\Controllers\Models\Students;
@@ -62,7 +63,8 @@ class DefaultController extends Controller
                     $notes[$key]->teacher = Teacher::getTeacherById($note->teacher_id)->teacher_name;
                 }
                 $name = DB::select('SELECT * FROM `students` WHERE `student_id` = ?', [$request->session()->get('user_data')['tid']])[0]->student_name;
-                return view('student', ['user_data' => $request->session()->get('user_data'), 'name' => $name, 'class' => $class[0]->class_name, 'notes' => $notes]);
+                $grades = DB::select('SELECT * FROM `grades` LEFT JOIN `students` ON grades.student_id = students.student_id LEFT JOIN `subjects` ON subjects.subject_id = grades.subject_id LEFT JOIN `teachers` ON teachers.teacher_id = grades.teacher_id LEFT JOIN grade ON grade.grade_id = grades.grade where grades.student_id = ?', [$id]);
+                return view('student', ['user_data' => $request->session()->get('user_data'), 'name' => $name, 'class' => $class[0]->class_name, 'notes' => $notes, 'grades' => $grades]);
             } elseif (strtolower($request->session()->get('user_data')['type']) == 'parent') {
                 $parent_id = $request->session()->get('user_data')['tid'];
                 $parent = Parents::find($parent_id);

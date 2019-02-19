@@ -19,4 +19,18 @@
             @endforeach
         </table>
     @endif
+    @if(count($grades) > 0)
+        <h2>Unsigned grade</h2>
+        <table>
+
+            @foreach($grades as $grade)
+                <tr>
+                    <td>{{$grade->grade_name}}</td>
+                    <td>{{$note->teacher}}</td>
+                </tr>
+            @endforeach
+        </table>
+    @endif
+
+
 @endsection
