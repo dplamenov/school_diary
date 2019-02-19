@@ -26,6 +26,7 @@
             @foreach($grades as $grade)
                 <tr>
                     <td>{{$grade->grade_name}} ({{$grade->grade_number}})</td>
+                    <td>{{$grade->subject_name}}</td>
                 </tr>
             @endforeach
         </table>
