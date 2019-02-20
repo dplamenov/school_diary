@@ -44,4 +44,11 @@ class ParentController extends Controller
         }
         return redirect()->route('home');
     }
+
+    public function signedGrade(Request $request, $id)
+    {
+
+
+        return redirect()->route('home');
+    }
 }
