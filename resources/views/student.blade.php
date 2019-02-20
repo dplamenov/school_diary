@@ -27,7 +27,6 @@
                 <tr>
                     <td>{{$grade->grade_name}} ({{$grade->grade_number}})</td>
                     <td>{{$grade->subject_name}}</td>
-                    <td><a href="">Signed</a></td>
                 </tr>
             @endforeach
         </table>

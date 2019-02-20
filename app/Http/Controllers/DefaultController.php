@@ -76,9 +76,11 @@ class DefaultController extends Controller
                     $unsigned_notes[$key]->teacher = Teacher::getTeacherById($note->teacher_id)->teacher_name;
                 }
 
+                $grades = DB::select('SELECT * FROM `grades` LEFT JOIN `students` ON grades.student_id = students.student_id LEFT JOIN `subjects` ON subjects.subject_id = grades.subject_id LEFT JOIN `teachers` ON teachers.teacher_id = grades.teacher_id LEFT JOIN grade ON grade.grade_id = grades.grade where grades.student_id = ?', [$id]);
+
                 $class = DB::select('SELECT * FROM `classes` LEFT JOIN students_classes ON classes.class_id = students_classes.class_id WHERE
 students_classes.student_id = ? LIMIT 1', [$student->student_id])[0];
-                return view('parent', ['student' => $student, 'parent' => $parent, 'class' => $class, 'unsigned_notes' => $unsigned_notes]);
+                return view('parent', ['student' => $student, 'parent' => $parent, 'class' => $class, 'unsigned_notes' => $unsigned_notes, 'grades' => $grades]);
             }
 
 
