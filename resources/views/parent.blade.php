@@ -30,7 +30,7 @@
                 <tr>
                     <td>{{$grade->grade_name}} ({{$grade->grade_number}})</td>
                     <td>{{$grade->subject_name}}</td>
-                    <td><a href=""></a></td>
+                    <td><a href="{{$grade->grade_id}}">Sign</a></td>
                 </tr>
             @endforeach
         </table>
