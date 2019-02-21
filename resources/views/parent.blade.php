@@ -28,6 +28,7 @@
 
             @foreach($grades as $grade)
                 <tr>
+                    {{$grade->grade_id}}
                     <td>{{$grade->grade_name}} ({{$grade->grade_number}})</td>
                     <td>{{$grade->subject_name}}</td>
                     <td><a href="{{url("parent/grades/sign/$grade->grade_id")}}">Sign</a></td>

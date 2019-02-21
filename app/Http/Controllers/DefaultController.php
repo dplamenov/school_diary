@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Models\Classes;
+use App\Http\Controllers\Models\directorGrade;
 use App\Http\Controllers\Models\Grade;
 use App\Http\Controllers\Models\Note;
 use App\Http\Controllers\Models\Parents;
@@ -75,7 +76,13 @@ class DefaultController extends Controller
                     $unsigned_notes[$key]->teacher = Teacher::getTeacherById($note->teacher_id)->teacher_name;
                 }
 
-                $grades = DB::select('SELECT * FROM `grades` LEFT JOIN `students` ON grades.student_id = students.student_id LEFT JOIN `subjects` ON subjects.subject_id = grades.subject_id LEFT JOIN `teachers` ON teachers.teacher_id = grades.teacher_id LEFT JOIN grade ON grade.grade_id = grades.grade where grades.student_id = ?', [$student->student_id]);
+                $grades = DB::select('
+SELECT * FROM `grades` as g LEFT JOIN `students` ON g.student_id = students.student_id LEFT JOIN `subjects` ON subjects.subject_id = g.subject_id LEFT JOIN `teachers` ON teachers.teacher_id = g.teacher_id where g.student_id = ?', [$student->student_id]);
+                foreach ($grades as $key => $value) {
+                    $grades[$key]->grade_name = directorGrade::find($value->grade)->grade_name;
+                    $grades[$key]->grade_number = directorGrade::find($value->grade)->grade_number;
+
+                }
                 $class = DB::select('SELECT * FROM `classes` LEFT JOIN students_classes ON classes.class_id = students_classes.class_id WHERE
 students_classes.student_id = ? LIMIT 1', [$student->student_id])[0];
                 return view('parent', ['student' => $student, 'parent' => $parent, 'class' => $class, 'unsigned_notes' => $unsigned_notes, 'grades' => $grades]);
