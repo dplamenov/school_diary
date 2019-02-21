@@ -77,7 +77,7 @@ class DefaultController extends Controller
                 }
 
                 $grades = DB::select('
-SELECT * FROM `grades` as g LEFT JOIN `students` ON g.student_id = students.student_id LEFT JOIN `subjects` ON subjects.subject_id = g.subject_id LEFT JOIN `teachers` ON teachers.teacher_id = g.teacher_id where g.student_id = ?', [$student->student_id]);
+SELECT * FROM `grades` as g LEFT JOIN `students` ON g.student_id = students.student_id LEFT JOIN `subjects` ON subjects.subject_id = g.subject_id LEFT JOIN `teachers` ON teachers.teacher_id = g.teacher_id where g.student_id = ? and g.signed = 0', [$student->student_id]);
                 foreach ($grades as $key => $value) {
                     $grades[$key]->grade_name = directorGrade::find($value->grade)->grade_name;
                     $grades[$key]->grade_number = directorGrade::find($value->grade)->grade_number;

@@ -48,16 +48,24 @@ class ParentController extends Controller
     public function signedGrade(Request $request, $id)
     {
 
-        if ($request->session()->get('user_data')['type'] != 'parent') {
+        if ($request->session()->get('user_data')['type'] != 'Parent') {
             return redirect()->route('home');
         }
-        $grade = Models\Grade::where('grade', '=', $id);
-        $id = $request->session()->get('user_data')['tid'];
-        if ($grade->){
-
+        $grade = Models\Grade::find($id);
+        if ($grade) {
+            if ($grade->count() > 0) {
+                $id = $request->session()->get('user_data')['tid'];
+                $parent = Models\Parents::where('parent_id', '=', $id)->where('student_id', '=', $grade->student_id)->get();
+                if (count($parent) > 0) {
+                    $grade->signed = 1;
+                    $grade->save();
+                    return redirect()->route('home');
+                }
+            }
         }
+        return view('error', ['type_error' => 'Error']);
 
 
-        //return redirect()->route('home');
+
     }
 }
