@@ -32,7 +32,6 @@ SELECT * FROM `grades` as g LEFT JOIN `students` ON g.student_id = students.stud
                     $grades[$key]->grade_number = directorGrade::find($value->grade)->grade_number;
 
                 }
-                echo '<pre>' . print_r($grades, true) . '</pre>';
                 return view('student_teacher', ['student' => $student, 'grades' => $grades]);
             }
         }catch (\Exception $exception){
