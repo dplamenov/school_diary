@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\Models\Grade;
 use App\Http\Controllers\Models\Students;
 use App\Http\Controllers\Models\Teacher;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Models\directorGrade;
 
 class StudentController
 {
@@ -21,7 +24,16 @@ class StudentController
         try{
             if($teacher_model->checkTeacherHasPermission($teacher_id, $student_id)){
                 $student = $student_model->getStudentById($student_id);
-                return view('student_teacher', ['student' => $student]);
+
+                $grades = DB::select('
+SELECT * FROM `grades` as g LEFT JOIN `students` ON g.student_id = students.student_id LEFT JOIN `subjects` ON subjects.subject_id = g.subject_id LEFT JOIN `teachers` ON teachers.teacher_id = g.teacher_id where g.student_id = ? and g.teacher_id = ?', [$student->student_id, $teacher_id]);
+                foreach ($grades as $key => $value) {
+                    $grades[$key]->grade_name = directorGrade::find($value->grade)->grade_name;
+                    $grades[$key]->grade_number = directorGrade::find($value->grade)->grade_number;
+
+                }
+                echo '<pre>' . print_r($grades, true) . '</pre>';
+                return view('student_teacher', ['student' => $student, 'grades' => $grades]);
             }
         }catch (\Exception $exception){
             return view('error', ['type_error' => $exception->getMessage()]);
