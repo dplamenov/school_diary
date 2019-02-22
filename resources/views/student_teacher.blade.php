@@ -10,13 +10,27 @@
     <div>
         <h1>All grades</h1>
         @if(count($grades) > 0)
-
+            <table>
+                @foreach($grades as $grade)
+                    <tr>
+                        <td>
+                            {{$grade->subject_name}}
+                        </td>
+                        <td>
+                            {{$grade->grade_name}}
+                        </td>
+                        @if($grade->signed == 1)
+                            <td>Signed</td>
+                        @else
+                            <td>Un signed</td>
+                        @endif
+                    </tr>
+                @endforeach
+            </table>
         @else
             <p>No grades.</p>
         @endif
-        <table>
 
-        </table>
     </div>
 
 
