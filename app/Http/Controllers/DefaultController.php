@@ -12,6 +12,7 @@ use App\Http\Controllers\Models\Subject;
 use App\Http\Controllers\Models\Teacher;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use phpDocumentor\Reflection\DocBlock\Tags\Formatter;
 
 class DefaultController extends Controller
 {
@@ -139,9 +140,13 @@ return view('error', ['type_error' => 'No such that user in database']);
         return redirect(url('/'));
     }
 
-    public function changePasswordForm()
+    public function changePasswordForm(Request $request)
     {
+        if ($request->session()->get('islogged') !== true) {
+            return redirect()->route('home');
+        }
 
+        return view('changepassword');
     }
 
 
