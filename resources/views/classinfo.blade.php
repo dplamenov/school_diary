@@ -6,5 +6,6 @@
     <p>Students:</p>
     @foreach($students as $student)
         <p>{{$student->student_name}}</p>
+        <p>{{number_format($student->average_grade, 2)}}</p>
     @endforeach
 @endsection

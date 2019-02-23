@@ -32,14 +32,36 @@ class Classes extends Model
         return (boolean)$r[0]->count;
     }
 
-    public function getClassNameById(int $id){
+    public function getClassNameById(int $id)
+    {
         $r = DB::select('SELECT `class_name` FROM `classes` WHERE `class_id` = ?', [$id]);
         return $r[0]->class_name;
     }
 
-    public function getStudentsInClass(int $class_id){
+    public function getStudentsInClass(int $class_id)
+    {
         $students_query = DB::select("SELECT * FROM `students_classes` LEFT JOIN `students` ON students_classes.student_id = students.student_id WHERE students_classes.class_id = ?", [$class_id]);
-        foreach ($students_query as $student){
+        foreach ($students_query as $k => $s) {
+            $students_query[$k]->grades[] = DB::select('SELECT * FROM `grades` where student_id = ?', [$s->student_id]);
+        }
+        foreach ($students_query as $key => $value) {
+            $id = $students_query[$key]->student_id;
+            $grades = $students_query[$key]->grades;
+            foreach ($grades[0] as $k => $grade) {
+                $average[] = $grade->grade;
+            }
+            foreach ($average as $index => $item) {
+                $grade_number = DB::select('SELECT * FROM grade WHERE grade_id = ?', [$item])[0]->grade_number;
+                $average[$index] = $grade_number;
+
+            }
+            $students_query[$key]->average_grade = array_sum($average) / count($average);
+            unset($average);
+        }
+        foreach ($students_query as $student) {
+
+
+            $result[] = $student;
             yield $student;
         }
     }
