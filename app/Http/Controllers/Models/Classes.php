@@ -44,7 +44,9 @@ class Classes extends Model
         foreach ($students_query as $k => $s) {
             $students_query[$k]->grades[] = DB::select('SELECT * FROM `grades` where student_id = ?', [$s->student_id]);
         }
+
         foreach ($students_query as $key => $value) {
+            $average = [];
             $id = $students_query[$key]->student_id;
             $grades = $students_query[$key]->grades;
             foreach ($grades[0] as $k => $grade) {
@@ -55,7 +57,12 @@ class Classes extends Model
                 $average[$index] = $grade_number;
 
             }
-            $students_query[$key]->average_grade = array_sum($average) / count($average);
+            if (count($average) == 0) {
+                $students_query[$key]->average_grade = 0;
+            } else {
+                $students_query[$key]->average_grade = array_sum($average) / count($average);
+            }
+
             unset($average);
         }
         foreach ($students_query as $student) {
