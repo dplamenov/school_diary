@@ -22,7 +22,7 @@
                         @if($grade->signed == 1)
                             <td>Signed</td>
                         @else
-                            <td>Un signed</td>
+                            <td>Unsigned</td>
                         @endif
                     </tr>
                 @endforeach
