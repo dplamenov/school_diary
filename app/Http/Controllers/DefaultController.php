@@ -10,6 +10,7 @@ use App\Http\Controllers\Models\Parents;
 use App\Http\Controllers\Models\Students;
 use App\Http\Controllers\Models\Subject;
 use App\Http\Controllers\Models\Teacher;
+use App\Http\Controllers\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use phpDocumentor\Reflection\DocBlock\Tags\Formatter;
@@ -151,14 +152,21 @@ students_classes.student_id = ? LIMIT 1', [$student->student_id])[0];
 
     public function changePassword(Request $request)
     {
-        $validate = $this->validate($request,[
+        $validate = $this->validate($request, [
             'password' => 'min:8',
             'new' => 'min:8',
             'repeat' => 'same:new'
-        ]);
+        ],
+            [
+                'new.min' => 'The new password must be at least 8 characters.',
+                'repeat.same' => 'The repeat and new password must match.'
+            ]);
 
-
+        $user = User::find($request->session()->get('user_data')['id']);
+        $user->password = password_hash($validate['new'], PASSWORD_BCRYPT);
+        $user->save();
         $this->logout($request);
+        return redirect()->route('home');
     }
 
 
