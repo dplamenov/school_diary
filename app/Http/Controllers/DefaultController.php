@@ -163,10 +163,15 @@ students_classes.student_id = ? LIMIT 1', [$student->student_id])[0];
             ]);
 
         $user = User::find($request->session()->get('user_data')['id']);
-        $user->password = password_hash($validate['new'], PASSWORD_BCRYPT);
-        $user->save();
-        $this->logout($request);
-        return redirect()->route('home');
+        if (password_verify($validate['password'], $user->password)) {
+            $user->password = password_hash($validate['new'], PASSWORD_BCRYPT);
+            $user->save();
+            $this->logout($request);
+            return redirect()->route('home');
+        }else{
+            return view('error', ['type_error' => 'Invalid password']);
+        }
+
     }
 
 
