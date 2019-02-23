@@ -126,8 +126,7 @@ students_classes.student_id = ? LIMIT 1', [$student->student_id])[0];
             $request->session()->put('islogged', true);
             return redirect()->route('home');
         } else {
-
-            return view('error', ['type_error' => 'No such that user in database']);
+return view('error', ['type_error' => 'No such that user in database']);
         }
 
     }
@@ -140,7 +139,7 @@ students_classes.student_id = ? LIMIT 1', [$student->student_id])[0];
         return redirect(url('/'));
     }
 
-    public function changePassword()
+    public function changePasswordForm()
     {
 
     }
