@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Models\Classes;
 use App\Http\Controllers\Models\directorGrade;
-use App\Http\Controllers\Models\Grade;
 use App\Http\Controllers\Models\Note;
 use App\Http\Controllers\Models\Parents;
 use App\Http\Controllers\Models\Students;
@@ -13,7 +12,6 @@ use App\Http\Controllers\Models\Teacher;
 use App\Http\Controllers\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use phpDocumentor\Reflection\DocBlock\Tags\Formatter;
 
 class DefaultController extends Controller
 {
