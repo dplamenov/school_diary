@@ -27,5 +27,5 @@ Route::post('director/grade', 'DirectorController@storeGrade');
 Route::get('director/grade/delete/{id}', 'DirectorController@deleteGrade' );
 Route::get('student/add/grade/{student_id}', 'TeacherController@addGrade');
 Route::post('student/add/grade', 'TeacherController@storeGrade');
-
 Route::get('parent/grades/sign/{grade_id}', 'ParentController@signedGrade');
+Route::get('changepassword','DefaultController@changePassword');

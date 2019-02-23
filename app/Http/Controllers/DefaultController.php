@@ -140,5 +140,10 @@ students_classes.student_id = ? LIMIT 1', [$student->student_id])[0];
         return redirect(url('/'));
     }
 
+    public function changePassword()
+    {
+
+    }
+
 
 }

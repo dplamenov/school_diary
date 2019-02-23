@@ -2,7 +2,9 @@
 @section('title', 'Teacher')
 @section('container')
     <a href="{{url('logout')}}">Log out</a>
+    <a href="{{url('changepassword')}}">Change password</a>
     <p>Hello, {{explode(' ', $name)[1]}}</p>
+
     <div>
         @if(count($class) > 0 or count($classes) >0)
             <p>You teach the following classes:</p>
