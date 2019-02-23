@@ -151,7 +151,14 @@ students_classes.student_id = ? LIMIT 1', [$student->student_id])[0];
 
     public function changePassword(Request $request)
     {
+        $validate = $this->validate($request,[
+            'password' => 'min:8',
+            'new' => 'min:8',
+            'repeat' => 'same:new'
+        ]);
 
+
+        $this->logout($request);
     }
 
 
