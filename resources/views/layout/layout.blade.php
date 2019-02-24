@@ -11,6 +11,7 @@
     </title>
 </head>
 <body style="zoom: 120%">
+<p>{{date('d.m.Y H:i:s')}}</p>
 @section('container')
 @show
 
