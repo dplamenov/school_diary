@@ -85,7 +85,7 @@ SELECT * FROM `grades` as g LEFT JOIN `students` ON g.student_id = students.stud
                 }
                 $class = DB::select('SELECT * FROM `classes` LEFT JOIN students_classes ON classes.class_id = students_classes.class_id WHERE
 students_classes.student_id = ? LIMIT 1', [$student->student_id])[0];
-                return view('parent', ['student' => $student, 'parent' => $parent, 'class' => $class, 'unsigned_notes' => $unsigned_notes, 'grades' => $grades]);
+                return view('parent', ['student' => $student, 'parent' => $parent, 'class' => $class, 'unsigned_notes' => $unsigned_notes, 'grades' => $grades,]);
             }
 
 

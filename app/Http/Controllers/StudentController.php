@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Models\Students;
 use App\Http\Controllers\Models\Teacher;
+use App\Http\Controllers\Models\Note;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Models\directorGrade;
@@ -31,7 +32,13 @@ SELECT * FROM `grades` as g LEFT JOIN `students` ON g.student_id = students.stud
                     $grades[$key]->grade_number = directorGrade::find($value->grade)->grade_number;
 
                 }
-                return view('student_teacher', ['student' => $student, 'grades' => $grades]);
+
+                $notes = Note::where('student_id', '=', $student->student_id)->where('signed', 0)->get();
+                foreach ($notes as $key => $note) {
+                    $notes[$key]->teacher = Teacher::getTeacherById($note->teacher_id)->teacher_name;
+                }
+
+                return view('student_teacher', ['student' => $student, 'grades' => $grades, 'notes' => $notes]);
             }
         }catch (\Exception $exception){
             return view('error', ['type_error' => $exception->getMessage()]);

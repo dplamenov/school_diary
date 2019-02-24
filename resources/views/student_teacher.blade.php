@@ -31,6 +31,29 @@
             <p>No grades.</p>
         @endif
 
+        <h1>All notes</h1>
+        @if(count($notes) > 0)
+            <table>
+                @foreach($notes as $note)
+                    <tr>
+                        <td>
+                            {{$note->note}}
+                        </td>
+                        <td>
+                            {{$note->teacher}}
+                        </td>
+                        @if($note->signed == 1)
+                            <td>Signed</td>
+                        @else
+                            <td>Unsigned</td>
+                        @endif
+                    </tr>
+                @endforeach
+            </table>
+        @else
+            <p>No grades.</p>
+        @endif
+
     </div>
 
 
