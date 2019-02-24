@@ -13,6 +13,10 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+use \Illuminate\Support\Facades\Route;
+use \App\Http\Controllers\Models\User;
+Route::middleware('api')->get('/user/{id}', function (Request $request, $id) {
+    $user = User::find($id);
+    unset($user->password);
+    return response()->json($user);
 });
