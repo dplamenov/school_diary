@@ -38,7 +38,9 @@ class ParentController extends Controller
     public function signed($id)
     {
         if (Models\Note::isNoteExists($id)) {
-            DB::delete('DELETE FROM `notes` where note_id = ?', [$id]);
+            $note = Models\Note::find($id);
+            $note->signed = 1;
+            $note->save();
         } else {
             return view('error', ['type_error' => 'Error']);
         }
