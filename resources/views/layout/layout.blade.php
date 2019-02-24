@@ -20,14 +20,9 @@
         function getTime() {
             jQuery.ajax({
                 url: "{{ url('system/gettime') }}",
-                method: 'post',
-                data: {
-                    name: jQuery('#name').val(),
-                    type: jQuery('#type').val(),
-                    price: jQuery('#price').val()
-                },
+                method: 'get',
                 success: function (result) {
-                    console.log(result);
+                    $('#time').text(result);
                 }
             });
         }

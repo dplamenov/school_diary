@@ -30,3 +30,4 @@ Route::post('student/add/grade', 'TeacherController@storeGrade');
 Route::get('parent/grades/sign/{grade_id}', 'ParentController@signedGrade');
 Route::get('changepassword','DefaultController@changePasswordForm');
 Route::post('changepassword','DefaultController@changePassword');
+Route::get('system/gettime', 'SystemController@getTime');
