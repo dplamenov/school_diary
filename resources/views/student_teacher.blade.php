@@ -51,7 +51,7 @@
                 @endforeach
             </table>
         @else
-            <p>No grades.</p>
+            <p>No notes.</p>
         @endif
 
     </div>

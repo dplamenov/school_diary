@@ -21,8 +21,8 @@ class StudentController
         $student_model = new Students();
         $teacher_model = new Teacher();
 
-        try{
-            if($teacher_model->checkTeacherHasPermission($teacher_id, $student_id)){
+        try {
+            if ($teacher_model->checkTeacherHasPermission($teacher_id, $student_id)) {
                 $student = $student_model->getStudentById($student_id);
 
                 $grades = DB::select('
@@ -33,14 +33,14 @@ SELECT * FROM `grades` as g LEFT JOIN `students` ON g.student_id = students.stud
 
                 }
 
-                $notes = Note::where('student_id', '=', $student->student_id)->where('signed', 0)->get();
+                $notes = Note::where('student_id', '=', $student->student_id)->where('teacher_id', '=', $teacher_id)->get();
                 foreach ($notes as $key => $note) {
                     $notes[$key]->teacher = Teacher::getTeacherById($note->teacher_id)->teacher_name;
                 }
 
                 return view('student_teacher', ['student' => $student, 'grades' => $grades, 'notes' => $notes]);
             }
-        }catch (\Exception $exception){
+        } catch (\Exception $exception) {
             return view('error', ['type_error' => $exception->getMessage()]);
         }
 
