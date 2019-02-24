@@ -32,6 +32,4 @@
             @endforeach
         </table>
     @endif
-
-
 @endsection
