@@ -22,7 +22,7 @@
                 url: "{{ url('system/gettime') }}",
                 method: 'get',
                 success: function (result) {
-                    $('#time').text(result);
+                    jQuery('#time').text(result);
                 }
             });
         }
