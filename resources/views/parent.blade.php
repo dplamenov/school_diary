@@ -3,6 +3,7 @@
 @section('container')
     <a href="{{url('logout')}}">Log out</a>
     <p>Your name is {{$parent->parent_name}}</p>
+    <a href="{{url('changepassword')}}">Change password</a>
     <p>You`re parent on student: {{$student->student_name}} from {{$class->class_name}}</p>
 
     @if(count($unsigned_notes) > 0)

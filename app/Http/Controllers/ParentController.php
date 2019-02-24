@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Models;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
 class ParentController extends Controller
 {
@@ -49,7 +48,6 @@ class ParentController extends Controller
 
     public function signedGrade(Request $request, $id)
     {
-
         if ($request->session()->get('user_data')['type'] != 'Parent') {
             return redirect()->route('home');
         }
@@ -66,8 +64,5 @@ class ParentController extends Controller
             }
         }
         return view('error', ['type_error' => 'Error']);
-
-
-
     }
 }
