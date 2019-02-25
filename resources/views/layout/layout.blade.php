@@ -27,6 +27,13 @@
             });
         }
     </script>
+    <style type="text/css">
+        input[type=submit]{
+            border: 0;
+            padding: 3px;
+            background: palegreen;
+        }
+    </style>
 </head>
 <body style="zoom: 120%">
 <p id="time">{{date('d.m.Y H:i:s')}}</p>
