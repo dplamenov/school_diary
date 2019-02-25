@@ -38,7 +38,13 @@ class TeacherController extends Controller
             $students[] = $student;
         }
 
-        return view('teacher_class', ['title' => 'Class ID :' . $class_id, 'subjects' => $subjects, 'students' => $students, 'class_name' => $class_model->getClassNameById($class_id)]);
+        try {
+            $class_name = $class_model->getClassNameById($class_id);
+        } catch (\Exception $exception) {
+            return view('error', ['type_error' => $exception->getMessage()]);
+        }
+
+        return view('teacher_class', ['title' => 'Class ID :' . $class_id, 'subjects' => $subjects, 'students' => $students, 'class_name' => $class_name]);
 
     }
 
