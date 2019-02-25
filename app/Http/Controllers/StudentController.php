@@ -37,8 +37,8 @@ SELECT * FROM `grades` as g LEFT JOIN `students` ON g.student_id = students.stud
                 foreach ($notes as $key => $note) {
                     $notes[$key]->teacher = Teacher::getTeacherById($note->teacher_id)->teacher_name;
                 }
-
-                return view('student_teacher', ['student' => $student, 'grades' => $grades, 'notes' => $notes]);
+                $class_id = DB::select('SELECT * FROM students_classes where student_id = ?', [$student_id])[0]->class_id;
+                return view('student_teacher', ['student' => $student, 'grades' => $grades, 'notes' => $notes, 'class_id' => $class_id]);
             }
         } catch (\Exception $exception) {
             return view('error', ['type_error' => $exception->getMessage()]);
