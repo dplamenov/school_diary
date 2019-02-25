@@ -17,7 +17,7 @@
                             {{$grade->subject_name}}
                         </td>
                         <td>
-                            {{$grade->grade_name}}
+                            {{$grade->grade_name}} ({{$grade->grade_number}})
                         </td>
                         @if($grade->signed == 1)
                             <td>Signed</td>
