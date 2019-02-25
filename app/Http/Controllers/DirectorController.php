@@ -220,7 +220,8 @@ class DirectorController extends Controller
             '*' => 'required',
             'grade_number' => 'numeric'
         ], [
-            'grade_number.numeric' => 'The grade number must be a number.'
+            'grade_number.numeric' => 'The grade number must be a number.',
+            'grade_name.required' => 'The grade name is required.'
         ]);
         $grade = new directorGrade();
         if (!$grade->isGradeExistsByName($validate['grade_name'])) {
