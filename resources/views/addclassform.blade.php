@@ -49,7 +49,7 @@
             <input style="display: block; margin-top: 50px" type="submit"/>
         </form>
     @else
-        <p>First add teacher</p>
+        <p>First add teacher from <a href="{{url('director/addteacher')}}">here</a></p>
     @endif
 
 @endsection
