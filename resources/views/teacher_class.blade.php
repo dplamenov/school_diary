@@ -5,7 +5,7 @@
 
 @section('container')
     <a href="{{url('')}}">Go back</a>
-    <p>Class name {{$class_name}}</p>
+    <p>Class name: {{$class_name}}</p>
     <h2>Subjects</h2>
 
     @foreach($subjects as $subject)
