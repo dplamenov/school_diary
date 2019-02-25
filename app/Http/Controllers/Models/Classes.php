@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
+use mysql_xdevapi\Exception;
 
 class Classes extends Model
 {
@@ -34,8 +35,12 @@ class Classes extends Model
 
     public function getClassNameById(int $id)
     {
-        $r = DB::select('SELECT `class_name` FROM `classes` WHERE `class_id` = ?', [$id]);
-        return $r[0]->class_name;
+        if ($this->classExistsById($id)) {
+            $r = DB::select('SELECT `class_name` FROM `classes` WHERE `class_id` = ?', [$id]);
+            return $r[0]->class_name;
+        }
+        throw new \Exception('Class don`t exists');
+
     }
 
     public function getStudentsInClass(int $class_id)

@@ -190,7 +190,14 @@ class DirectorController extends Controller
         $class_model = new Classes();
         $all_students = $class_model->getStudentsInClass($class_id);
 
-        return view('classinfo', ['class_name' => $class_model->getClassNameById($class_id), 'students' => $all_students]);
+
+        try {
+            $class_name = $class_model->getClassNameById($class_id);
+        } catch (\Exception $exception) {
+            return view('error', ['type_error' => $exception->getMessage()]);
+        }
+
+        return view('classinfo', ['class_name' => $class_name, 'students' => $all_students]);
     }
 
     public function grade(Request $request)
