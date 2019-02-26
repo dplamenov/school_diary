@@ -329,5 +329,7 @@ class DirectorController extends Controller
             'email' => 'email'
         ]);
 
+        //ToDo store edited student.
+
     }
 }
