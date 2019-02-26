@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Models\Classes;
 use App\Http\Controllers\Models\directorGrade;
+use App\Http\Controllers\Models\Students;
 use App\Http\Controllers\Models\Subject;
 use App\Http\Controllers\Models\Teacher;
+use App\Http\Controllers\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -275,5 +277,18 @@ class DirectorController extends Controller
             'student_email' => 'email',
             'class_id' => 'numeric'
         ]);
+
+        $student = new Students();
+        $student->student_name = $validate['student_name'];
+        $student->save();
+
+        $user = new User();
+        $user->username = strtolower(str_replace(' ', '', $validate['student_name']));
+        $user->password = password_hash(strtolower(str_replace(' ', '', $validate['student_name'])), PASSWORD_BCRYPT);
+        $user->type = 2;
+        $user->id = $student->student_id;
+        $user->save();
+
+        DB::insert("INSERT INTO `students_classes` (`class_id`, `student_id`) VALUES (?, ?)", [$validate['class_id'], $user->id]);
     }
 }
