@@ -31,3 +31,5 @@ Route::get('parent/grades/sign/{grade_id}', 'ParentController@signedGrade');
 Route::get('changepassword','DefaultController@changePasswordForm');
 Route::post('changepassword','DefaultController@changePassword');
 Route::get('system/gettime', 'SystemController@getTime');
+Route::get('director/add/student', 'DirectorController@addStudentForm');
+Route::post('director/add/student', 'DirectorController@addStudent');

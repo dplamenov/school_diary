@@ -4,6 +4,7 @@
     <a href="{{url('/')}}">Go back</a>
     <p>Class: {{$class_name}}</p>
     <p>Students:</p>
+    <a href="{{url('')}}"></a>
     <table>
         @foreach($students as $student)
             <tr>

@@ -248,4 +248,14 @@ class DirectorController extends Controller
         }
         return redirect()->action('DirectorController@grade');
     }
+
+    public function addStudentForm()
+    {
+
+    }
+
+    public function addStudent()
+    {
+
+    }
 }
