@@ -11,6 +11,9 @@
             <tr>
                 <td>{{$student->student_name}}</td>
                 <td>{{number_format($student->average_grade, 2)}}</td>
+                <td>
+                    <a href="">Delete</a>
+                </td>
             </tr>
         @endforeach
     </table>
