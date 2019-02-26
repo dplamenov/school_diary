@@ -257,9 +257,9 @@ class DirectorController extends Controller
         }
 
         $class = new Classes();
-        try{
+        try {
             $class_name = $class->getClassNameById($class_id);
-        }catch (\Exception $exception){
+        } catch (\Exception $exception) {
             return view('error', ['type_error' => $exception->getMessage()]);
         }
         return view('addstudent', ['class_id' => $class_id, 'class_name' => $class_name]);
@@ -271,7 +271,7 @@ class DirectorController extends Controller
             return redirect()->route('home');
         }
 
-        $validate = $this->validate($request,[
+        $validate = $this->validate($request, [
             'student_name' => 'min:5',
             'student_email' => 'email',
             'class_id' => 'numeric'
@@ -292,5 +292,13 @@ class DirectorController extends Controller
         DB::insert("INSERT INTO `students_classes` (`class_id`, `student_id`) VALUES (?, ?)", [$validate['class_id'], $user->id]);
 
         return redirect()->action('DirectorController@classInfo', ['id' => $validate['class_id']]);
+    }
+
+    public function deleteStudent(Request $request, $student_id)
+    {
+        if ($request->session()->get('user_data')['type'] != 'director') {
+            return redirect()->route('home');
+        }
+
     }
 }

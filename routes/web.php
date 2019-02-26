@@ -33,3 +33,4 @@ Route::post('changepassword','DefaultController@changePassword');
 Route::get('system/gettime', 'SystemController@getTime');
 Route::get('director/add/student/{class_id}', 'DirectorController@addStudentForm');
 Route::post('director/add/student', 'DirectorController@addStudent');
+Route::get('director/delete/student/{id}', 'DirectorController@deleteStudent');
