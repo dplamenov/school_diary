@@ -291,5 +291,7 @@ class DirectorController extends Controller
         $user->save();
 
         DB::insert("INSERT INTO `students_classes` (`class_id`, `student_id`) VALUES (?, ?)", [$validate['class_id'], $user->id]);
+
+        return redirect()->action('DirectorController@classInfo', ['id' => $validate['class_id']]);
     }
 }
