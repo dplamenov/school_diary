@@ -254,10 +254,14 @@ class DirectorController extends Controller
         if ($request->session()->get('user_data')['type'] != 'director') {
             return redirect()->route('home');
         }
+
+        return view('addstudent');
     }
 
     public function addStudent(Request $request)
     {
-
+        if ($request->session()->get('user_data')['type'] != 'director') {
+            return redirect()->route('home');
+        }
     }
 }
