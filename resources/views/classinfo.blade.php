@@ -14,6 +14,9 @@
                 <td>
                     <a href="{{url('director/delete/student/' . $student->student_id)}}">Delete</a>
                 </td>
+                <td>
+                    <a href="">Edit</a>
+                </td>
             </tr>
         @endforeach
     </table>
