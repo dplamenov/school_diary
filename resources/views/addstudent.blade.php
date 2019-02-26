@@ -2,6 +2,11 @@
 @section('title', 'Add student')
 @section('container')
     <p>You will create student in {{$class_name}} class</p>
+    @if(count($errors) > 0)
+        @foreach($errors->all() as $error)
+            <p>{{$error}}</p>
+        @endforeach
+    @endif
     <form method="post" action="{{url('director/add/student')}}">
         @csrf
         @method('post')
