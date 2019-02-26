@@ -300,5 +300,11 @@ class DirectorController extends Controller
             return redirect()->route('home');
         }
 
+        $user = User::where('id', $student_id)->first();
+        Students::find($student_id)->delete();
+        $user->delete();
+        DB::delete('DELETE FROM grades where student_id = ?', [$user->user_id]);
+        DB::delete('DELETE FROM students_classes where student_id = ?', [$student_id]);
+        return redirect()->route('home');
     }
 }
