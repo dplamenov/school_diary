@@ -197,7 +197,7 @@ class DirectorController extends Controller
             return view('error', ['type_error' => $exception->getMessage()]);
         }
 
-        return view('classinfo', ['class_name' => $class_name, 'students' => $all_students]);
+        return view('classinfo', ['class_name' => $class_name, 'students' => $all_students, 'class_id' => $class_id]);
     }
 
     public function grade(Request $request)
@@ -249,13 +249,13 @@ class DirectorController extends Controller
         return redirect()->action('DirectorController@grade');
     }
 
-    public function addStudentForm(Request $request)
+    public function addStudentForm(Request $request, $class_id)
     {
         if ($request->session()->get('user_data')['type'] != 'director') {
             return redirect()->route('home');
         }
 
-        return view('addstudent');
+        return view('addstudent', ['class_id' => $class_id]);
     }
 
     public function addStudent(Request $request)

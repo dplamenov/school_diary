@@ -14,5 +14,5 @@
             </tr>
         @endforeach
     </table>
-    <a href="{{url('director/add/student')}}">Add more students</a>
+    <a href="{{url('director/add/student/' .  $class_id)}}">Add more students</a>
 @endsection
