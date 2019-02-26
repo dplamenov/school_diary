@@ -269,5 +269,11 @@ class DirectorController extends Controller
         if ($request->session()->get('user_data')['type'] != 'director') {
             return redirect()->route('home');
         }
+
+        $validate = $this->validate($request,[
+            'student_name' => 'min:5',
+            'student_email' => 'email',
+            'class_id' => 'numeric'
+        ]);
     }
 }
