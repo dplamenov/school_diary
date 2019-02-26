@@ -313,5 +313,17 @@ class DirectorController extends Controller
         if ($request->session()->get('user_data')['type'] != 'director') {
             return redirect()->route('home');
         }
+
+        $student = new Students();
+        $student = $student->getStudentById($student_id);
+
+        $user = User::where('id', $student->student_id)->first();
+
+        return view('editstudent', ['student' => $student, 'user' => $user]);
+    }
+
+    public function editStudent(Request $request)
+    {
+
     }
 }
