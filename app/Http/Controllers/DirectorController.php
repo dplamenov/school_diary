@@ -324,6 +324,9 @@ class DirectorController extends Controller
 
     public function editStudent(Request $request)
     {
-
+        $validate = $this->validate($request, [
+            'name' => 'min:8',
+            'email' => 'email'
+        ]);
     }
 }
