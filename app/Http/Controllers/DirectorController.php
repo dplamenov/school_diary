@@ -255,7 +255,13 @@ class DirectorController extends Controller
             return redirect()->route('home');
         }
 
-        return view('addstudent', ['class_id' => $class_id]);
+        $class = new Classes();
+        try{
+            $class_name = $class->getClassNameById($class_id);
+        }catch (\Exception $exception){
+            return view('error', ['type_error' => $exception->getMessage()]);
+        }
+        return view('addstudent', ['class_id' => $class_id, 'class_name' => $class_name]);
     }
 
     public function addStudent(Request $request)
