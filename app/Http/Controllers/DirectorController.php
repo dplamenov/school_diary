@@ -249,12 +249,14 @@ class DirectorController extends Controller
         return redirect()->action('DirectorController@grade');
     }
 
-    public function addStudentForm()
+    public function addStudentForm(Request $request)
     {
-
+        if ($request->session()->get('user_data')['type'] != 'director') {
+            return redirect()->route('home');
+        }
     }
 
-    public function addStudent()
+    public function addStudent(Request $request)
     {
 
     }
