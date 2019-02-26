@@ -285,6 +285,7 @@ class DirectorController extends Controller
         $user = new User();
         $user->username = strtolower(str_replace(' ', '', $validate['student_name']));
         $user->password = password_hash(strtolower(str_replace(' ', '', $validate['student_name'])), PASSWORD_BCRYPT);
+        $user->email = $validate['student_email'];
         $user->type = 2;
         $user->id = $student->student_id;
         $user->save();
