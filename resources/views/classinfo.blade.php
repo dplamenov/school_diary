@@ -15,7 +15,7 @@
                     <a href="{{url('director/delete/student/' . $student->student_id)}}">Delete</a>
                 </td>
                 <td>
-                    <a href="">Edit</a>
+                    <a href="{{url('director/edit/student/' . $student->student_id)}}">Edit</a>
                 </td>
             </tr>
         @endforeach

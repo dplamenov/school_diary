@@ -307,4 +307,9 @@ class DirectorController extends Controller
         DB::delete('DELETE FROM students_classes where student_id = ?', [$student_id]);
         return redirect()->route('home');
     }
+
+    public function editStudent(Request $request, $student_id)
+    {
+
+    }
 }

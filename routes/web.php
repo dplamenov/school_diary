@@ -34,3 +34,4 @@ Route::get('system/gettime', 'SystemController@getTime');
 Route::get('director/add/student/{class_id}', 'DirectorController@addStudentForm');
 Route::post('director/add/student', 'DirectorController@addStudent');
 Route::get('director/delete/student/{id}', 'DirectorController@deleteStudent');
+Route::get('director/edit/student/{id}', 'DirectorController@editStudent');
