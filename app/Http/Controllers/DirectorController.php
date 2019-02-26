@@ -192,7 +192,6 @@ class DirectorController extends Controller
         $class_model = new Classes();
         $all_students = $class_model->getStudentsInClass($class_id);
 
-
         try {
             $class_name = $class_model->getClassNameById($class_id);
         } catch (\Exception $exception) {

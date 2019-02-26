@@ -70,9 +70,8 @@ class Classes extends Model
 
             unset($average);
         }
+        
         foreach ($students_query as $student) {
-
-
             $result[] = $student;
             yield $student;
         }
