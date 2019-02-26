@@ -308,8 +308,10 @@ class DirectorController extends Controller
         return redirect()->route('home');
     }
 
-    public function editStudent(Request $request, $student_id)
+    public function editStudentForm(Request $request, $student_id)
     {
-
+        if ($request->session()->get('user_data')['type'] != 'director') {
+            return redirect()->route('home');
+        }
     }
 }
