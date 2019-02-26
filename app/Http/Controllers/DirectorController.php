@@ -328,5 +328,6 @@ class DirectorController extends Controller
             'name' => 'min:8',
             'email' => 'email'
         ]);
+
     }
 }
