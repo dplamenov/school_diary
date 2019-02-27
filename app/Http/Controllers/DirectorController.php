@@ -374,6 +374,10 @@ class DirectorController extends Controller
             'subject' => 'min:2'
         ]);
 
+        $subject = Subject::find($validate['subject_id']);
+        $subject->subject_name = $validate['subject'];
+        $subject->save();
+
         return redirect()->route('home');
     }
 }
