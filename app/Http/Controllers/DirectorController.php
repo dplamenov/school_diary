@@ -341,6 +341,10 @@ class DirectorController extends Controller
         $student->save();
         return redirect()->route('home');
 
+    }
+
+    public function editSubjectForm()
+    {
 
     }
 }
