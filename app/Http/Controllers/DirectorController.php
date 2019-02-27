@@ -364,8 +364,8 @@ class DirectorController extends Controller
 
     }
 
-    public function editSubject()
+    public function editSubject(Request $request)
     {
-
+        return redirect()->route('home');
     }
 }
