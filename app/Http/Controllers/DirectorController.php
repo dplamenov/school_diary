@@ -10,6 +10,7 @@ use App\Http\Controllers\Models\Teacher;
 use App\Http\Controllers\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Symfony\Component\HttpKernel\Exception\ServiceUnavailableHttpException;
 
 class DirectorController extends Controller
 {
@@ -352,9 +353,15 @@ class DirectorController extends Controller
         if ($request->session()->get('user_data')['type'] != 'director') {
             return redirect()->route('home');
         }
-        $subject = Subject::find($subject_id);
 
-        return view('editsubject', ['subject' => $subject]);
+        if (Subject::isSubjectExists($subject_id)) {
+            $subject = Subject::find($subject_id);
+            return view('editsubject', ['subject' => $subject]);
+        } else {
+            return view('error', ['type_error' => 'Subject does`t exits.']);
+        }
+
+
     }
 
     public function editSubject()

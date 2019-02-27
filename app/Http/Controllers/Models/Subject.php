@@ -38,4 +38,10 @@ class Subject extends Model
 
         return $r;
     }
+
+    public static function isSubjectExists($id)
+    {
+        $r = DB::select('SELECT COUNT(*) as count FROM subjects where subject_id = ?', [$id]);
+        return (boolean)$r[0]->count;
+    }
 }
