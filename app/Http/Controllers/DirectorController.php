@@ -366,6 +366,10 @@ class DirectorController extends Controller
 
     public function editSubject(Request $request)
     {
+        if ($request->session()->get('user_data')['type'] != 'director') {
+            return redirect()->route('home');
+        }
+
         return redirect()->route('home');
     }
 }
