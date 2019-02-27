@@ -369,6 +369,10 @@ class DirectorController extends Controller
         if ($request->session()->get('user_data')['type'] != 'director') {
             return redirect()->route('home');
         }
+        $validate = $this->validate($request, [
+            'subject_id' => 'numeric',
+            'subject' => 'min:2'
+        ]);
 
         return redirect()->route('home');
     }
