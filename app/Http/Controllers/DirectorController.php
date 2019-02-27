@@ -352,7 +352,13 @@ class DirectorController extends Controller
         if ($request->session()->get('user_data')['type'] != 'director') {
             return redirect()->route('home');
         }
-        return view('editsubject');
+        $subject = Subject::find($subject_id);
+        echo '<pre>' . print_r($subject, true) . '</pre>';
+        //return view('editsubject', ['subject' => $subject]);
+    }
+
+    public function editSubject()
+    {
 
     }
 }

@@ -37,3 +37,4 @@ Route::get('director/delete/student/{id}', 'DirectorController@deleteStudent');
 Route::get('director/edit/student/{id}', 'DirectorController@editStudentForm');
 Route::post('director/edit/student', 'DirectorController@editStudent');
 Route::get('director/edit/subject/{id}', 'DirectorController@editSubjectForm');
+Route::post('director/edit/subject', 'DirectorController@editSubject');

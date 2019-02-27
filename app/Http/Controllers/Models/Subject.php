@@ -8,6 +8,10 @@ use Illuminate\Support\Facades\DB;
 
 class Subject extends Model
 {
+    protected $table = 'subject';
+    protected $primaryKey = 'subject_id';
+    public $timestamps = false;
+
     public function getAllSubject()
     {
         $r = [];
