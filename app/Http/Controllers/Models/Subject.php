@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\DB;
 
 class Subject extends Model
 {
-    protected $table = 'subject';
+    protected $table = 'subjects';
     protected $primaryKey = 'subject_id';
     public $timestamps = false;
 

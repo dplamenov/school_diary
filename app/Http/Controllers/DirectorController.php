@@ -353,8 +353,8 @@ class DirectorController extends Controller
             return redirect()->route('home');
         }
         $subject = Subject::find($subject_id);
-        echo '<pre>' . print_r($subject, true) . '</pre>';
-        //return view('editsubject', ['subject' => $subject]);
+
+        return view('editsubject', ['subject' => $subject]);
     }
 
     public function editSubject()
