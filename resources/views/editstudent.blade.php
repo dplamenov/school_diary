@@ -11,6 +11,7 @@
     <form method="post" action="{{url('director/edit/student')}}">
         @csrf
         @method('post')
+        <input type="hidden" name="user_id" value="{{$user->user_id}}"/>
         <label>
             Student name
             <input type="text" name="name" value="{{$student->student_name}}"/>

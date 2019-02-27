@@ -326,8 +326,10 @@ class DirectorController extends Controller
     {
         $validate = $this->validate($request, [
             'name' => 'min:8',
-            'email' => 'email'
+            'email' => 'email',
+            'user_id' => 'numeric'
         ]);
+
 
         //ToDo store edited student.
 
