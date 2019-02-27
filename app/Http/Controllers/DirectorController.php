@@ -330,7 +330,16 @@ class DirectorController extends Controller
             'user_id' => 'numeric'
         ]);
 
+        $user = User::find($validate['user_id']);
+        $user->email = $validate['email'];
+        $user->username = strtolower(str_replace(' ', '', $validate['name']));
+        $user->password = password_hash(strtolower(str_replace(' ', '', $validate['name'])), PASSWORD_BCRYPT);
+        $user->save();
 
+        $student = Students::find($user->id);
+        $student->student_name = $validate['name'];
+        $student->save();
+        return redirect()->route('home');
         //ToDo store edited student.
 
     }
