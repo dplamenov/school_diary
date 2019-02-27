@@ -2,6 +2,11 @@
 @section('title', 'Edit subject')
 @section('container')
 
+    @if(count($errors) > 0)
+        @foreach($errors->all() as $error)
+            <p>{{$error}}</p>
+        @endforeach
+    @endif
     <form method="post" action="{{url('director/edit/subject')}}">
         @csrf
         @method('post')
