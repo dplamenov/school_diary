@@ -340,7 +340,7 @@ class DirectorController extends Controller
         $student->student_name = $validate['name'];
         $student->save();
         return redirect()->route('home');
-        //ToDo store edited student.
+
 
     }
 }
