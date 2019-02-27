@@ -324,6 +324,10 @@ class DirectorController extends Controller
 
     public function editStudent(Request $request)
     {
+        if ($request->session()->get('user_data')['type'] != 'director') {
+            return redirect()->route('home');
+        }
+
         $validate = $this->validate($request, [
             'name' => 'min:8',
             'email' => 'email',
@@ -343,8 +347,11 @@ class DirectorController extends Controller
 
     }
 
-    public function editSubjectForm()
+    public function editSubjectForm(Request $request, $subject_id)
     {
+        if ($request->session()->get('user_data')['type'] != 'director') {
+            return redirect()->route('home');
+        }
 
     }
 }
