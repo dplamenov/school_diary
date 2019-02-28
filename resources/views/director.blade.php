@@ -21,7 +21,7 @@
                 @if(mb_strlen($teacher['subject']) > 0)
                     <td>{{$teacher['subject']}}</td>
                 @endif
-                <td><a href="teacher/delete/{{$k}}">Delete</a></td>
+                <td><a href="{{url('teacher/delete/' . $k)}}">Delete</a></td>
             </tr>
         @endforeach
     </table>
