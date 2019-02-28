@@ -387,7 +387,8 @@ class DirectorController extends Controller
             return redirect()->route('home');
         }
         $teacher = Teacher::find($id);
-        $user = User::find($teacher->teacher_id);
+        echo $teacher->teacher_id;
+        $user = User::where('id', $teacher->teacher_id)->where('type', 0)->first();
         return view('editteacher', ['teacher' => $teacher, 'user' => $user]);
     }
 
@@ -397,11 +398,15 @@ class DirectorController extends Controller
             return redirect()->route('home');
         }
 
-        $validate = $this->validate($request,[
+        $validate = $this->validate($request, [
             'name' => 'min:5',
             'email' => 'email',
             'teacher_id' => 'numeric'
         ]);
+
+        $teacher = Teacher::find($validate['teacher_id']);
+        $user = User::find($teacher->teacher_id);
+
 
     }
 }
