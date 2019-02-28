@@ -12,10 +12,15 @@
                 <td>{{$student->student_name}}</td>
                 <td>{{number_format($student->average_grade, 2)}}</td>
                 <td>
-                    <a href="{{url('director/delete/student/' . $student->student_id)}}">Delete</a>
+                    <button>
+                        <a style="text-decoration: none;color: #1b1e21" href="{{url('director/delete/student/' . $student->student_id)}}">Delete</a>
+                    </button>
                 </td>
                 <td>
                     <a href="{{url('director/edit/student/' . $student->student_id)}}">Edit</a>
+                </td>
+                <td>
+                    <a href="{{url('parent/register/' . $student->student_id)}}">Register parent</a>
                 </td>
             </tr>
         @endforeach
