@@ -407,6 +407,11 @@ class DirectorController extends Controller
         $teacher = Teacher::find($validate['teacher_id']);
         $user = User::find($teacher->teacher_id);
 
+        $user->email = $validate['email'];
+        $user->password = password_hash(strtolower(str_replace(' ', '', $validate['name'])), PASSWORD_BCRYPT);
+        $user->username = strtolower(str_replace(' ', '', $validate['name']));
+        $user->save();
+        $teacher->teacher_name = $validate['name'];
 
     }
 }
