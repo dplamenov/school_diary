@@ -14,9 +14,8 @@
         <br>
         <label>
             Teacher email
-            <input type="text" name="name" value="{{$user->email}}"/>
+            <input type="text" name="email" value="{{$user->email}}"/>
         </label>
         <input type="submit" value="Edit"/>
     </form>
-
 @endsection
