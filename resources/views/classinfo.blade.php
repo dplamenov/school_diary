@@ -5,15 +5,16 @@
     <p>Class: {{$class_name}}</p>
 
     <p>Students:</p>
-
+    <button type="button" class="btn btn-danger">Danger</button>
     <table>
+
         @foreach($students as $student)
             <tr>
                 <td>{{$student->student_name}}</td>
                 <td>{{number_format($student->average_grade, 2)}}</td>
                 <td>
-                    <button>
-                        <a style="text-decoration: none;color: #1b1e21" href="{{url('director/delete/student/' . $student->student_id)}}">Delete</a>
+                    <button type="button" class="btn btn-danger">
+                        <a style="text-decoration: none;color: red" href="{{url('director/delete/student/' . $student->student_id)}}">Delete</a>
                     </button>
                 </td>
                 <td>
