@@ -318,7 +318,7 @@ class DirectorController extends Controller
         $student = new Students();
         $student = $student->getStudentById($student_id);
 
-        $user = User::where('id', $student->student_id)->first();
+        $user = User::where('id', $student->student_id)->where('type', 2)->first();
 
         return view('editstudent', ['student' => $student, 'user' => $user]);
     }
