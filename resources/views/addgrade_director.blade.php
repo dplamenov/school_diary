@@ -3,6 +3,7 @@
     Add grade
 @endsection
 @section('container')
+    <a href="{{url('')}}">Go back</a>
     <h2>Add grade</h2>
     @if ($errors->any())
         @foreach($errors->all() as $error)
