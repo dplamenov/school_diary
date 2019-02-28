@@ -5,7 +5,6 @@
     <p>Class: {{$class_name}}</p>
 
     <p>Students:</p>
-    <button type="button" class="btn btn-danger">Danger</button>
     <table>
 
         @foreach($students as $student)
@@ -13,15 +12,20 @@
                 <td>{{$student->student_name}}</td>
                 <td>{{number_format($student->average_grade, 2)}}</td>
                 <td>
-                    <button type="button" class="btn btn-danger">
+                    <button type="button" style="background: white; border: red 1px;border-radius: 10px;width: 60px">
                         <a style="text-decoration: none;color: red" href="{{url('director/delete/student/' . $student->student_id)}}">Delete</a>
                     </button>
                 </td>
                 <td>
-                    <a href="{{url('director/edit/student/' . $student->student_id)}}">Edit</a>
+                    <button type="button" style="background: white; border: red 1px;border-radius: 10px;width: 60px">
+                        <a style="text-decoration: none; color: #2a9055" href="{{url('director/edit/student/' . $student->student_id)}}">Edit</a>
+                    </button>
                 </td>
                 <td>
-                    <a href="{{url('parent/register/' . $student->student_id)}}">Register parent</a>
+                    <button type="button" style="background: white; border: red 1px;border-radius: 10px;width: 110px">
+                        <a style="text-decoration: none;color: #1b4b72" href="{{url('parent/register/' . $student->student_id)}}">Register parent</a>
+                    </button>
+
                 </td>
             </tr>
         @endforeach
