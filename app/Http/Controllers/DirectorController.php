@@ -387,7 +387,8 @@ class DirectorController extends Controller
             return redirect()->route('home');
         }
         $teacher = Teacher::find($id);
-        return view('editteacher', ['teacher' => $teacher]);
+        $user = User::find($teacher->teacher_id);
+        return view('editteacher', ['teacher' => $teacher, 'user' => $user]);
     }
 
     public function editTeacher(Request $request)

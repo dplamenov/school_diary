@@ -11,5 +11,12 @@
             Teacher name
             <input type="text" name="name" value="{{$teacher->teacher_name}}"/>
         </label>
+        <br>
+        <label>
+            Teacher email
+            <input type="text" name="name" value="{{$user->email}}"/>
+        </label>
+        <input type="submit" value="Edit"/>
     </form>
+
 @endsection
