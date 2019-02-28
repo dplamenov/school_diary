@@ -7,6 +7,7 @@
     <form method="post" action="{{url('teacher/edit')}}">
         @csrf
         @method('post')
+        <input type="hidden" name="teacher_id" value="{{$teacher->teacher_id}}"/>
         <label>
             Teacher name
             <input type="text" name="name" value="{{$teacher->teacher_name}}"/>
