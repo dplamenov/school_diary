@@ -9,6 +9,10 @@ use Illuminate\Support\Facades\DB;
 
 class Teacher extends Model
 {
+    protected $table = 'teachers';
+    protected $primaryKey = 'teacher_id';
+    public $timestamps = false;
+
     public function getAllTeacher()
     {
         $r = DB::select('SELECT * FROM `teachers`');

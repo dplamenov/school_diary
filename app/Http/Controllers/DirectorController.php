@@ -381,13 +381,19 @@ class DirectorController extends Controller
         return redirect()->route('home');
     }
 
-    public function editTeacherForm()
+    public function editTeacherForm(Request $request, $id)
     {
-
+        if ($request->session()->get('user_data')['type'] != 'director') {
+            return redirect()->route('home');
+        }
+        $teacher = Teacher::find($id);
+        return view('editteacher', ['teacher' => $teacher]);
     }
 
-    public function editTeacher()
+    public function editTeacher(Request $request)
     {
-
+        if ($request->session()->get('user_data')['type'] != 'director') {
+            return redirect()->route('home');
+        }
     }
 }
