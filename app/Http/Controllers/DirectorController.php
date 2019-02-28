@@ -397,6 +397,10 @@ class DirectorController extends Controller
             return redirect()->route('home');
         }
 
+        $validate = $this->validate($request,[
+            'name' => 'min:5',
+            'email' => 'email'
+        ]);
 
     }
 }
