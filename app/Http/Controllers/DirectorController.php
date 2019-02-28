@@ -43,7 +43,7 @@ class DirectorController extends Controller
         ]);
         $teacher_model = new Teacher();
         if ($teacher_model->teacherExists($validate['fullname'])) {
-            return view('error', ['type_error' => 'Teacher already exists.']);
+            return view('error', ['type_error' => 'Teacher already exists']);
         }
         DB::insert("INSERT INTO `teachers` (`teacher_id`, `teacher_name`) VALUES (NULL, ?)", [$validate['fullname']]);
         $last_id = DB::select('SELECT * FROM `teachers` WHERE `teacher_name` = ?', [$validate['fullname']])[0]->teacher_id;
@@ -379,5 +379,15 @@ class DirectorController extends Controller
         $subject->save();
 
         return redirect()->route('home');
+    }
+
+    public function editTeacherForm()
+    {
+
+    }
+
+    public function editTeacher()
+    {
+
     }
 }
