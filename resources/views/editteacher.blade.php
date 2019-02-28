@@ -4,6 +4,11 @@
 @endsection
 @section('container')
     <p>You will edit {{$teacher->teacher_name}} teacher.</p>
+    @if ($errors->any())
+        @foreach($errors->all() as $error)
+            <p>{{$error}}</p>
+        @endforeach
+    @endif
     <form method="post" action="{{url('teacher/edit')}}">
         @csrf
         @method('post')

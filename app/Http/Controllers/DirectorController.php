@@ -399,7 +399,8 @@ class DirectorController extends Controller
 
         $validate = $this->validate($request,[
             'name' => 'min:5',
-            'email' => 'email'
+            'email' => 'email',
+            'teacher_id' => 'numeric'
         ]);
 
     }
