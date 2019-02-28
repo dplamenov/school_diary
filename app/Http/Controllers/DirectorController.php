@@ -412,6 +412,8 @@ class DirectorController extends Controller
         $user->username = strtolower(str_replace(' ', '', $validate['name']));
         $user->save();
         $teacher->teacher_name = $validate['name'];
+        $teacher->save();
+
 
     }
 }
