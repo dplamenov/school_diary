@@ -1,6 +1,7 @@
 @extends('layout.layout')
 @section('title', 'Add teacher')
 @section('container')
+    <a href="{{url('')}}">Go back</a>
     <h1>Add teacher</h1>
     @if(count($errors) > 0)
         @foreach($errors->all() as $error)
