@@ -371,7 +371,7 @@ class DirectorController extends Controller
         }
         $validate = $this->validate($request, [
             'subject_id' => 'numeric',
-            'subject' => 'min:2'    
+            'subject' => 'min:2'
         ]);
 
         $subject = Subject::find($validate['subject_id']);
@@ -413,6 +413,12 @@ class DirectorController extends Controller
         $teacher->teacher_name = $validate['name'];
         $teacher->save();
 
+    }
 
+    public function schoolInfo(Request $request)
+    {
+        if ($request->session()->get('user_data')['type'] != 'director') {
+            return redirect()->route('home');
+        }
     }
 }
