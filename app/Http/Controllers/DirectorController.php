@@ -371,7 +371,7 @@ class DirectorController extends Controller
         }
         $validate = $this->validate($request, [
             'subject_id' => 'numeric',
-            'subject' => 'min:2'
+            'subject' => 'min:2'    
         ]);
 
         $subject = Subject::find($validate['subject_id']);

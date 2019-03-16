@@ -7,6 +7,7 @@
     <a href="{{url('director/addsubject')}}">Add subject</a>
     <a href="{{url('director/addclass')}}">Add class</a>
     <a href="{{url('director/grade')}}">Choose grade system</a>
+    <a href="{{url('director/schoolinfo')}}">School info</a>
     <h2>List of teacher</h2>
     <table style="border: 1px">
         <tr>
