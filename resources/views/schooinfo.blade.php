@@ -3,5 +3,5 @@
     School info
 @endsection
 @section('container')
-
+    
 @endsection

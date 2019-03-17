@@ -94,3 +94,11 @@ CREATE TABLE IF NOT EXISTS `grade`
   `grade_number` INT         NOT NULL,
   PRIMARY KEY (`grade_id`)
 ) ENGINE = InnoDB;
+
+CREATE TABLE IF NOT EXISTS `config`
+(
+  `id`    INT         NOT NULL AUTO_INCREMENT,
+  `key`   VARCHAR(30) NOT NULL,
+  `value` VARCHAR(50) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE = InnoDB;
