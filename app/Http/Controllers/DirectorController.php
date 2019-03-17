@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Models\Classes;
+use App\Http\Controllers\Models\Config;
 use App\Http\Controllers\Models\directorGrade;
 use App\Http\Controllers\Models\Students;
 use App\Http\Controllers\Models\Subject;
@@ -421,8 +422,8 @@ class DirectorController extends Controller
             return redirect()->route('home');
         }
 
-        $config = DB::select('SELECT * FROM config');
-        
+        $config = Config::all();
+        echo '<pre>' . print_r($config, true) . '</pre>';
         return view('schooinfo');
     }
 }
