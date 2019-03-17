@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Models\Classes;
+use App\Http\Controllers\Models\Config;
 use App\Http\Controllers\Models\directorGrade;
 use App\Http\Controllers\Models\Note;
 use App\Http\Controllers\Models\Parents;
@@ -18,7 +19,13 @@ class DefaultController extends Controller
     public function index(Request $request)
     {
         $config = DB::select('SELECT * FROM config');
-        if(count($config) > 0);
+        if (count($config) == 0) {
+            $config = new Config();
+            $config->_key = 'schoolname';
+            $config->value = 'School';
+            $config->save();
+        }
+
         $user_model = new Models\User();
         if ($request->session()->get('islogged', false)) {
             if ($request->session()->get('user_data')['type'] == 'director') {
@@ -168,7 +175,7 @@ students_classes.student_id = ? LIMIT 1', [$student->student_id])[0];
             $user->save();
             $this->logout($request);
             return redirect()->route('home');
-        }else{
+        } else {
             return view('error', ['type_error' => 'Invalid password']);
         }
 
