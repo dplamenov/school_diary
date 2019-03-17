@@ -421,6 +421,7 @@ class DirectorController extends Controller
             return redirect()->route('home');
         }
 
+        $config = DB::select('SELECT * FROM config');
         return view('schooinfo');
     }
 }
