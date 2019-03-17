@@ -9,6 +9,7 @@
                 <tr>
                     <td>{{$value['_key']}}</td>
                     <td>{{$value['value']}}</td>
+                    <td><a href="">Edit</a></td>
                 </tr>
             @endforeach
         </table>

@@ -21,6 +21,7 @@ class DefaultController extends Controller
         $config = DB::select('SELECT * FROM config');
         if (count($config) == 0) {
             $config = new Config();
+            $config->id = 1;
             $config->_key = 'School Name';
             $config->value = 'School';
             $config->save();
