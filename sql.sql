@@ -97,8 +97,8 @@ CREATE TABLE IF NOT EXISTS `grade`
 
 CREATE TABLE IF NOT EXISTS `config`
 (
-  `id`    INT         NOT NULL AUTO_INCREMENT,
-  `_key`   VARCHAR(30) NOT NULL,
+  `id`    INT         NOT NULL,
+  `_key`  VARCHAR(30) NOT NULL,
   `value` VARCHAR(50) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE = InnoDB;
