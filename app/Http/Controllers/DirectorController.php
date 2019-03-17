@@ -423,7 +423,6 @@ class DirectorController extends Controller
         }
 
         $config = Config::all();
-        echo '<pre>' . print_r($config, true) . '</pre>';
-        return view('schooinfo');
+        return view('schooinfo', ['config' => $config]);
     }
 }
