@@ -422,6 +422,7 @@ class DirectorController extends Controller
         }
 
         $config = DB::select('SELECT * FROM config');
+        
         return view('schooinfo');
     }
 }

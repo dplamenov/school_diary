@@ -17,6 +17,8 @@ class DefaultController extends Controller
 {
     public function index(Request $request)
     {
+        $config = DB::select('SELECT * FROM config');
+        if(count($config) > 0);
         $user_model = new Models\User();
         if ($request->session()->get('islogged', false)) {
             if ($request->session()->get('user_data')['type'] == 'director') {
