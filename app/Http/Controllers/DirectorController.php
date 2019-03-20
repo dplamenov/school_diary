@@ -438,6 +438,9 @@ class DirectorController extends Controller
             'value' => 'min:3',
             'id' => 'required'
         ]);
+        $config = Config::find(intval($validate['id']));
+        $config->value = $validate['value'];
+        $config->save();
         return redirect()->to('director/schoolinfo');
     }
 }
