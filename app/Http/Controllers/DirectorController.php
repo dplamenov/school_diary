@@ -434,6 +434,9 @@ class DirectorController extends Controller
 
     public function schoolInfoEdit(Request $request)
     {
-
+        $validate = $this->validate($request, [
+            'value' => 'min:3'
+        ]);
+        return redirect()->to('director/schoolinfo');
     }
 }
