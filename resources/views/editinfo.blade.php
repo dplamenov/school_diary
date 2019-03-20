@@ -11,6 +11,7 @@
     <form method="post" action="{{url('director/edit')}}">
         @csrf
         @method('post')
+        <input type="hidden" name="id" value="{{$config->_key}}"/>
         <label>
             {{$config->_key}}
             <input type="text" name="value" value="{{$config->value}}"/>
