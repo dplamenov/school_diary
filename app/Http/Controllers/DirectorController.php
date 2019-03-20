@@ -425,4 +425,10 @@ class DirectorController extends Controller
         $config = Config::all();
         return view('schooinfo', ['config' => $config]);
     }
+
+    public function schoolInfoEditForm($id)
+    {
+        $config = Config::find($id);
+        return view('editinfo', []);
+    }
 }
