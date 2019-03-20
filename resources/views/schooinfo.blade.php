@@ -9,7 +9,7 @@
                 <tr>
                     <td>{{$value['_key']}}</td>
                     <td>{{$value['value']}}</td>
-                    <td><a href="">Edit</a></td>
+                    <td><a href="{{url('director/edit/' . $value['id'])}}">Edit</a></td>
                 </tr>
             @endforeach
         </table>
