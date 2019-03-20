@@ -3,6 +3,11 @@
     Edit School info
 @endsection
 @section('container')
+    @if ($errors->any())
+        @foreach($errors->all() as $error)
+            <p>{{$error}}</p>
+        @endforeach
+    @endif
     <form method="post" action="{{url('director/edit')}}">
         @csrf
         @method('post')
