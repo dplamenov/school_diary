@@ -42,3 +42,4 @@ Route::get('teacher/edit/{id}', 'DirectorController@editTeacherForm');
 Route::post('teacher/edit', 'DirectorController@editTeacher');
 Route::get('director/schoolinfo', 'DirectorController@schoolInfo');
 Route::get('director/edit/{id}', 'DirectorController@schoolInfoEditForm');
+Route::post('director/edit', 'DirectorController@schoolInfoEdit');

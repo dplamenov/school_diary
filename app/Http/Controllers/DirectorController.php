@@ -429,6 +429,11 @@ class DirectorController extends Controller
     public function schoolInfoEditForm($id)
     {
         $config = Config::find($id);
-        return view('editinfo', []);
+        return view('editinfo', ['config' => $config]);
+    }
+
+    public function schoolInfoEdit(Request $request)
+    {
+
     }
 }
