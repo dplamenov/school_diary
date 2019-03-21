@@ -423,12 +423,15 @@ class DirectorController extends Controller
         }
 
         $config = Config::all();
-        return view('schooinfo', ['config' => $config]);
+
+        $teacher_count = count(Teacher::all());
+        return view('schooinfo', ['config' => $config, 'teacher_count' => $teacher_count]);
     }
 
     public function schoolInfoEditForm($id)
     {
         $config = Config::find($id);
+
         return view('editinfo', ['config' => $config]);
     }
 
@@ -441,6 +444,7 @@ class DirectorController extends Controller
         $config = Config::find(intval($validate['id']));
         $config->value = $validate['value'];
         $config->save();
+
         return redirect()->to('director/schoolinfo');
     }
 }

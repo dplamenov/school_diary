@@ -14,4 +14,5 @@
             @endforeach
         </table>
     @endif
+    <p>Count of teacher: {{$teacher_count}}</p>
 @endsection
