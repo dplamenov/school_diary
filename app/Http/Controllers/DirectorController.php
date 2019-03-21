@@ -425,7 +425,8 @@ class DirectorController extends Controller
         $config = Config::all();
 
         $teacher_count = count(Teacher::all());
-        return view('schooinfo', ['config' => $config, 'teacher_count' => $teacher_count]);
+        $subject_count = count(Subject::all());
+        return view('schooinfo', ['config' => $config, 'teacher_count' => $teacher_count, 'subject_count' => $subject_count]);
     }
 
     public function schoolInfoEditForm($id)

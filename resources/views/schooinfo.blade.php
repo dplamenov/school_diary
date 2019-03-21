@@ -15,4 +15,5 @@
         </table>
     @endif
     <p>Count of teacher: {{$teacher_count}}</p>
+    <p>Count of subject: {{$subject_count}}</p>
 @endsection
