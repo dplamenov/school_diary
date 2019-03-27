@@ -449,7 +449,7 @@ class DirectorController extends Controller
         return redirect()->to('director/schoolinfo');
     }
 
-    public function deleteClass($class_id, Request $request)
+    public function deleteClass($class_id)
     {
         $students = DB::select('SELECT * FROM students_classes where class_id = ?', [$class_id]);
 
