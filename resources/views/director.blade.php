@@ -58,7 +58,7 @@
                     <td>{{$class->class_name}}</td>
                     <td>{{$class->teacher_name}}</td>
                     <td><a href="{{url('director/class/' . $class->class_id)}}">Info</a></td>
-                    <td><a href="{{url('director/delete/class' . $class_class_id)}}">Delete</a></td>
+                    <td><a href="{{url('director/delete/class' . $class->class_id)}}">Delete</a></td>
                 </tr>
             @endforeach
         </table>
