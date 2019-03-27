@@ -11,6 +11,8 @@ use App\Http\Controllers\Models\Teacher;
 use App\Http\Controllers\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use phpDocumentor\Reflection\DocBlock\Tags\Formatter;
+use PHPUnit\Runner\NullTestResultCache;
 use Symfony\Component\HttpKernel\Exception\ServiceUnavailableHttpException;
 
 class DirectorController extends Controller
@@ -451,6 +453,14 @@ class DirectorController extends Controller
 
     public function deleteClass($class_id, Request $request)
     {
+        $students = DB::select('SELECT * FROM students_classes where class_id = ?', [$class_id]);
 
+        foreach ($students as $_student) {
+
+            $student = Students::find($_student->student_id);
+            $student->delete();
+        }
+        $class = Classes::find($class_id);
+        $class->delete();
     }
 }
