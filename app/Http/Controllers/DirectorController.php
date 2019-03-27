@@ -460,5 +460,7 @@ class DirectorController extends Controller
         }
         $class = Classes::find($class_id);
         $class->delete();
+
+        redirect()->route('home');
     }
 }
