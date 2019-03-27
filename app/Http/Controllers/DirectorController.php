@@ -448,4 +448,9 @@ class DirectorController extends Controller
 
         return redirect()->to('director/schoolinfo');
     }
+
+    public function deleteClass($class_id, Request $request)
+    {
+
+    }
 }
