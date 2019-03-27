@@ -11,9 +11,7 @@ use App\Http\Controllers\Models\Teacher;
 use App\Http\Controllers\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use phpDocumentor\Reflection\DocBlock\Tags\Formatter;
-use PHPUnit\Runner\NullTestResultCache;
-use Symfony\Component\HttpKernel\Exception\ServiceUnavailableHttpException;
+
 
 class DirectorController extends Controller
 {
