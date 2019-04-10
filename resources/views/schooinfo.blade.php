@@ -7,7 +7,7 @@
         <table>
             @foreach($config as $value)
                 <tr>
-                    <td>{{$value['_key']}}</td>
+                    <td>{{trim($value['_key'])}}</td>
                     <td>{{$value['value']}}</td>
                     <td><a href="{{url('director/edit/' . $value['id'])}}">Edit</a></td>
                 </tr>
