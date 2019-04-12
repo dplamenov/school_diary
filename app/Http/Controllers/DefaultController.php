@@ -125,7 +125,7 @@ students_classes.student_id = ? LIMIT 1', [$student->student_id])[0];
         $user = DB::select('SELECT * FROM `users` WHERE `username` = ? and `type` = ?',
             [$validate['username'], $validate['type']]);
 
-        if (count($user) == 1 && password_verify($validate['password'], $user[0]->password)) {
+        if (password_verify($validate['password'], $user[0]->password)) {
             $user_model = new Models\User();
             unset($validate['password']);
             $user_data['id'] = $user[0]->user_id;
