@@ -45,4 +45,10 @@ SELECT * FROM `grades` as g LEFT JOIN `students` ON g.student_id = students.stud
         }
 
     }
+
+    public function allNote()
+    {
+
+    }
+
 }

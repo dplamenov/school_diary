@@ -44,3 +44,4 @@ Route::get('director/schoolinfo', 'DirectorController@schoolInfo');
 Route::get('director/edit/{id}', 'DirectorController@schoolInfoEditForm');
 Route::post('director/edit', 'DirectorController@schoolInfoEdit');
 Route::get('director/delete/class/{id}', 'DirectorController@deleteClass');
+Route::get('student/{student_id}/note', 'StudentController@allNote');
