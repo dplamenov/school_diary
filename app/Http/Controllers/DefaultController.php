@@ -127,11 +127,17 @@ students_classes.student_id = ? LIMIT 1', [$student->student_id])[0];
 
         if (password_verify($validate['password'], $user[0]->password)) {
             $user_model = new Models\User();
-            unset($validate['password']);
+
             $user_data['id'] = $user[0]->user_id;
             $user_data['tid'] = $user[0]->id;
             $user_data['username'] = ucfirst(strtolower($validate['username']));
             $user_data['type'] = $user_model->getUserTypes()[$validate['type']];
+            if($user[0]->is_password_change == 0){
+                $request->session()->put('default_password', true);
+            }else{
+                $request->session()->put('default_password', false);
+            }
+            unset($validate['password']);
             $request->session()->put('user_data', $user_data);
             $request->session()->put('islogged', true);
             return redirect()->route('home');
