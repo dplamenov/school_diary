@@ -29,6 +29,7 @@ class DefaultController extends Controller
 
         $user_model = new Models\User();
         if ($request->session()->get('islogged', false)) {
+            $default_password = $request->session()->get('default_password');
             if ($request->session()->get('user_data')['type'] == 'director') {
 
                 $subject_model = new Subject();
@@ -63,7 +64,7 @@ class DefaultController extends Controller
 
                 $classes = DB::select("SELECT * FROM `teacher_classes` LEFT JOIN `classes` ON teacher_classes.class_id = classes.class_id WHERE teacher_classes.teacher_id = ?", [$r[0]->teacher_id]);
 
-                return view('teacher', ['user_data' => $request->session()->get('user_data'), 'name' => $name, 'class' => $class, 'classes' => $classes]);
+                return view('teacher', ['user_data' => $request->session()->get('user_data'), 'name' => $name, 'class' => $class, 'classes' => $classes, 'default_password' => $default_password]);
             } elseif (strtolower($request->session()->get('user_data')['type']) == 'student') {
 
                 $id = $request->session()->get('user_data')['tid'];
@@ -75,7 +76,7 @@ class DefaultController extends Controller
                 }
                 $name = DB::select('SELECT * FROM `students` WHERE `student_id` = ?', [$request->session()->get('user_data')['tid']])[0]->student_name;
                 $grades = DB::select('SELECT * FROM `grades` LEFT JOIN `students` ON grades.student_id = students.student_id LEFT JOIN `subjects` ON subjects.subject_id = grades.subject_id LEFT JOIN `teachers` ON teachers.teacher_id = grades.teacher_id LEFT JOIN grade ON grade.grade_id = grades.grade where grades.student_id = ?', [$id]);
-                return view('student', ['user_data' => $request->session()->get('user_data'), 'name' => $name, 'class' => $class[0]->class_name, 'notes' => $notes, 'grades' => $grades]);
+                return view('student', ['user_data' => $request->session()->get('user_data'), 'name' => $name, 'class' => $class[0]->class_name, 'notes' => $notes, 'grades' => $grades, 'default_password' => $default_password]);
             } elseif (strtolower($request->session()->get('user_data')['type']) == 'parent') {
                 $parent_id = $request->session()->get('user_data')['tid'];
                 $parent = Parents::find($parent_id);
@@ -95,7 +96,7 @@ SELECT * FROM `grades` as g LEFT JOIN `students` ON g.student_id = students.stud
                 }
                 $class = DB::select('SELECT * FROM `classes` LEFT JOIN students_classes ON classes.class_id = students_classes.class_id WHERE
 students_classes.student_id = ? LIMIT 1', [$student->student_id])[0];
-                return view('parent', ['student' => $student, 'parent' => $parent, 'class' => $class, 'unsigned_notes' => $unsigned_notes, 'grades' => $grades,]);
+                return view('parent', ['student' => $student, 'parent' => $parent, 'class' => $class, 'unsigned_notes' => $unsigned_notes, 'grades' => $grades, 'default_password' => $default_password]);
             }
 
 

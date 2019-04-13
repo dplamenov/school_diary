@@ -2,6 +2,10 @@
 @section('title', 'Student')
 @section('container')
 
+    @if($default_password == 1)
+        <p style="color: red;font-weight: bold">Change password from <a style="font-weight: bold; color: red;text-decoration: none  " href="{{url('changepassword')}}">here</a>.</p>
+    @endif
+
     <a href="{{url('logout')}}">Log out</a>
     <a href="{{url('parent/register/' . $user_data['tid'])}}">Register parent</a>
     <a href="{{url('changepassword')}}">Change password</a>
