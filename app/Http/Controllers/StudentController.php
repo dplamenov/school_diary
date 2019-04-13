@@ -48,11 +48,11 @@ SELECT * FROM `grades` as g LEFT JOIN `students` ON g.student_id = students.stud
 
     public function allNote($student_id, Request $request)
     {
-        var_dump($request->session()->all());
-
         if($request->session()->get('user_data')['tid'] != $student_id){
             return redirect()->route('home');
         }
+        $notes = Note::where('student_id', $student_id)->get();
+
     }
 
 }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
+
 class Note extends Model
 {
     protected $table = 'notes';
@@ -15,4 +16,5 @@ class Note extends Model
         $r = DB::select('SELECT COUNT(*) as count FROM `notes` WHERE `note_id` = ' . $note_id);
         return (boolean)$r[0]->count;
     }
+
 }
