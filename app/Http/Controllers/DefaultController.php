@@ -180,6 +180,7 @@ students_classes.student_id = ? LIMIT 1', [$student->student_id])[0];
         $user = User::find($request->session()->get('user_data')['id']);
         if (password_verify($validate['password'], $user->password)) {
             $user->password = password_hash($validate['new'], PASSWORD_BCRYPT);
+            $user->is_password_change = 1;
             $user->save();
             $this->logout($request);
             return redirect()->route('home');
