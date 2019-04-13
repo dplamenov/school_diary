@@ -1,8 +1,11 @@
 @extends('layout.layout')
 @section('title', 'Parent')
 @section('container')
+    @if($default_password == 1)
+        <p style="color: red;font-weight: bold">Change password from <a style="font-weight: bold; color: red;text-decoration: none  " href="{{url('changepassword')}}">here</a>.</p>
+    @endif
     <a href="{{url('logout')}}">Log out</a>
-    <p>Your name is {{$parent->parent_name}}</p>
+    <p>Hello, {{$parent->parent_name}}</p>
     <a href="{{url('changepassword')}}">Change password</a>
     <p>You`re parent on student: {{$student->student_name}} from {{$class->class_name}}</p>
 
