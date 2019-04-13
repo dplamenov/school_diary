@@ -52,6 +52,9 @@ SELECT * FROM `grades` as g LEFT JOIN `students` ON g.student_id = students.stud
             return redirect()->route('home');
         }
         $notes = Note::where('student_id', $student_id)->get();
+        foreach ($notes as $key => $note){
+            $notes[$key]->teacher = Teacher::getTeacherById($note->teacher_id)->teacher_name;
+        }
         return view('student_note', ['notes' => $notes]);
     }
 
