@@ -1,11 +1,12 @@
 CREATE TABLE IF NOT EXISTS `users`
 (
-  `user_id`  INT         NOT NULL AUTO_INCREMENT,
-  `username` VARCHAR(40) NOT NULL,
-  `password` VARCHAR(64) NOT NULL,
-  `type`     INT         NOT NULL,
-  `email`    VARCHAR(90) NOT NULL,
-  `id`       INT         NOT NULL,
+  `user_id`            INT         NOT NULL AUTO_INCREMENT,
+  `username`           VARCHAR(40) NOT NULL,
+  `password`           VARCHAR(64) NOT NULL,
+  `type`               INT         NOT NULL,
+  `email`              VARCHAR(90) NOT NULL,
+  `id`                 INT         NOT NULL,
+  `is_password_change` TINYINT     NOT NULL DEFAULT '0',
   PRIMARY KEY (`user_id`)
 ) ENGINE = InnoDB;
 
