@@ -52,7 +52,7 @@ SELECT * FROM `grades` as g LEFT JOIN `students` ON g.student_id = students.stud
             return redirect()->route('home');
         }
         $notes = Note::where('student_id', $student_id)->get();
-
+        return view('student_note', ['notes' => $notes]);
     }
 
 }
