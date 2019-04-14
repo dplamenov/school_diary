@@ -4,9 +4,12 @@
     <a href="{{url('/')}}">Go back</a>
     <p>Class: {{$class_name}}</p>
 
-    <p>Students:</p>
     <table>
-
+        <tr>
+            <th>Student</th>
+            <th>Average Grade</th>
+            <th colspan="3">Operation</th>
+        </tr>
         @foreach($students as $student)
             <tr>
                 <td>{{$student->student_name}}</td>
