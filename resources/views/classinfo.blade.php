@@ -8,7 +8,7 @@
         <tr>
             <th>Student</th>
             <th>Average Grade</th>
-            <th colspan="3">Operation</th>
+            <th colspan="4">Operation</th>
         </tr>
         @foreach($students as $student)
             <tr>
