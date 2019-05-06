@@ -463,4 +463,9 @@ class DirectorController extends Controller
 
         redirect()->route('home');
     }
+
+    public function studentInfo()
+    {
+
+    }
 }

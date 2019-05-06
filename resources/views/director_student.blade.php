@@ -1,8 +1,5 @@
-<?php
-/**
- * Project: school_diary.
- * File: director_student.blade.php
- * Developer: dplamenov@icloud.com
- * Date: 6.5.2019 г.
- * Time: 17:26
- */
+@extends('layout.layout')
+@section('title', 'Student Info')
+@section('container')
+
+@endsection
