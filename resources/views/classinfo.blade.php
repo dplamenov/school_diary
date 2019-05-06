@@ -32,7 +32,7 @@
                 </td>
 
                 <td>
-                    <a style="text-decoration: none;color: black" href="{{url('parent/register/' . $student->student_id)}}">Info</a>
+                    <a style="text-decoration: none;color: black" href="{{url('director/student/' . $student->student_id)}}">Info</a>
                 </td>
             </tr>
         @endforeach
