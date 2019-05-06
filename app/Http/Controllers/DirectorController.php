@@ -469,7 +469,8 @@ class DirectorController extends Controller
         if ($request->session()->get('user_data')['type'] != 'director') {
             return redirect()->route('home');
         }
+        $student = Students::find($id);
 
-        echo $id;
+        return view('director_student', ['student' => $student]);
     }
 }
