@@ -30,6 +30,10 @@
                     </button>
 
                 </td>
+
+                <td>
+                    <a style="text-decoration: none;color: black" href="{{url('parent/register/' . $student->student_id)}}">Info</a>
+                </td>
             </tr>
         @endforeach
     </table>

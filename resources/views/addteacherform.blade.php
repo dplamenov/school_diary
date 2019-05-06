@@ -20,7 +20,7 @@
                         <option value="{{$key}}">{{$subject}}</option>
                     @endforeach
                 </select>
-            </label>
+            </label><br>
             <label>
                 Email<input type="text" name="email"/>
             </label>
