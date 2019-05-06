@@ -464,8 +464,10 @@ class DirectorController extends Controller
         redirect()->route('home');
     }
 
-    public function studentInfo()
+    public function studentInfo(Request $request, $id)
     {
-
+        if ($request->session()->get('user_data')['type'] != 'director') {
+            return redirect()->route('home');
+        }
     }
 }
