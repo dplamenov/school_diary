@@ -1,5 +1,5 @@
 @extends('layout.layout')
 @section('title', 'Student Info')
 @section('container')
-    <p>{{$student['student_name']}}</p>
+    <p>Student Name: {{$student['student_name']}}</p>
 @endsection
