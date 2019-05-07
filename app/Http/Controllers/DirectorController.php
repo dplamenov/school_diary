@@ -470,6 +470,7 @@ class DirectorController extends Controller
             return redirect()->route('home');
         }
         $student = Students::find($id);
+        $class = DB::select('SELECT * FROM students_classes LEFT JOIN classes ON classes.class_id = students_classes.class_id WHERE students_classes.student_id = ?',[$id]);
 
         return view('director_student', ['student' => $student]);
     }
