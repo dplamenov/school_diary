@@ -474,10 +474,12 @@ class DirectorController extends Controller
         $class = DB::select('SELECT * FROM students_classes LEFT JOIN classes ON classes.class_id = students_classes.class_id WHERE students_classes.student_id = ?', [$id]);
 
         $studentGrade = Grade::where('student_id', $id)->get();
+
         foreach ($studentGrade as $key => $grade){
             $studentGrade[$key]->subject = Subject::find($grade->subject_id)->subject_name;
+            $studentGrade[$key]->grade_ = directorGrade::find($grade->grade)->grade_name;
         }
-
+        echo '<pre>' . print_r($studentGrade, true) . '</pre>';
         return view('director_student', ['student' => $student, 'class' => $class[0]->class_name]);
     }
 }
