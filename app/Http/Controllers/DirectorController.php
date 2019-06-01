@@ -479,7 +479,6 @@ class DirectorController extends Controller
             $studentGrade[$key]->subject = Subject::find($grade->subject_id)->subject_name;
             $studentGrade[$key]->grade_ = directorGrade::find($grade->grade)->grade_name;
         }
-        echo '<pre>' . print_r($studentGrade, true) . '</pre>';
-        return view('director_student', ['student' => $student, 'class' => $class[0]->class_name]);
+        return view('director_student', ['student' => $student, 'class' => $class[0]->class_name, 'grades' => $studentGrade]);
     }
 }

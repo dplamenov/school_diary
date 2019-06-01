@@ -5,4 +5,12 @@
     <p>
         Class: {{$class}}
     </p>
+    <h2>Student grade</h2>
+    @if(count($grades) >= 1)
+        @foreach($grades as $grade)
+
+        @endforeach
+    @else
+        <p>No grade.</p>
+    @endif
 @endsection
