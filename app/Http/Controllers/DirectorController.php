@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Models\Classes;
 use App\Http\Controllers\Models\Config;
 use App\Http\Controllers\Models\directorGrade;
+use App\Http\Controllers\Models\Grade;
 use App\Http\Controllers\Models\Students;
 use App\Http\Controllers\Models\Subject;
 use App\Http\Controllers\Models\Teacher;
@@ -471,6 +472,9 @@ class DirectorController extends Controller
         }
         $student = Students::find($id);
         $class = DB::select('SELECT * FROM students_classes LEFT JOIN classes ON classes.class_id = students_classes.class_id WHERE students_classes.student_id = ?', [$id]);
+
+        $studentGrade = Grade::where('student_id', $id)->get();
+
         return view('director_student', ['student' => $student, 'class' => $class[0]->class_name]);
     }
 }
