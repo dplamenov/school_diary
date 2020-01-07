@@ -414,7 +414,7 @@ class DirectorController extends Controller
         $user->save();
         $teacher->teacher_name = $validate['name'];
         $teacher->save();
-
+        return redirect()->route('home');
     }
 
     public function schoolInfo(Request $request)
