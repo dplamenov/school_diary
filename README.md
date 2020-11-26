@@ -1,2 +1,2 @@
 # school_diary
-online school diary
+[Demo](http://school.sharkdev.eu) admin admin
